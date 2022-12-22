@@ -1,0 +1,13 @@
+---
+layout: post
+title: Handling guests
+date: '2019-04-28T12:57:00.003+01:00'
+author: Tinkerer
+tags:
+- light
+- automation
+- home assistant
+modified_time: '2019-04-28T12:57:58.309+01:00'
+---
+
+How to handle guests is a common question, since the odds are your normal presence detection method (tracking a mobile phone) won't work easily with them.<br /><br />Whatever you do, the chances are you're going to end up with either an <a href="https://www.home-assistant.io/components/input_boolean/">input boolean</a>, or an <a href="https://www.home-assistant.io/components/input_select/">input select</a>. Which of those you go with whether you are looking for a simple yes/no, or something more flexible. For instance, maybe you want things to behave differently with friends, than with your elderly parents who've got failing eyesight and need more light.<br /><h3>Enabling and disable guest mode</h3>Now, you've got a variety of ways you can then set, and unset guest mode.<br /><br />Obviously the simplest is to just use the UI to change it. That's pretty basic, and is a reasonable starting point.<br /><br />The next option is to use voice control. If you expose the entity to your voice assistant then you can have it enable and disable the mode on demand. You can even use routines to make it more natural than <i>turn on the guest mode switch</i>.<br /><br />But, this is a home <i>automation</i>&nbsp;platform, and there will be a number of ways you can also automate this.<br /><br />One of the simplest here is to use a <a href="http://calendar/">calendar component</a> and use calendar events to control it. If you already use a calendar for tracking events, this may be largely transparent.<br /><h4>Guest Presence detection</h4>If your guests use your WiFi then obviously you can detect them that way. Similarly if they leave Bluetooth enabled then you can detect that using the likes of <a href="https://github.com/andrewjfreyer/monitor">monitor</a>.<br /><br />There's other things you can do too, with motion sensors, and room level activity detection.

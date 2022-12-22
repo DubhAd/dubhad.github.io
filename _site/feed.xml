@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    
+    <title>Tinkering with Technology</title>
+    
+    
+    <description>A feed of my thoughts</description>
+    
+    <link>http://0.0.0.0:4000/</link>
+    <atom:link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+    
+      <item>
+        <title>Traefik and a remote Home Assistant</title>
+        <description>
+          
+          I&apos;ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Home Assistant, despite that being on a remote host.The answer is (otherwise I wouldn&apos;t have written this) yes - and...
+        </description>
+        <pubDate>Tue, 25 Oct 2022 21:17:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2022-10-25-traefik-and-remote-home-assistant/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022-10-25-traefik-and-remote-home-assistant/</guid>
+      </item>
+    
+      <item>
+        <title>Frigate &gt; MotionEye+Doods</title>
+        <description>
+          
+          As you may remember, I use MotionEye and Doods, along with some crazy scripting, to do motion and object detection at the front of the house.Well, used&amp;nbsp;would be more accurate.Recently I tried out Frigate, initially without a Coral stick/board. The following day I turned off MotionEye and Doods. With very...
+        </description>
+        <pubDate>Tue, 20 Sep 2022 21:02:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2022-09-20-frigate-motioneyedoods/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2022-09-20-frigate-motioneyedoods/</guid>
+      </item>
+    
+      <item>
+        <title>How should I install Home Assistant?</title>
+        <description>
+          
+          &amp;nbsp;I see a lot of people confused by the four install options for Home Assistant.The first, and most important, thing to realise is that Home Assistant is the same no matter how you install it. The only thing that changes is how you install other software, and how you do...
+        </description>
+        <pubDate>Thu, 23 Dec 2021 16:24:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2021-12-23-how-should-i-install-home-assistant/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2021-12-23-how-should-i-install-home-assistant/</guid>
+      </item>
+    
+      <item>
+        <title>Running an automation every time a sensor updates</title>
+        <description>
+          
+          &amp;nbsp;A common question on the HA Discord is how to have an automation run any time a sensor updates. The answer is both simple (it&apos;s covered in the official documentation), and not (because there&apos;s traps).Here I&apos;ll quickly cover how to have that work the way you expect it.TriggerA simple state...
+        </description>
+        <pubDate>Thu, 05 Aug 2021 21:33:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2021-08-05-running-automation-every-time-sensor/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2021-08-05-running-automation-every-time-sensor/</guid>
+      </item>
+    
+      <item>
+        <title>Why didn&apos;t my automation run?</title>
+        <description>
+          
+          It&apos;s a common post on the HA Discord where people are confused as to why their automation isn&apos;t running, they&apos;ve got a trigger, and a few conditions, and ... nothing happens.trigger: - platform: numeric_state above: &apos;22&apos; entity_id: sensor.temperaturecondition: - condition: time after: &apos;22:00:00&apos; before: &apos;08:00:00&apos; - condition: state entity_id: climate.environment...
+        </description>
+        <pubDate>Sun, 18 Jul 2021 22:07:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2021-07-18-why-didnt-my-automation-run/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2021-07-18-why-didnt-my-automation-run/</guid>
+      </item>
+    
+      <item>
+        <title>Zigbee2MQTT - Native to Docker migration</title>
+        <description>
+          
+          &amp;nbsp;A long time ago I started using Zigbee2MQTT - somewhere around 1.2 or 1.3. Back then I thought that it was easiest to run Zigbee2MQTT with a manual install, which was (and still is) the default instructions you&apos;ll find.Since then I&apos;ve seen the light. Docker makes upgrades, and downgrades, so...
+        </description>
+        <pubDate>Sun, 02 May 2021 03:30:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2021-05-02-zigbee2mqtt-native-to-docker-migration/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2021-05-02-zigbee2mqtt-native-to-docker-migration/</guid>
+      </item>
+    
+      <item>
+        <title>Presence Detection Resurrection</title>
+        <description>
+          
+          Yes, another update. Until I start using Blueprints I think this&apos;ll be the last one for a while. Probably.Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted to cover everything&amp;nbsp;relevant in one article.GoalThe goal here is to have&amp;nbsp;quick and...
+        </description>
+        <pubDate>Sun, 03 Jan 2021 01:00:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2021-01-03-presence-detection-resurrection/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2021-01-03-presence-detection-resurrection/</guid>
+      </item>
+    
+      <item>
+        <title>HA venv to Docker</title>
+        <description>
+          
+          Another year, another Python deprecation, another flood of posts asking how to upgrade a Python venv.&amp;nbsp; While you can certainly do that, another option would be to move to Docker (at least assuming you&apos;re running on Linux). Then you don&apos;t have to do this next year. Moving to Docker is...
+        </description>
+        <pubDate>Sat, 10 Oct 2020 09:05:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-10-10-ha-venv-to-docker/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-10-10-ha-venv-to-docker/</guid>
+      </item>
+    
+      <item>
+        <title>Home Assistant, Docker, and using SSH</title>
+        <description>
+          
+          A common problem that comes up with people using one of the Supervisor based install methods, or Docker, is that when they try to use ssh it fails, yet when testing it works.What. The. Heck?Well, you&apos;ve hit two problems because of Docker - all your testing was done in a...
+        </description>
+        <pubDate>Fri, 29 May 2020 21:20:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-05-29-home-assistant-docker-and-using-ssh/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-05-29-home-assistant-docker-and-using-ssh/</guid>
+      </item>
+    
+      <item>
+        <title>YAML in automations and scripts</title>
+        <description>
+          
+          I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you&apos;re going to read them in order. So, I thought I&apos;d pull together a little primer. If you&apos;re a YAML purist you probably want to look away...
+        </description>
+        <pubDate>Wed, 13 May 2020 16:46:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-05-13-yaml-in-automations-and-scripts/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-05-13-yaml-in-automations-and-scripts/</guid>
+      </item>
+    
+      <item>
+        <title>Cameras, motion detection, and (interesting) object detection (part two)</title>
+        <description>
+          
+          Well, it didn&apos;t take long for me to tweak my setup, so before we get to the template, and other things, I&apos;ll explain what I&apos;ve changed.Same, but differentI&apos;ve been using one webhook to trigger everything, and blindly assume that the interesting activity ends a minute later. This is done with...
+        </description>
+        <pubDate>Sun, 10 May 2020 11:20:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-05-10-cameras-motion-detection-and/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-05-10-cameras-motion-detection-and/</guid>
+      </item>
+    
+      <item>
+        <title>Moving from Wink to Home Assistant?</title>
+        <description>
+          
+          I suspect a number of people are looking at leaving Wink right now, in light of the recent announcement. Some of you will be looking at Home Assistant and wondering what will work (most of it), and what you can do.In reality, this isn&apos;t going to be a drop in...
+        </description>
+        <pubDate>Sat, 09 May 2020 09:42:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-05-09-moving-from-wink-to-home-assistant/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-05-09-moving-from-wink-to-home-assistant/</guid>
+      </item>
+    
+      <item>
+        <title>Cameras, motion detection, and (interesting) object detection (part one)</title>
+        <description>
+          
+          For some time now I&apos;ve had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety...
+        </description>
+        <pubDate>Tue, 28 Apr 2020 21:09:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-04-28-cameras-motion-detection-and/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-04-28-cameras-motion-detection-and/</guid>
+      </item>
+    
+      <item>
+        <title>Presence detection, one last time?</title>
+        <description>
+          
+          Well, it&apos;s been a while, but I think that, finally, I&apos;ve stopped changing things. It&apos;s been a while since I needed to account for another edge case, so here we go...Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted...
+        </description>
+        <pubDate>Tue, 14 Apr 2020 11:28:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2020-04-14-presence-detection-one-last-time/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2020-04-14-presence-detection-one-last-time/</guid>
+      </item>
+    
+      <item>
+        <title>Zigbee (and Home Assistant)</title>
+        <description>
+          
+          So, you&apos;re using Home Assistant and want to use Zigbee, but Home Assistant&apos;s own documentation doesn&apos;t really explain Zigbee, so you&apos;re a bit confused. What do you need to know?What is ZigbeeZigbee is a wireless communication protocol designed for personal area networks and well suited to home automation. It uses...
+        </description>
+        <pubDate>Sun, 17 Nov 2019 19:20:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2019-11-17-zigbee-and-home-assistant/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2019-11-17-zigbee-and-home-assistant/</guid>
+      </item>
+    
+      <item>
+        <title>Presence detection, the final countdown?</title>
+        <description>
+          
+          The last time I said that I didn&apos;t think there was more I could do. I was wrong. My use of monitor hasn&apos;t changed, and I&apos;ll leave the config for that below. Changed behaviourNow I&apos;ve changed the automations so that the majority wins for departure, rather than requiring everything to...
+        </description>
+        <pubDate>Sun, 27 Oct 2019 06:30:00 +0000</pubDate>
+        <link>http://0.0.0.0:4000/2019-10-27-presence-detection-final-countdown/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2019-10-27-presence-detection-final-countdown/</guid>
+      </item>
+    
+      <item>
+        <title>Messing with meshing</title>
+        <description>
+          
+          Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time.The universe has moved on, and Zigbee is becoming more of...
+        </description>
+        <pubDate>Fri, 06 Sep 2019 11:42:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2019-09-06-messing-with-meshing/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2019-09-06-messing-with-meshing/</guid>
+      </item>
+    
+      <item>
+        <title>The great migration - part two</title>
+        <description>
+          
+          Well, that was less exciting than I&apos;d feared.The first stage is done. Z-Wave is running on the Pi, and everything else runs on the VM, communicating over MQTT and the REST API.This is built from:Binary sensors - ones to track the states of the sensors, and ones to track the...
+        </description>
+        <pubDate>Wed, 28 Aug 2019 07:30:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2019-08-28-the-great-migration-part-two/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2019-08-28-the-great-migration-part-two/</guid>
+      </item>
+    
+      <item>
+        <title>My great migration - part one</title>
+        <description>
+          
+          I&apos;ve been running Home Assistant on my Pi3 since I started with HA, back in January 2017. I&apos;d chosen a Z-Wave GPIO hat over a USB stick (amongst other things, because it avoided the risk of it getting disconnected in error), which has tied my Z-Wave mesh to the Pi....
+        </description>
+        <pubDate>Thu, 15 Aug 2019 10:45:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2019-08-15-my-great-migration-part-one/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2019-08-15-my-great-migration-part-one/</guid>
+      </item>
+    
+      <item>
+        <title>Breaking up automations/Room activity detection</title>
+        <description>
+          
+          I&apos;m sure we&apos;ve all been there, where we&apos;ve written automations that have grown longer and more complicated as we&apos;ve tried to make things more flexible. Then you end up with a group of automations each hundreds of lines long, and still things don&apos;t work well.That&apos;s because you&apos;ve created a family...
+        </description>
+        <pubDate>Sun, 28 Apr 2019 19:00:00 +0100</pubDate>
+        <link>http://0.0.0.0:4000/2019-04-28-breaking-up-automationsroom-activity/</link>
+        <guid isPermaLink="true">http://0.0.0.0:4000/2019-04-28-breaking-up-automationsroom-activity/</guid>
+      </item>
+    
+  </channel>
+</rss>
