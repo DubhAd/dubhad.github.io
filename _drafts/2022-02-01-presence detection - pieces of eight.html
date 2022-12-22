@@ -1,0 +1,10 @@
+---
+layout: post
+title: Presence detection - pieces of eight
+date: '2022-02-01T11:14:00.002Z'
+author: Tinkerer
+tags:
+modified_time: '2022-02-01T11:14:44.907Z'
+---
+
+<p>Yes, it keeps evolving. No, I'm not done yet.</p><h2 style="text-align: left;">Summary</h2><div><div>The goal here is to have quick and reliable home/away detection. This is for a few key things:</div><div><ol style="text-align: left;"><li>Let us know we left a door or window open when we left the house, before we've got too far</li><li>Turning on lights as we get home</li><li>Manage a number of automations that are based around whether we're home, or away</li></ol></div><div>We can't have false aways, turning things off unexpectedly is a good way of annoying people. It can't leave people marked as being home when they're clearly not, as then people don't get told about open doors or windows soon enough.</div></div><h2 style="text-align: left;">Where we are now</h2><div>I'm currently using:</div><div><ol style="text-align: left;"><li>Monitor for Bluetooth</li><li>The connected WiFi network, using the official Android app</li><li>Local WiFi detection using nmap_tracker</li><li>GPS for the fallback</li></ol><div>For arriving home it's a flip of a coin which of the first two will detect us first.</div></div><div><br /></div><div>Since I last posted I have tried things like ESPresence, but I've found BLE tracking just doesn't work for me. It requires more setup than straight Bluetooth tracking, and software running on the phone to be tracked.</div>

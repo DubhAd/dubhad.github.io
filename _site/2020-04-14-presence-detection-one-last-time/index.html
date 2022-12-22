@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>Presence detection, one last time?</title>
+
+  
+  <meta name="author" content="Tinkerer">
+  
+
+  <meta name="description" content="Well, it&apos;s been a while, but I think that, finally, I&apos;ve stopped changing things. It&apos;s been a while since I needed to account for another edge case, so here we go...Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted...">
+
+  
+
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="Tinkering with Technology" href="http://0.0.0.0:4000/feed.xml">
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Tinkering with Technology">
+  <meta property="og:title" content="Presence detection, one last time?">
+  <meta property="og:description" content="Well, it&apos;s been a while, but I think that, finally, I&apos;ve stopped changing things. It&apos;s been a while since I needed to account for another edge case, so here we go...Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted...">
+
+  
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/img/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Tinkerer">
+  <meta property="og:article:published_time" content="2020-04-14T11:28:00+01:00">
+  <meta property="og:url" content="http://0.0.0.0:4000/2020-04-14-presence-detection-one-last-time/">
+  <link rel="canonical" href="http://0.0.0.0:4000/2020-04-14-presence-detection-one-last-time/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Presence detection, one last time?">
+  <meta property="twitter:description" content="Well, it&apos;s been a while, but I think that, finally, I&apos;ve stopped changing things. It&apos;s been a while since I needed to account for another edge case, so here we go...Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted...">
+
+  
+  <meta name="twitter:image" content="http://0.0.0.0:4000/assets/img/avatar.png">
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="http://0.0.0.0:4000/">Tinkering with Technology</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/aboutme">About Me</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="https://github.com/DubhAd/Home-AssistantConfig/">My HA config</a>
+                  <a class="dropdown-item" href="https://www.home-assistant.io/docs/configuration/">Home Assistant documentation</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://ceard.tech">Author's home</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-search-link" href="#" title="Search">
+            <span id="nav-search-icon" class="fa fa-search"></span>
+            <span id="nav-search-text">Search</span>
+          </a>
+        </li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        <a href="http://0.0.0.0:4000/">
+          <img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar.png" />
+        </a>
+      </div>
+    </div>
+  
+
+</nav>
+
+
+
+<div id="beautifuljekyll-search-overlay">
+
+  <div id="nav-search-exit" title="Exit search">✕</div>
+  <input type="text" id="nav-search-input" placeholder="Search">
+  <ul id="search-results-container"></ul>
+  
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    var searchjson = '[ \
+       \
+        { \
+          "title"    : "Traefik and a remote Home Assistant", \
+          "category" : "remote accesshome assistant", \
+          "url"      : "/2022-10-25-traefik-and-remote-home-assistant/", \
+          "date"     : "October 25, 2022" \
+        }, \
+       \
+        { \
+          "title"    : "Frigate &gt; MotionEye+Doods", \
+          "category" : "doodsfrigatehome assistantmotion detection", \
+          "url"      : "/2022-09-20-frigate-motioneyedoods/", \
+          "date"     : "September 20, 2022" \
+        }, \
+       \
+        { \
+          "title"    : "How should I install Home Assistant?", \
+          "category" : "", \
+          "url"      : "/2021-12-23-how-should-i-install-home-assistant/", \
+          "date"     : "December 23, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Running an automation every time a sensor updates", \
+          "category" : "automationhome assistant", \
+          "url"      : "/2021-08-05-running-automation-every-time-sensor/", \
+          "date"     : "August  5, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Why didn&#39;t my automation run?", \
+          "category" : "", \
+          "url"      : "/2021-07-18-why-didnt-my-automation-run/", \
+          "date"     : "July 18, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Zigbee2MQTT - Native to Docker migration", \
+          "category" : "dockerzigbee2mqtt", \
+          "url"      : "/2021-05-02-zigbee2mqtt-native-to-docker-migration/", \
+          "date"     : "May  2, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Presence Detection Resurrection", \
+          "category" : "bluetoothhome assistantpresence detection", \
+          "url"      : "/2021-01-03-presence-detection-resurrection/", \
+          "date"     : "January  3, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "HA venv to Docker", \
+          "category" : "dockervenvlinuxpythonhome assistant", \
+          "url"      : "/2020-10-10-ha-venv-to-docker/", \
+          "date"     : "October 10, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant, Docker, and using SSH", \
+          "category" : "sshdockerhome assistant", \
+          "url"      : "/2020-05-29-home-assistant-docker-and-using-ssh/", \
+          "date"     : "May 29, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "YAML in automations and scripts", \
+          "category" : "yamlhome assistant coreautomationhome assistant", \
+          "url"      : "/2020-05-13-yaml-in-automations-and-scripts/", \
+          "date"     : "May 13, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Cameras, motion detection, and (interesting) object detection (part two)", \
+          "category" : "", \
+          "url"      : "/2020-05-10-cameras-motion-detection-and/", \
+          "date"     : "May 10, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Moving from Wink to Home Assistant?", \
+          "category" : "home assistant corehome assistantwink", \
+          "url"      : "/2020-05-09-moving-from-wink-to-home-assistant/", \
+          "date"     : "May  9, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Cameras, motion detection, and (interesting) object detection (part one)", \
+          "category" : "doodsmotionhome assistant coremotion detectionobject detection", \
+          "url"      : "/2020-04-28-cameras-motion-detection-and/", \
+          "date"     : "April 28, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection, one last time?", \
+          "category" : "monitorbluetoothgpsloggerproximityhome assistant corenmaphome assistantwifipresence detection", \
+          "url"      : "/2020-04-14-presence-detection-one-last-time/", \
+          "date"     : "April 14, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Zigbee (and Home Assistant)", \
+          "category" : "zigbeez-wavehome assistant", \
+          "url"      : "/2019-11-17-zigbee-and-home-assistant/", \
+          "date"     : "November 17, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection, the final countdown?", \
+          "category" : "monitorhome assistantpresence detection", \
+          "url"      : "/2019-10-27-presence-detection-final-countdown/", \
+          "date"     : "October 27, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Messing with meshing", \
+          "category" : "zigbeez-wavehome assistant", \
+          "url"      : "/2019-09-06-messing-with-meshing/", \
+          "date"     : "September  6, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "The great migration - part two", \
+          "category" : "", \
+          "url"      : "/2019-08-28-the-great-migration-part-two/", \
+          "date"     : "August 28, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "My great migration - part one", \
+          "category" : "zigbeez-wavehome assistant", \
+          "url"      : "/2019-08-15-my-great-migration-part-one/", \
+          "date"     : "August 15, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Breaking up automations/Room activity detection", \
+          "category" : "automationhome assistantpresence detection", \
+          "url"      : "/2019-04-28-breaking-up-automationsroom-activity/", \
+          "date"     : "April 28, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection - are we nearly there yet?", \
+          "category" : "home assistantpresence detection", \
+          "url"      : "/2019-03-16-presence-detection-are-we-nearly-there/", \
+          "date"     : "March 16, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Product comparison - smart displays", \
+          "category" : "smart displaygoogle homegoogle assistanthome assistant", \
+          "url"      : "/2018-12-30-product-comparison-smart-displays/", \
+          "date"     : "December 30, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection - update 3", \
+          "category" : "", \
+          "url"      : "/2018-10-15-presence-detection-update-3/", \
+          "date"     : "October 15, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Upgrading from 0.75 to 0.80", \
+          "category" : "home assistant", \
+          "url"      : "/2018-10-13-upgrading-from-075-to-080/", \
+          "date"     : "October 13, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Accessing the inaccessible", \
+          "category" : "remote accessopenvpncloudpivpnhome assistantvpn", \
+          "url"      : "/2018-09-29-accessing-inacessible/", \
+          "date"     : "September 29, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant cloud goes paid", \
+          "category" : "cloudhome assistant", \
+          "url"      : "/2018-09-18-home-assistant-cloud-goes-paid/", \
+          "date"     : "September 18, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection updated", \
+          "category" : "", \
+          "url"      : "/2018-09-06-a-while-back-i-covered-how-i-was-doing/", \
+          "date"     : "September  6, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Turbulence ahead - fasten your seatbelt", \
+          "category" : "securityproxyhome assistant", \
+          "url"      : "/2018-08-24-turbulence-ahead-fasten-your-seatbelt/", \
+          "date"     : "August 24, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Sensative strips (guard) review", \
+          "category" : "z-wave", \
+          "url"      : "/2018-08-21-sensative-strips-guard-review/", \
+          "date"     : "August 21, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Lovelace - the next generation of stock UI", \
+          "category" : "", \
+          "url"      : "/2018-08-19-lovelace-next-generation-of-stock-ui/", \
+          "date"     : "August 19, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Triggers and conditions and actions! Oh My!", \
+          "category" : "automationhome assistant", \
+          "url"      : "/2018-08-18-triggers-and-conditions-and-actions-oh/", \
+          "date"     : "August 18, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "The XY Problem", \
+          "category" : "", \
+          "url"      : "/2018-08-16-the-xy-problem/", \
+          "date"     : "August 16, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "It&#39;s not about the brand", \
+          "category" : "learningautomationhome assistant", \
+          "url"      : "/2018-04-15-its-not-about-brand/", \
+          "date"     : "April 15, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant - the Hass.io menu is missing", \
+          "category" : "hass.iohome assistant", \
+          "url"      : "/2018-02-15-home-assistant-shopping-bag-is-missing/", \
+          "date"     : "February 15, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant, avoiding insecurity", \
+          "category" : "securityremote accesshome assistant", \
+          "url"      : "/2018-01-29-home-assistant-avoiding-insecurity/", \
+          "date"     : "January 29, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant and (basic) Presence Detection", \
+          "category" : "home assistantpresence detection", \
+          "url"      : "/2018-01-25-home-assistant-and-basic-presence/", \
+          "date"     : "January 25, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "The secret is (not) to bang the rocks together", \
+          "category" : "helpvampirelearninghome assistant", \
+          "url"      : "/2018-01-18-the-secret-is-not-to-bang-rocks-together/", \
+          "date"     : "January 18, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "How not to break manual control of devices with automations", \
+          "category" : "input booleanautomationhome assistant", \
+          "url"      : "/2018-01-17-how-not-to-break-manual-control-of/", \
+          "date"     : "January 17, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Remote access via PiVPN", \
+          "category" : "remote accessopenvpnpivpnhome assistantvpn", \
+          "url"      : "/2018-01-17-remote-access-via-pivpn/", \
+          "date"     : "January 17, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Why Home Assistant?", \
+          "category" : "platformhome assistant", \
+          "url"      : "/2018-01-11-why-home-assistant/", \
+          "date"     : "January 11, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Remote access for Home Assistant (and other things)", \
+          "category" : "remote accesshome assistant", \
+          "url"      : "/2018-01-10-remote-access-for-home-assistant-and/", \
+          "date"     : "January 10, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "RFC1918", \
+          "category" : "remote access", \
+          "url"      : "/2018-01-09-rfc1918/", \
+          "date"     : "January  9, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "NGINX and Home Assistant", \
+          "category" : "remote accesshome assistant", \
+          "url"      : "/2018-01-09-nginx-and-home-assistant/", \
+          "date"     : "January  9, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Installing Home Assistant in a virtual environment (in Linux)", \
+          "category" : "venvpythonhome assistant", \
+          "url"      : "/2017-12-25-installing-home-assistant-in-virtual/", \
+          "date"     : "December 25, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant Cloud", \
+          "category" : "cloudhome assistant", \
+          "url"      : "/2017-12-17-home-assistant-cloud/", \
+          "date"     : "December 17, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Upgrading the Python Virtual Environment", \
+          "category" : "venvpythonhome assistant", \
+          "url"      : "/2017-12-08-upgrading-python-virtual-environment/", \
+          "date"     : "December  8, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Which Home Assistant install is right for me?", \
+          "category" : "hass.ioplatformhome assistant", \
+          "url"      : "/2017-11-09-which-home-assistant-install-is-right/", \
+          "date"     : "November  9, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "LetsEncrypt with Home Assistant", \
+          "category" : "sslhome assistant", \
+          "url"      : "/2017-11-05-letsencrypt-with-home-assistant/", \
+          "date"     : "November  5, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Backing up Hass.io", \
+          "category" : "backuphass.io", \
+          "url"      : "/2017-11-03-backing-up-hassio/", \
+          "date"     : "November  3, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Choosing a platform", \
+          "category" : "platform", \
+          "url"      : "/2017-10-24-choosing-platform/", \
+          "date"     : "October 24, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Backing up Home Assistant", \
+          "category" : "backuphome assistant", \
+          "url"      : "/2017-10-23-backing-up-home-assistant/", \
+          "date"     : "October 23, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant - moving logs and database off the SD card", \
+          "category" : "home assistant", \
+          "url"      : "/2017-10-23-home-assistant-moving-logs-and-database/", \
+          "date"     : "October 23, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "What&#39;s the point?", \
+          "category" : "", \
+          "url"      : "/2017-10-23-whats-point/", \
+          "date"     : "October 23, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Putting the cart before the horse", \
+          "category" : "", \
+          "url"      : "/2017-10-22-putting-cart-before-horse/", \
+          "date"     : "October 22, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Back it up", \
+          "category" : "backup", \
+          "url"      : "/2017-10-21-back-it-up/", \
+          "date"     : "October 21, 2017" \
+        }, \
+       \
+       \
+        { \
+          "title"    : "About", \
+          "category" : "page", \
+          "url"      : "/about/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "About me", \
+          "category" : "page", \
+          "url"      : "/aboutme/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "", \
+          "category" : "page", \
+          "url"      : "/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "Tag Index", \
+          "category" : "page", \
+          "url"      : "/tags/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page2/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page3/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page4/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page5/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page6/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page7/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page8/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page9/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page10/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page11/", \
+          "date"     : "January 1, 1970" \
+        } \
+       \
+    ]';
+    searchjson = JSON.parse(searchjson);
+
+    var sjs = SimpleJekyllSearch({
+      searchInput: document.getElementById('nav-search-input'),
+      resultsContainer: document.getElementById('search-results-container'),
+      json: searchjson
+    });
+  </script>
+</div>
+
+
+
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>Presence detection, one last time?</h1>
+          
+
+          
+            <span class="post-meta">Posted on 2020 April 14</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        Well, it's been a while, but I think that, finally, I've stopped changing things. It's been a while since I needed to account for another edge case, so here we go...<br /><br />Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted to cover <i>everything</i>&nbsp;relevant in one article.<br /><h3>Goal</h3><div>The goal here is to have&nbsp;<i>quick and reliable&nbsp;</i>home/away detection. This is for a few key things:<br /><ol><li>Let us know we left a door or window open when we left the house, before we've got too far</li><li>Turning on lights as we get home</li><li>Manage a number of automations that are based around whether we're home, or away</li></ol><div>We can't have false aways, turning things off unexpectedly is a good way of annoying people. It can't leave people marked as being home when they're clearly not, as then people don't get told about open doors or windows soon enough.</div></div><div><h4>The problem</h4>Grouping device trackers was the traditional approach, but it means that if <i>any</i>&nbsp;tracker thinks the device is home, then you're home. The result isn't very useful if you've included GPS trackers in that group. The early stages of the <a href="https://www.home-assistant.io/integrations/person/" target="_blank">person integration</a> had a "most recent update wins" approach which didn't help as you'd easily flip between home and away. The more recent updates to person have made it better, but it still takes a "most recent update wins" approach amongst the non-GPS trackers. That's fine if you've only got one local presence detection integration, and it's 100% reliable.<br /><br />Importantly, I want to ensure that a phone running out of battery doesn't cause a false away. That means that having local device trackers report away shouldn't necessarily cause somebody to be marked away.<br /><br />Finally, I need to allow for edge cases with things breaking. It's not going to be the first time that one of the nodes responsible for Bluetooth tracking has silently failed. Back when I was using a different WiFi based detection integration I also had that fail (actually, it caused the router to run out of memory). The results of those failures were that some devices were locked home, and some were locked away.<br /><h4>GPS</h4><div>GPS trackers update intermittently, more so if you're on iOS where the application has no control over update intervals. GPS also has issues when you're indoors, the deeper you go, the worse it gets. The default home zone of 100 meters occasionally resulted in the GPS tracker giving false away reports, worst case a few times a day. Departure is also slow, very slow, and we could be marked as home when we're just passing, or visiting a neighbour. This rules out GPS being a useful indicator of whether or not we're actually home.</div><h4>WiFi</h4></div><div>WiFi is the obvious alternative, but it has one problem, most modern mobile phones put their WiFi to sleep when they're in deep sleep. This saves battery, and means that you'll often see that your WiFi tracker flips between home and away a lot. This makes it horribly unreliable for our purposes.</div><h4>Bluetooth</h4><div>Phones don't put Bluetooth to sleep, and while once up on a time having Bluetooth enabled was a significant battery drain, this is no longer the case. Sure, there's <i>some</i>&nbsp;drain, but compared to everything else you're burning battery life on, particularly the screen, it's irrelevant - and likely far less than many of the apps you've installed are responsible for. Besides, in this house we all use Bluetooth for fitness trackers, smart watches, or headphones so it's on anyway.<br /><br />The downside (and upside) is that Bluetooth is shorter range than WiFi, so one single detection node isn't enough.</div><h4>Summary</h4><div>We're juggling a few things here:</div><div><ul><li>Arrivals and departures should be quickly&nbsp;<i>and reliably&nbsp;</i>detected without false positives</li><li>People shouldn't be marked as away simply because their phone is out of battery</li><li>If people are clearly not home, they shouldn't be marked as home</li><li>Bluetooth is reliable, but short range, WiFi is longer range, but unreliable</li></ul></div><h3>Ingredients</h3><div>We're combining:</div><div><ul><li>Two door sensors</li><li>Two external program</li><li>Six integrations</li><li>Four scripts</li><li>Four automations</li></ul><div><br /></div><hr /><h3>Door sensors</h3>I've installed sensors on all the external doors (and windows). These serve a range of purposes, controlling the garden lights, reminding us to close the doors/windows if it's cold outside, warning us the garage door was left open, and more.<br /><br />It also means we can tell if somebody <i>could</i>&nbsp;have left the house. For simplicity I'm only interested in the front door and the garage door (for the car). It would be trivial to extend this to other doors, but we never use those to leave or return, and don't go jumping out of windows.<br /><br />I've got two different types of door sensors, the house doors have the <a href="https://sensative.com/sensors/strips-zwave/guard/" target="_blank">Sensative Strips Guard</a>&nbsp;(there's now a 700 series version, and a LoRA version), and the garage doors have a previous generation <a href="https://www.fibaro.com/en/products/door-window-sensor/" target="_blank">Fibaro door/window sensor</a>. All the windows use the <a href="https://www.aqara.com/en/door_and_window_sensor.html" target="_blank">Xiaomi Aqara sensors</a>, which are significantly cheaper than the Fibaro (and the Sensative, but the Sensative are invisible once fitted).<br /><br />The door sensors are also used to start departure and arrival scans in <i>monitor</i>&nbsp;(which we'll get to shortly)<br /><br /><hr /><h3>Mosquitto</h3><div>I use <a href="https://mosquitto.org/" target="_blank">Mosquitto</a>&nbsp;as my MQTT broker, as most people will. You can run this as an add-on, a Docker container, or natively. I run it on the same host I run my MariaDB server, but it can run anywhere.<br /><br />Mosquitto is required for <i>monitor</i>&nbsp;to communicate with Home Assistant.</div><br /><hr /><h3>Monitor</h3><div><a href="https://github.com/andrewjfreyer/monitor" target="_blank">Monitor</a> is a&nbsp;<i>passive Bluetooth presence detection of beacons, cell phones, and other Bluetooth devices. Useful for mqtt-based home automation, especially when the script runs on multiple devices, distributed throughout a property.</i>&nbsp;You run it on one or more systems in your house, and it reports on the presence, or absence, of your chosen devices.</div><div><br /></div><div>Why do I use this instead of the built in <a href="https://www.home-assistant.io/integrations/bluetooth_tracker/" target="_blank">Bluetooth tracker</a>? Three main reasons:</div><div><ol><li>At one point the Bluetooth tracker was literally adding about 5 minutes to the start of my instance. I've no idea why, but others saw similar things, if nothing quite so extreme.</li><li>It reports on <i>every device it ever sees</i>. This is ... noisy if you live near a public road, with neighbours nearby, etc.</li><li>It works really well for one small part of the house - near the system running Home Assistant - and not at all for the rest of the house.</li></ol><div>For those of you running Supervised, there's a <a href="https://github.com/Limych/addon-presence-monitor" target="_blank">convenient add-on</a>&nbsp;- if your HA system is located somewhere suitable. Regardless, some low-ish end system is enough. I'm running one instance on an <a href="http://www.orangepi.org/orangepizerolts/" target="_blank">Orange Pi Zero LTS</a>, and another on a Pi3B. I had a couple of Pi Zero units, but they would randomly stop responding. The Orange Pi locked up a couple of times while I was testing, but has been reliable in production.</div></div><div><br /></div><div>Basically, set up one or more installs of <i>monitor</i>&nbsp;around your house, as you need. I've got one running in the front corner of the house (the Orange Pi), where it can easily detect us arriving, and the other in the opposite corner of the house (the Pi3B). That provides full coverage of the house, the garage, and the approach.</div><div><br /></div><div>I have both installs configured to do arrival scans automatically, but departure scans only on demand.</div><h4>systemd unit file</h4><div><pre>[Unit]<br />Description=Monitor Service<br />After=network.target<br /><br />[Service]<br />User=root<br />ExecStart=/bin/bash /local/bin/monitor/monitor.sh -x -b -tdr &amp;<br />WorkingDirectory=/local/bin/monitor<br />Restart=always<br />RestartSec=10<br /><br />[Install]<br />WantedBy=multi-user.target network.target</pre></div><div>The flags there are: <br /><ul><dt><kbd>-x</kbd></dt><dd>Sets the MQTT retain flag, so that if HA restarts it gets the last status message.</dd><dt><kbd>-b</kbd></dt><dd>Listens for beacons, as I use a (Chipolo) beacon for the car.</dd><dt><kbd>-tdr</kbd></dt><dd>Only does departure scans when told, and tells other devices to do arrival (or departure) scans when it does a scan. Arrival scans are automatic, based on the filters below.</dd></ul><h4>behaviour_preferences</h4><div>Except where specified these are all at the defaults</div><pre>#MAX RETRY ATTEMPTS FOR ARRIVAL (default is one)<br />PREF_ARRIVAL_SCAN_ATTEMPTS=2<br /><br />#MAX RETRY ATTEMPTS FOR DEPART<br />PREF_DEPART_SCAN_ATTEMPTS=2<br /><br />#SECONDS UNTIL A BEACON IS CONSIDERED EXPIRED<br />PREF_BEACON_EXPIRATION=240<br /><br />#MINIMUM TIME BEWTEEN THE SAME TYPE OF SCAN (ARRIVE SCAN, DEPART SCAN)<br />PREF_MINIMUM_TIME_BETWEEN_SCANS=15<br /><br />#ARRIVE TRIGGER FILTER(S)<br />PREF_PASS_FILTER_ADV_FLAGS_ARRIVE=".*"<br />#PREF_PASS_FILTER_MANUFACTURER_ARRIVE=".*"<br /># Limit to just the devices I care about<br />PREF_PASS_FILTER_MANUFACTURER_ARRIVE="Google|Intel|Hon Hai|HUAWEI|HTC Corporation|Apple|LG Electronics|Chipolo|Doro"<br /><br />#ARRIVE TRIGGER NEGATIVE FILTER(S)<br />PREF_FAIL_FILTER_ADV_FLAGS_ARRIVE="NONE"<br />PREF_FAIL_FILTER_MANUFACTURER_ARRIVE="NONE"<br /><br /># Default is -75, which doesn't pick up my Chipolo beacon well enough<br />PREF_RSSI_IGNORE_BELOW=-95<br /># Default is false, but we want device tracker entires<br />PREF_DEVICE_TRACKER_REPORT=true</pre><h4>mqtt_preferences</h4></div><div><pre># IP ADDRESS OR HOSTNAME OF MQTT BROKER<br />mqtt_address=192.168.0.30<br /><br /># MQTT BROKER USERNAME (OR BLANK FOR NONE)<br />mqtt_user='monitorfff'<br /><br /># MQTT BROKER PASSWORD (OR BLANK FOR NONE)<br />mqtt_password='super$ecretPa55word'<br /><br /># MQTT PUBLISH TOPIC ROOT<br />mqtt_topicpath=monitor<br /><br /># PUBLISHER IDENTITY<br />mqtt_publisher_identity='first floor front'<br /><br /># The rest of this is default<br /># MQTT PORT<br />mqtt_port='1883'<br /><br /># MQTT CERTIFICATE FILE (LEAVE BLANK IF NONE)<br />mqtt_certificate_path=''<br /><br />#MQTT VERSION (LEAVE BLANK FOR DEFAULT; EXAMPLE: 'mqttv311')<br />mqtt_version=''<br /></pre></div>This as you can guess is from the unit at the front, on the first floor. The other has a different identity (<kbd>first floor rear</kbd> - creative or what).<br /><br />The only thing left to do is to populate <kbd>known_static_addresses</kbd> with the Bluetooth addresses of the things I care about, and what I want them known as. For example<br /><pre>58:cb:52:24:53:15 person1 mobile<br />3C:28:6D:DA:EB:A1 person2 mobile</pre>Now when I start <i>monitor</i>&nbsp;it'll update the topics <kbd>monitor/first floor front/person1_mobile/device_tracker</kbd> and <kbd>monitor/first floor front/person2_mobile/device_tracker</kbd> with <kbd>home</kbd> or <kbd>not_home</kbd> accordingly. There will be other things it does, but that's all I'm caring about.<br /><br /><hr /><h3>Integrations</h3></div><div>The integrations we're using are for:</div><div><ul><li>WiFi tracking - the <a href="https://www.home-assistant.io/integrations/nmap_tracker" target="_blank">nmap tracker</a></li><li><a href="https://www.home-assistant.io/docs/mqtt/broker#run-your-own" target="_blank">MQTT</a> - for the Bluetooth tracker</li><li><a href="https://www.home-assistant.io/integrations/device_tracker.mqtt" target="_blank">MQTT device tracker</a> - for the Bluetooth tracker</li><li>GPS - I'm using <a href="https://www.home-assistant.io/integrations/gpslogger" target="_blank">GPSLogger</a>, but any will do</li><li><a href="https://www.home-assistant.io/integrations/proximity" target="_blank">Proximity</a> - for how near home the phone is</li><li><a href="https://www.home-assistant.io/integrations/group" target="_blank">Group</a> - to merge things together</li></ul><h4>NMAP</h4></div><div>The configuration here for the <a href="https://home-assistant.io/integrations/nmap_tracker" target="_blank">nmap tracker</a> is <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/device_tracker/nmap_tracker.yaml" target="_blank">pretty simple</a>, scan everything except the HA host:</div><div><pre>device_tracker:<br />- platform: nmap_tracker<br />  interval_seconds: 20<br />  consider_home: 50<br />  track_new_devices: yes<br />  scan_options: " --privileged -F -n --host-timeout 10s --exclude 192.168.0.10 "<br />  hosts:<br />  - 192.168.0.0/24</pre></div><div>This scans every 20 seconds, and once something responds it's assumed to be there for the next 50 seconds. The HA developers have been discussing removing consider_home, at which point I'll revisit the settings I use.<br /><h4>MQTT</h4></div><div>I used the manual (YAML) definition for the <a href="https://www.home-assistant.io/docs/mqtt/broker#run-your-own" target="_blank">MQTT broker</a> so <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/mqtt.yaml" target="_blank">I can define</a> the birth and will messages. It uses my local MQTT broker (Mosquitto):<br /><pre>mqtt:<br />  broker: !secret mqtt_host<br />  username: !secret mqtt_user<br />  password: !secret mqtt_pass<br />  discovery: true<br />  discovery_prefix: homeassistant<br />  birth_message:<br />    topic: 'hass/status'<br />    payload: 'online'<br />  will_message:<br />    topic: 'hass/status'<br />    payload: 'offline'</pre>Beyond the basics, none of this is needed here. MQTT discovery, and the birth/will part, are required for Zigbee2MQTT, not <i>monitor</i>. We just want it set up so we can use the ...<br /><h4>MQTT Device Tracker</h4>These <a href="https://www.home-assistant.io/integrations/device_tracker.mqtt" target="_blank">MQTT device trackers</a> link the topics created by <i>monitor</i>, explained above, to <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/device_tracker/mqtt.yaml" target="_blank">device tracker entities</a>:<br /><pre>device_tracker:<br />- platform: mqtt<br />  source_type: 'bluetooth'<br />  devices:<br />    person1_bt_mobile: 'monitor/first floor rear/person1_mobile/device_tracker'<br />    person1_bt_front_mobile: 'monitor/first floor front/person1_mobile/device_tracker'<br />  ...</pre>I have two instances of <i>monitor</i>, so each device has two device trackers.<br /><h4>GPSLogger</h4>Any GPS tracker will do here. I use <a href="https://www.home-assistant.io/integrations/gpslogger" target="_blank">GPSLogger</a>&nbsp;over others for two main reasons:<br /><ol><li>I'm an Android user, and I use <a href="https://tasker.joaoapps.com/" target="_blank">Tasker</a>, allowing me to automate my phone. GPSLogger has support for <i>intents</i>, allowing me to control it from Tasker. This means I can change the settings to, say, disable GPS and increase the intervals if I'm in the office (which right now is not relevant admittedly).</li><li>It's <i>very</i>&nbsp;configurable. I can have it update at the speed I want, with the accuracy that interests me, etc. Typically I have it updating every 5 to 10 minutes, with a desired accuracy of 200 meters - it won't report if it can't provide an accuracy of at least that. When I'm in the office I have Tasker change the interval to 30 minutes, and the accuracy to 800.</li></ol><div>Why do I mention GPS tracking, when I said at the start it can be too slow? I use it for a number of other things, but here I want it for ...</div><h4>Proximity</h4><div>The <a href="https://www.home-assistant.io/integrations/proximity" target="_blank">proximity integration</a> provides me with a <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/proximity/person1_home.yaml" target="_blank">distance from home</a>&nbsp;in meters (amongst other places). This is used in the automations to account for a couple of edge cases that I'll explain when we get to that.</div><div><pre>proximity:<br />- person1_home:<br />    zone: home<br />    devices:<br />    - device_tracker.person1_mobile<br />    unit_of_measurement: m<br /></pre></div><h4>Group</h4><div>I use <a href="https://www.home-assistant.io/integrations/group" target="_blank">groups</a> for a bunch of things, but here what I do is <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/groups/person_person1.yaml" target="_blank">group all the non-GPS trackers</a> for each person, to make my automations "easier".<br /><pre>group:<br />  person_person1:<br />    name: person1<br />    entities:<br />    - device_tracker.3c_28_6d_da_eb_a1<br />    - device_tracker.person1_bt_mobile<br />    - device_tracker.person1_bt_front_mobile</pre>These are used in the automations, not in triggers, but in the conditions.<br /><br /></div></div><hr /><h3>Scripts</h3><div>Yes, we're done with all the foundation work. Finally.<br /><br />There's a <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/scripts/people/person1/person1_home.yaml" target="_blank">home</a>, and an <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/scripts/people/person1/person1_away.yaml" target="_blank">away</a>, <a href="https://www.home-assistant.io/integrations/script" target="_blank">script</a> for each person. The full scripts are linked, but I've posted the key parts that are relevant here:</div><div><pre>script:<br />  person1_home:<br />    alias: person1 home<br />    sequence:<br />    # Everybody has a boolean that defines if they're home or away. They're home, <br />    #  so turn it on<br />    - service: input_boolean.turn_on<br />      entity_id: input_boolean.person1_home<br /><br />  person1_away:<br />    alias: person1 away<br />    sequence:<br />    # Turn off the boolean showing they're home<br />    - service: input_boolean.turn_off<br />      entity_id: input_boolean.person1_home</pre></div><div>Yes, pretty much all those scripts are doing for presence detection is turning a boolean on and off to indicate home/away. At least for the purposes here, the full scripts do more things, for other purposes. I use those booleans for home/away logic, not any group, person, or device tracker entity.<br /><br />There's also scripts for <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/scripts/scan_bt_depart.yaml" target="_blank">departure</a> and <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/scripts/scan_bt_arrive.yaml" target="_blank">arrival</a> scans. We only <i>really </i>need the departure scan script, since we told <i>monitor</i>&nbsp;to only do departure scans on demand, not automatically. The arrival scans however speed up detection.<br /><pre>script:<br />  scan_bt_depart:<br />    sequence:<br />    - wait_template: "{{ is_state('script.scan_bt_arrive', 'off') }}"<br />    - delay: '00:00:30'<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/depart<br />        payload: ''<br />    - delay: '00:00:35'<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/depart<br />        payload: ''<br />    - delay: '00:01:05'<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/depart<br />        payload: ''<br />    - delay: '00:02:05'<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/depart<br />        payload: ''<br />    - delay: '00:01:05'<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/depart<br />        payload: ''<br /><br />  scan_bt_arrive:<br />    sequence:<br />    - wait_template: "{{ is_state('script.scan_bt_depart', 'off') }}"<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/arrive<br />        payload: ''<br />    - delay: '00:00:15'<br />    - service: mqtt.publish<br />      data:<br />        topic: monitor/scan/arrive<br />        payload: ''<br /></pre>The departure scan waits to ensure that we're not doing an arrival scan, and then runs four departure scans, one after 30 seconds, another after (a total of) 65 seconds, the next at 1:10, and the next at 3:15. Then a minute later, at 4:20, it does a final scan. This allows plenty of time to ensure that we've left. The arrival scan does two arrival scans, 15 seconds apart. This just speeds up the arrival detection.<br /><br /><hr /><h3>Automations</h3>Now we bring it all together into one simple, and one not quite so simple, <a href="https://www.home-assistant.io/docs/automation/" target="_blank">automation</a>&nbsp;for presence detection.</div><h4>Home</h4><div>The <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/automation/people/person1/person1_home.yaml" target="_blank">home automation</a> is relatively simple:</div><div><pre>automation:<br />- initial_state: 'on'<br />  alias: 'person1 home'<br />  trigger:<br />  # Trigger when any of their local trackers show home<br />  - platform: state<br />    entity_id: <br />      - device_tracker.3c_28_6d_da_eb_a1<br />      - device_tracker.person1_bt_mobile<br />      - device_tracker.person1_bt_front_mobile<br />    to: 'home'<br />  # Trigger when HA starts<br />  - platform: homeassistant<br />    event: start<br />  condition:<br />  # As long as at least one tracker shows home<br />  - condition: numeric_state<br />    entity_id: group.person_person1<br />    above: 0<br />    value_template: &gt;-<br />      {{ dict((states|selectattr('entity_id', 'in', state_attr('group.person_person1', 'entity_id'))|list)|groupby('state'))['home']|count }}<br />  action:<br />  # Call the script we wrote above<br />  - service: script.person1_home</pre></div><div>Now, this looks <i>slightly </i>more complicated than it needs to be, but that's because I was at one point using a "majority wins" logic here. We could still simplify it a bit:<br /><pre>automation:<br />- initial_state: 'on'<br />  alias: 'person1 home'<br />  trigger:<br />  # Trigger when any of their local trackers show home<br />  - platform: state<br />    entity_id: <br />      - device_tracker.3c_28_6d_da_eb_a1<br />      - device_tracker.person1_bt_mobile<br />      - device_tracker.person1_bt_front_mobile<br />    to: 'home'<br />  # Trigger when HA starts<br />  - platform: homeassistant<br />    event: start<br />  condition:<br />  # As long as at least one tracker shows home<br />  - condition: state<br />    entity_id: group.person_person1<br />    state: 'home'<br />  action:<br />  # Call the script we wrote above<br />  - service: script.person1_home</pre>This makes it much clearer that we're just looking for any sign they're home. I don't use the group in the trigger because it's possible we marked somebody as away despite not every group member being away. That means that the status of the group will remain home, so not change when another tracker marks them as home.<br /><h3>Away</h3></div><div>The <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/automation/people/person1/person1_away.yaml" target="_blank">away automation</a> is the strangely complicated one. I'll break this one down rather than posting it as a one.<br /><br />The first two trigger statements are for when the GPS tracker says we're away, and far away:<br /><pre>  trigger:<br />  - platform: numeric_state<br />    entity_id: proximity.person1_home<br />    above: 300<br />  - platform: numeric_state<br />    entity_id: proximity.person1_home<br />    above: 600</pre>The next two are the typical ones, devices being away, and HA starting:<br /><pre>  - platform: state<br />    entity_id: <br />      - device_tracker.3c_28_6d_da_eb_a1<br />      - device_tracker.person1_bt_mobile<br />      - device_tracker.person1_bt_front_mobile<br />    to: 'not_home'<br />  - platform: homeassistant<br />    event: start</pre>The first condition check is that we've left. Basically, we're going for "majority wins" here. Doesn't matter if one still thinks we're home:<br /><pre>  condition:<br />  # As long as at least two trackers mark as away, they're away<br />  - condition: numeric_state<br />    entity_id: group.person_person1<br />    below: 2<br />    value_template: &gt;-<br />      {{ dict((states|selectattr('entity_id', 'in', state_attr('group.person_person1', 'entity_id'))|list)|groupby('state'))['home']|count }}</pre>Now we have three blocks any one of which has to be true.<br /><br />First off, an exit door has to have opened/closed in the last 5 minutes:<br /><pre>    - condition: template<br />      value_template: &gt;-<br />        {{ ((as_timestamp(now()) - as_timestamp(states.binary_sensor.pi3_front_door_sensor.last_updated)) | int &lt; 300) <br />          or <br />           ((as_timestamp(now()) - as_timestamp(states.binary_sensor.pi3_garage_closed_car_sensor.last_updated)) | int &lt; 300) <br />        }}</pre>Alternatively all devices are showing away, and we're not that close. This exists because it wouldn't be the first time we've stood just outside chatting with a neighbour for more than 5 minutes. Four hundred meters is far enough beyond the accuracy level set for GPSLogger that there's no chance of getting a false away with this.<br /><pre>    - condition: and<br />      conditions:<br />      - condition: state<br />        entity_id: group.person_person1<br />        state: 'not_home'<br />      - condition: numeric_state<br />        entity_id: proximity.person1_home<br />        above: 300</pre>Finally, to account for one of the trackers locking up (and us spending a while chatting with the neighbours), we'll accept that it may also be that we're just far away:<br /><pre>    - condition: numeric_state<br />      entity_id: proximity.person1_home<br />      above: 600</pre>Finally, we call the script:<br /><pre>  action:<br />  - service: script.person1_away</pre></div>If you're still with me, what this means is that we're marked away when:<br /><ul><li>At least two trackers show away if an exit door closed in the last 5 minutes</li><li>All trackers&nbsp;show away, and we're at least 300 meters away (remember GPSLogger won't report if it doesn't have an accuracy of at least 200 meters)</li><li>At least two trackers&nbsp;show away, and we're at least 600 meters away</li></ul><div>The other two automations run the arrival and departure scans based on the door <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/automation/front_of_house/front_door_open.yaml" target="_blank">opening</a> or <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/automation/front_of_house/front_door_closed.yaml" target="_blank">closing</a>.</div><div><pre>automation:<br />- alias: 'Front door open'<br />  initial_state: 'on'<br />  trigger:<br />  - platform: state<br />    entity_id: binary_sensor.pi3_front_door_sensor<br />    to: 'on'<br />  action:<br />  - service: script.scan_bt_arrive<br />  - service: automation.turn_off<br />    data:<br />      entity_id: automation.garage_open_nobody_home<br /><br />- initial_state: 'on'<br />  alias: 'Front door closed'<br />  trigger:<br />  - platform: state<br />    entity_id: binary_sensor.pi3_front_door_sensor<br />    to: 'off'<br />  action:<br />  - service: script.scan_bt_depart</pre></div>There are also matching automations for the garage door.<br /><br /><hr /><h3>But why?</h3><div>I know, you're looking at this and thinking <i>this is horribly complicated</i>. Well, it is, and it isn't. If the behaviour of person works for you, great. It didn't work for me though, which is why I created this.<br /><br />This gives me a presence detection method that is always quick to detect arrival. Importantly it never produces any false away, and at worst will have a short delay before marking people away.<br /><h4>Room presence</h4></div><div>It's been asked a few times if I do any room level presence detection, and the answer is <i>not by tracking phones</i>. It's of little value to me to know where somebody may have left a phone, or a tablet. I much prefer to track the people and their behaviours.</div><br />
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#monitor">monitor</a>
+          
+            <a href="/tags#bluetooth">bluetooth</a>
+          
+            <a href="/tags#gpslogger">gpslogger</a>
+          
+            <a href="/tags#proximity">proximity</a>
+          
+            <a href="/tags#home assistant core">home assistant core</a>
+          
+            <a href="/tags#nmap">nmap</a>
+          
+            <a href="/tags#home assistant">home assistant</a>
+          
+            <a href="/tags#wifi">wifi</a>
+          
+            <a href="/tags#presence detection">presence detection</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a href="https://twitter.com/intent/tweet?text=Presence+detection%2C+one+last+time%3F&url=http%3A%2F%2F0.0.0.0%3A4000%2F2020-04-14-presence-detection-one-last-time%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2F2020-04-14-presence-detection-one-last-time%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2F2020-04-14-presence-detection-one-last-time%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2019-11-17-zigbee-and-home-assistant/" data-toggle="tooltip" data-placement="top" title="Zigbee (and Home Assistant)">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2020-04-28-cameras-motion-detection-and/" data-toggle="tooltip" data-placement="top" title="Cameras, motion detection, and (interesting) object detection (part one)">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  
+  
+  
+
+  
+
+
+  
+
+  
+
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a href="https://github.com/DubhAd" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        Tinkerer
+        &nbsp;&bull;&nbsp;
+      
+      2022
+
+      
+
+      
+
+      
+
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

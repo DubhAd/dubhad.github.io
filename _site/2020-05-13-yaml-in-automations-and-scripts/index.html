@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+
+  
+
+  <title>YAML in automations and scripts</title>
+
+  
+  <meta name="author" content="Tinkerer">
+  
+
+  <meta name="description" content="I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you&apos;re going to read them in order. So, I thought I&apos;d pull together a little primer. If you&apos;re a YAML purist you probably want to look away...">
+
+  
+
+  
+
+  
+  <link rel="alternate" type="application/rss+xml" title="Tinkering with Technology" href="http://0.0.0.0:4000/feed.xml">
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="Tinkering with Technology">
+  <meta property="og:title" content="YAML in automations and scripts">
+  <meta property="og:description" content="I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you&apos;re going to read them in order. So, I thought I&apos;d pull together a little primer. If you&apos;re a YAML purist you probably want to look away...">
+
+  
+  <meta property="og:image" content="http://0.0.0.0:4000/assets/img/avatar.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="Tinkerer">
+  <meta property="og:article:published_time" content="2020-05-13T16:46:00+01:00">
+  <meta property="og:url" content="http://0.0.0.0:4000/2020-05-13-yaml-in-automations-and-scripts/">
+  <link rel="canonical" href="http://0.0.0.0:4000/2020-05-13-yaml-in-automations-and-scripts/">
+  
+
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="YAML in automations and scripts">
+  <meta property="twitter:description" content="I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you&apos;re going to read them in order. So, I thought I&apos;d pull together a little primer. If you&apos;re a YAML purist you probably want to look away...">
+
+  
+  <meta name="twitter:image" content="http://0.0.0.0:4000/assets/img/avatar.png">
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="http://0.0.0.0:4000/">Tinkering with Technology</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/aboutme">About Me</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="https://github.com/DubhAd/Home-AssistantConfig/">My HA config</a>
+                  <a class="dropdown-item" href="https://www.home-assistant.io/docs/configuration/">Home Assistant documentation</a>
+            </div>
+          </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="https://ceard.tech">Author's home</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-search-link" href="#" title="Search">
+            <span id="nav-search-icon" class="fa fa-search"></span>
+            <span id="nav-search-text">Search</span>
+          </a>
+        </li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        <a href="http://0.0.0.0:4000/">
+          <img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar.png" />
+        </a>
+      </div>
+    </div>
+  
+
+</nav>
+
+
+
+<div id="beautifuljekyll-search-overlay">
+
+  <div id="nav-search-exit" title="Exit search">✕</div>
+  <input type="text" id="nav-search-input" placeholder="Search">
+  <ul id="search-results-container"></ul>
+  
+  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
+  <script>
+    var searchjson = '[ \
+       \
+        { \
+          "title"    : "Traefik and a remote Home Assistant", \
+          "category" : "remote accesshome assistant", \
+          "url"      : "/2022-10-25-traefik-and-remote-home-assistant/", \
+          "date"     : "October 25, 2022" \
+        }, \
+       \
+        { \
+          "title"    : "Frigate &gt; MotionEye+Doods", \
+          "category" : "doodsfrigatehome assistantmotion detection", \
+          "url"      : "/2022-09-20-frigate-motioneyedoods/", \
+          "date"     : "September 20, 2022" \
+        }, \
+       \
+        { \
+          "title"    : "How should I install Home Assistant?", \
+          "category" : "", \
+          "url"      : "/2021-12-23-how-should-i-install-home-assistant/", \
+          "date"     : "December 23, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Running an automation every time a sensor updates", \
+          "category" : "automationhome assistant", \
+          "url"      : "/2021-08-05-running-automation-every-time-sensor/", \
+          "date"     : "August  5, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Why didn&#39;t my automation run?", \
+          "category" : "", \
+          "url"      : "/2021-07-18-why-didnt-my-automation-run/", \
+          "date"     : "July 18, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Zigbee2MQTT - Native to Docker migration", \
+          "category" : "dockerzigbee2mqtt", \
+          "url"      : "/2021-05-02-zigbee2mqtt-native-to-docker-migration/", \
+          "date"     : "May  2, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "Presence Detection Resurrection", \
+          "category" : "bluetoothhome assistantpresence detection", \
+          "url"      : "/2021-01-03-presence-detection-resurrection/", \
+          "date"     : "January  3, 2021" \
+        }, \
+       \
+        { \
+          "title"    : "HA venv to Docker", \
+          "category" : "dockervenvlinuxpythonhome assistant", \
+          "url"      : "/2020-10-10-ha-venv-to-docker/", \
+          "date"     : "October 10, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant, Docker, and using SSH", \
+          "category" : "sshdockerhome assistant", \
+          "url"      : "/2020-05-29-home-assistant-docker-and-using-ssh/", \
+          "date"     : "May 29, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "YAML in automations and scripts", \
+          "category" : "yamlhome assistant coreautomationhome assistant", \
+          "url"      : "/2020-05-13-yaml-in-automations-and-scripts/", \
+          "date"     : "May 13, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Cameras, motion detection, and (interesting) object detection (part two)", \
+          "category" : "", \
+          "url"      : "/2020-05-10-cameras-motion-detection-and/", \
+          "date"     : "May 10, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Moving from Wink to Home Assistant?", \
+          "category" : "home assistant corehome assistantwink", \
+          "url"      : "/2020-05-09-moving-from-wink-to-home-assistant/", \
+          "date"     : "May  9, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Cameras, motion detection, and (interesting) object detection (part one)", \
+          "category" : "doodsmotionhome assistant coremotion detectionobject detection", \
+          "url"      : "/2020-04-28-cameras-motion-detection-and/", \
+          "date"     : "April 28, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection, one last time?", \
+          "category" : "monitorbluetoothgpsloggerproximityhome assistant corenmaphome assistantwifipresence detection", \
+          "url"      : "/2020-04-14-presence-detection-one-last-time/", \
+          "date"     : "April 14, 2020" \
+        }, \
+       \
+        { \
+          "title"    : "Zigbee (and Home Assistant)", \
+          "category" : "zigbeez-wavehome assistant", \
+          "url"      : "/2019-11-17-zigbee-and-home-assistant/", \
+          "date"     : "November 17, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection, the final countdown?", \
+          "category" : "monitorhome assistantpresence detection", \
+          "url"      : "/2019-10-27-presence-detection-final-countdown/", \
+          "date"     : "October 27, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Messing with meshing", \
+          "category" : "zigbeez-wavehome assistant", \
+          "url"      : "/2019-09-06-messing-with-meshing/", \
+          "date"     : "September  6, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "The great migration - part two", \
+          "category" : "", \
+          "url"      : "/2019-08-28-the-great-migration-part-two/", \
+          "date"     : "August 28, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "My great migration - part one", \
+          "category" : "zigbeez-wavehome assistant", \
+          "url"      : "/2019-08-15-my-great-migration-part-one/", \
+          "date"     : "August 15, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Breaking up automations/Room activity detection", \
+          "category" : "automationhome assistantpresence detection", \
+          "url"      : "/2019-04-28-breaking-up-automationsroom-activity/", \
+          "date"     : "April 28, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection - are we nearly there yet?", \
+          "category" : "home assistantpresence detection", \
+          "url"      : "/2019-03-16-presence-detection-are-we-nearly-there/", \
+          "date"     : "March 16, 2019" \
+        }, \
+       \
+        { \
+          "title"    : "Product comparison - smart displays", \
+          "category" : "smart displaygoogle homegoogle assistanthome assistant", \
+          "url"      : "/2018-12-30-product-comparison-smart-displays/", \
+          "date"     : "December 30, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection - update 3", \
+          "category" : "", \
+          "url"      : "/2018-10-15-presence-detection-update-3/", \
+          "date"     : "October 15, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Upgrading from 0.75 to 0.80", \
+          "category" : "home assistant", \
+          "url"      : "/2018-10-13-upgrading-from-075-to-080/", \
+          "date"     : "October 13, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Accessing the inaccessible", \
+          "category" : "remote accessopenvpncloudpivpnhome assistantvpn", \
+          "url"      : "/2018-09-29-accessing-inacessible/", \
+          "date"     : "September 29, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant cloud goes paid", \
+          "category" : "cloudhome assistant", \
+          "url"      : "/2018-09-18-home-assistant-cloud-goes-paid/", \
+          "date"     : "September 18, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Presence detection updated", \
+          "category" : "", \
+          "url"      : "/2018-09-06-a-while-back-i-covered-how-i-was-doing/", \
+          "date"     : "September  6, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Turbulence ahead - fasten your seatbelt", \
+          "category" : "securityproxyhome assistant", \
+          "url"      : "/2018-08-24-turbulence-ahead-fasten-your-seatbelt/", \
+          "date"     : "August 24, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Sensative strips (guard) review", \
+          "category" : "z-wave", \
+          "url"      : "/2018-08-21-sensative-strips-guard-review/", \
+          "date"     : "August 21, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Lovelace - the next generation of stock UI", \
+          "category" : "", \
+          "url"      : "/2018-08-19-lovelace-next-generation-of-stock-ui/", \
+          "date"     : "August 19, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Triggers and conditions and actions! Oh My!", \
+          "category" : "automationhome assistant", \
+          "url"      : "/2018-08-18-triggers-and-conditions-and-actions-oh/", \
+          "date"     : "August 18, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "The XY Problem", \
+          "category" : "", \
+          "url"      : "/2018-08-16-the-xy-problem/", \
+          "date"     : "August 16, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "It&#39;s not about the brand", \
+          "category" : "learningautomationhome assistant", \
+          "url"      : "/2018-04-15-its-not-about-brand/", \
+          "date"     : "April 15, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant - the Hass.io menu is missing", \
+          "category" : "hass.iohome assistant", \
+          "url"      : "/2018-02-15-home-assistant-shopping-bag-is-missing/", \
+          "date"     : "February 15, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant, avoiding insecurity", \
+          "category" : "securityremote accesshome assistant", \
+          "url"      : "/2018-01-29-home-assistant-avoiding-insecurity/", \
+          "date"     : "January 29, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant and (basic) Presence Detection", \
+          "category" : "home assistantpresence detection", \
+          "url"      : "/2018-01-25-home-assistant-and-basic-presence/", \
+          "date"     : "January 25, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "The secret is (not) to bang the rocks together", \
+          "category" : "helpvampirelearninghome assistant", \
+          "url"      : "/2018-01-18-the-secret-is-not-to-bang-rocks-together/", \
+          "date"     : "January 18, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "How not to break manual control of devices with automations", \
+          "category" : "input booleanautomationhome assistant", \
+          "url"      : "/2018-01-17-how-not-to-break-manual-control-of/", \
+          "date"     : "January 17, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Remote access via PiVPN", \
+          "category" : "remote accessopenvpnpivpnhome assistantvpn", \
+          "url"      : "/2018-01-17-remote-access-via-pivpn/", \
+          "date"     : "January 17, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Why Home Assistant?", \
+          "category" : "platformhome assistant", \
+          "url"      : "/2018-01-11-why-home-assistant/", \
+          "date"     : "January 11, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Remote access for Home Assistant (and other things)", \
+          "category" : "remote accesshome assistant", \
+          "url"      : "/2018-01-10-remote-access-for-home-assistant-and/", \
+          "date"     : "January 10, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "RFC1918", \
+          "category" : "remote access", \
+          "url"      : "/2018-01-09-rfc1918/", \
+          "date"     : "January  9, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "NGINX and Home Assistant", \
+          "category" : "remote accesshome assistant", \
+          "url"      : "/2018-01-09-nginx-and-home-assistant/", \
+          "date"     : "January  9, 2018" \
+        }, \
+       \
+        { \
+          "title"    : "Installing Home Assistant in a virtual environment (in Linux)", \
+          "category" : "venvpythonhome assistant", \
+          "url"      : "/2017-12-25-installing-home-assistant-in-virtual/", \
+          "date"     : "December 25, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant Cloud", \
+          "category" : "cloudhome assistant", \
+          "url"      : "/2017-12-17-home-assistant-cloud/", \
+          "date"     : "December 17, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Upgrading the Python Virtual Environment", \
+          "category" : "venvpythonhome assistant", \
+          "url"      : "/2017-12-08-upgrading-python-virtual-environment/", \
+          "date"     : "December  8, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Which Home Assistant install is right for me?", \
+          "category" : "hass.ioplatformhome assistant", \
+          "url"      : "/2017-11-09-which-home-assistant-install-is-right/", \
+          "date"     : "November  9, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "LetsEncrypt with Home Assistant", \
+          "category" : "sslhome assistant", \
+          "url"      : "/2017-11-05-letsencrypt-with-home-assistant/", \
+          "date"     : "November  5, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Backing up Hass.io", \
+          "category" : "backuphass.io", \
+          "url"      : "/2017-11-03-backing-up-hassio/", \
+          "date"     : "November  3, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Choosing a platform", \
+          "category" : "platform", \
+          "url"      : "/2017-10-24-choosing-platform/", \
+          "date"     : "October 24, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Backing up Home Assistant", \
+          "category" : "backuphome assistant", \
+          "url"      : "/2017-10-23-backing-up-home-assistant/", \
+          "date"     : "October 23, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Home Assistant - moving logs and database off the SD card", \
+          "category" : "home assistant", \
+          "url"      : "/2017-10-23-home-assistant-moving-logs-and-database/", \
+          "date"     : "October 23, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "What&#39;s the point?", \
+          "category" : "", \
+          "url"      : "/2017-10-23-whats-point/", \
+          "date"     : "October 23, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Putting the cart before the horse", \
+          "category" : "", \
+          "url"      : "/2017-10-22-putting-cart-before-horse/", \
+          "date"     : "October 22, 2017" \
+        }, \
+       \
+        { \
+          "title"    : "Back it up", \
+          "category" : "backup", \
+          "url"      : "/2017-10-21-back-it-up/", \
+          "date"     : "October 21, 2017" \
+        }, \
+       \
+       \
+        { \
+          "title"    : "About", \
+          "category" : "page", \
+          "url"      : "/about/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "About me", \
+          "category" : "page", \
+          "url"      : "/aboutme/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "", \
+          "category" : "page", \
+          "url"      : "/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "Tag Index", \
+          "category" : "page", \
+          "url"      : "/tags/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page2/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page3/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page4/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page5/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page6/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page7/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page8/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page9/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page10/", \
+          "date"     : "January 1, 1970" \
+        }, \
+       \
+        { \
+          "title"    : "My website", \
+          "category" : "page", \
+          "url"      : "/page11/", \
+          "date"     : "January 1, 1970" \
+        } \
+       \
+    ]';
+    searchjson = JSON.parse(searchjson);
+
+    var sjs = SimpleJekyllSearch({
+      searchInput: document.getElementById('nav-search-input'),
+      resultsContainer: document.getElementById('search-results-container'),
+      json: searchjson
+    });
+  </script>
+</div>
+
+
+
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>YAML in automations and scripts</h1>
+          
+
+          
+            <span class="post-meta">Posted on 2020 May 13</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you're going to read them in order. So, I thought I'd pull together a little primer. If you're a YAML purist you probably want to look away now, I'm aiming to make this accessible not 100% technically correct.<div><h1 style="text-align: left;">YAML (very) basics</h1><div>YAML largely consists of two things, dictionaries and lists. Dictionaries are the really important piece here, because they hold everything (ultimately). For example:</div><pre style="text-align: left;">homeassistant:</pre><div>Yup, that's a dictionary. In this case it's empty, but it's a dictionary. Dictionaries can hold other dictionaries, or lists. What's a list? Here's a list example from <a href="https://www.home-assistant.io/docs/configuration/basic/" target="_blank">the documentation</a>:</div><div><pre style="text-align: left;">whitelist_external_dirs:<br />&nbsp; - /usr/var/dumping-ground<br />&nbsp; - /tmp</pre></div><div>That's a list, with two entries (values). Each entry is marked by the hyphen (-).</div><div><br /></div><div>You can also separate list items with commas, like this, but I find that it's often less readable:</div><div><pre style="text-align: left;">whitelist_external_dirs: [ /usr/var/dumping-ground, /tmp ]</pre></div><div>The question that always comes up is when you use a dictionary and when you use a list. The unfortunate answer is that you have to check the documentation. Even more unfortunately, a single entry list doesn't <i>need</i>&nbsp;that - so you'll sometimes see a list written like:</div><div><pre>whitelist_external_dirs:<br />&nbsp; /usr/var/dumping-ground</pre></div><div>That is perfectly valid, but you can see why it causes confusion.</div><div><br /></div><div>Here's a little more from that page:</div><div><pre style="text-align: left;">homeassistant:<br />&nbsp; latitude: 32.87336<br />&nbsp; longitude: 117.22743<br />&nbsp; whitelist_external_dirs:<br />&nbsp; &nbsp; - /usr/var/dumping-ground<br />&nbsp; &nbsp; - /tmp</pre></div><div>That's a dictionary (<kbd>homeassistant</kbd>) holding:</div><div><ul style="text-align: left;"><li>Two dictionaries (<kbd>latitude</kbd> and <kbd>longitude</kbd>)</li><li>One list (<kbd>whitelist_external_dirs</kbd>)</li></ul></div><div>These are the basic building blocks. If you want more on the subject see <a href="http://thomasloven.com/blog/2018/08/YAML-For-Nonprogrammers/" target="_blank">this blog post</a>.</div><h2 style="text-align: left;">Spaces</h2><div>With YAML, spaces (indenting) are critical. You need to keep your indenting consistent (the advice is generally to use <i>two spaces</i>&nbsp;per level. Oh, and don't use tabs, unless your editor converts them to spaces. Tabs cause Home Assistant to spit out errors too. Here's an example with broken indenting that I've seen people try to use:</div><div><pre style="text-align: left;">automation:<br />&nbsp; - alias: "My test automation"<br /><i>&nbsp; &nbsp; &nbsp; id: "unique_value_42"<br />&nbsp; &nbsp; &nbsp; initial_state: "on"<br /></i>&nbsp; &nbsp; trigger:<br />&nbsp; &nbsp; &nbsp; - platform: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id:&nbsp;<br /><i>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; - switch.furnace<br /></i>&nbsp; &nbsp; &nbsp;   &nbsp; - switch.extractor</pre></div><div>Here is how it should look:</div><div><pre style="text-align: left;">automation:<br />&nbsp; - alias: "My test automation"<br />&nbsp; &nbsp; id: "unique_value_42"<br />&nbsp; &nbsp; initial_state: "on"<br />&nbsp; &nbsp; trigger:<br />&nbsp; &nbsp; &nbsp; - platform: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id:&nbsp;<br />&nbsp; &nbsp;   &nbsp; &nbsp; - switch.furnace<br />&nbsp; &nbsp; &nbsp;   &nbsp; - switch.extractor</pre></div><div>Running a configuration check will warn you when the YAML is invalid, and it's something you should do any time you write any YAML.&nbsp;</div><h2 style="text-align: left;">Quoting</h2><div>You don't <i>have</i>&nbsp;to quote things in YAML, but for strings (text) you should or the result may be unexpected. What do I mean? Well <kbd>"On"</kbd> is a string, but <kbd>On</kbd> is a boolean value. These things to humans look the same, but to the computer they're different. Similarly if you have a number, like <kbd>42</kbd>, that's a number, but if you put it in quotes, like <kbd>"42"</kbd>, then that's a string.&nbsp;</div><div><br /></div><div>When you need to use multiple quotes on a line, then you need to use different ones for the outer quotes than the inner quotes, like:</div><pre style="text-align: left;">automation:<br />&nbsp; - alias: "Tom's alarm is ringing"</pre><div>This becomes particularly important if you're using templates.</div><h2 style="text-align: left;">Case sensitivity</h2><div>You also need to keep in mind that computers don't treat capital letters the same as lower case letters. The string <kbd>"home"</kbd> is different to the computer from <kbd>"Home"</kbd>, so you need to be sure which it is you're looking for.</div><h2 style="text-align: left;">States</h2><div>The state you see in Home Assistant's user interface may not be the actual state. You need to look at the entity in <i>Developer Tools</i>&nbsp;and then <i>States</i>&nbsp;to see the actual state of the entity. For example, a door/window sensor will show as <i>Open </i>or <i>Closed </i>in the user interface, but is actually <kbd>'on'</kbd> and <kbd>'off'</kbd>.</div><h1 style="text-align: left;"><a id="automation-structure">Automation Structure</a></h1><div>An automation has four parts</div><div><ol style="text-align: left;"><li>Information about the automation</li><li>Trigger</li><li>Condition (optional)</li><li>Action</li></ol><h2 style="text-align: left;">About the automation</h2></div><div>There are up to three things you'll have here.&nbsp;</div><div><ol style="text-align: left;"><li>The first is the <kbd>alias</kbd>, the human readable name. This will typically be used to form the <kbd>entity_id</kbd> of the automation.</li><li>Optionally there's an <kbd>id</kbd>. This is used by the automation editor and if present is used to form the <kbd>entity_id</kbd> (instead of the <kbd>alias</kbd>).</li><li>Finally there's an optional <kbd>initial_state</kbd>. This is used to force the automation to be enabled or disabled at startup.</li></ol><div><pre style="text-align: left;">automation:<br />&nbsp; - alias: "My test automation"<br />&nbsp; &nbsp; id: "unique_value_42"<br />&nbsp; &nbsp; initial_state: "on"</pre></div><div>The automation is a list entry, in the automation dictionary.</div><h2 style="text-align: left;">Trigger</h2></div></div><div>This is the bit that kicks it all off, your list of triggers. When <i>any</i>&nbsp;trigger statement <i>becomes true</i> then the processing begins. You have to have at least one trigger, and you can have as many as you need. It's worth taking the time now to <a href="https://www.home-assistant.io/docs/automation/trigger/" target="_blank">read the triggers page</a>, and see what's possible (and what causes a trigger to become true). Here's a simple one:</div><div><pre style="text-align: left;">&nbsp; &nbsp; trigger:<br />&nbsp; &nbsp; &nbsp; - platform: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id:&nbsp;<span style="background-color: #fdfdfd; font-family: consolas, monaco, &quot;andale mono&quot;, &quot;ubuntu mono&quot;, monospace; font-size: 13.005px; white-space: pre-wrap;">device_tracker.tinkerer<br /></span>&nbsp; &nbsp; &nbsp; &nbsp; to: 'home'</pre></div><div>I've used the list indicator here, even though I only have one trigger. This is to make it clearer that triggers are a list. This will trigger when <kbd>device_tracker.tinkerer</kbd> becomes <kbd>'home'</kbd>. Here is a more complex one:</div><div><pre style="text-align: left;">&nbsp; &nbsp; trigger:<br />&nbsp; &nbsp; &nbsp; - platform: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id: device_tracker.tinkerer<br />&nbsp; &nbsp; &nbsp; &nbsp; to: 'home'<br />&nbsp; &nbsp; &nbsp; - platform: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id: device_tracker.<span style="white-space: normal;">better_half</span><br />&nbsp; &nbsp; &nbsp; &nbsp; to: 'home'</pre></div><div>Two triggers - here the automation will start processing if either <kbd>device_tracker.tinkerer</kbd> or <kbd>device_tracker.better_half</kbd> become <kbd>'home'</kbd>. Since both are looking for the same target state, I could have written the more compact version:&nbsp;</div><div><div><pre style="text-align: left;">&nbsp; &nbsp; trigger:<br />&nbsp; &nbsp; &nbsp; - platform: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id:&nbsp;<br />          - device_tracker.tinkerer<br />          - device_tracker.<span style="white-space: normal;">better_half</span><br />&nbsp; &nbsp; &nbsp; &nbsp; to: 'home'</pre></div></div><div>I prefer this, partly because it's more compact, but also because it's much easier to read.</div><h2 style="text-align: left;">Conditions</h2><div>Conditions are optional - you don't need any if your automation doesn't call for one.</div><div><br /></div><div>All the conditions in the list have to be <i>currently&nbsp;</i>true for the automation to run. There are <a href="https://www.home-assistant.io/docs/scripts/conditions/" target="_blank">many available conditions</a>, including some that allow you to say that <i>this or that</i>&nbsp;must be true. Conditions are particularly useful when you have multiple triggers, and want them all to be true for the automation to run. With conditions however you have to list each separately, you can't combine them like we did for triggers:</div><div><pre style="text-align: left;">&nbsp; &nbsp; condition:<br />&nbsp; &nbsp; &nbsp; - condition: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id: device_tracker.tinkerer<br />&nbsp; &nbsp; &nbsp; &nbsp; state: 'home'<br />&nbsp; &nbsp; &nbsp; - condition: state<br />&nbsp; &nbsp; &nbsp; &nbsp; entity_id: device_tracker.better_half<br />&nbsp; &nbsp; &nbsp; &nbsp; state: 'home'</pre></div><div>Here we require that both device trackers are <i>currently</i> in the state&nbsp;<span style="font-family: monospace;">'home'</span>. If the automation is triggered by me arriving home, while the wife is still away, then one condition will be false, and the automation won't run.</div><h2 style="text-align: left;">Actions</h2><div>This is where things happen. Actions are <a href="https://www.home-assistant.io/docs/scripts/" target="_blank">basically scripts</a>&nbsp;- a list of actions to take in sequence. That means you can call services (do things), check conditions, pause for a fixed time (<kbd>delay</kbd>) or until a <a href="https://www.home-assistant.io/docs/configuration/templating/" target="_blank">template</a> becomes true (<kbd>wait_template</kbd>), or send events. You have at least one, and potentially <i>many</i> actions. If any step fails (or returns false) then the automation stops at that point. This is handy for condition checks, and not so handy at other times.</div><div><br /></div><div>With a service call you can generally give one, or many, entities, for example:</div><div><pre style="text-align: left;">    action:<br />      - service: switch.turn_on<br />        entity_id: <br />          - switch.furnace<br />          - switch.extractor<br />      - condition: state<br />        entity_id: sun.sun<br />        state: 'below_horizon'<br />      - service: light.turn_on<br />        data:<br />          entity_id: light.basement, light.stairwell</pre></div><div>Here I've shown the two different ways of listing multiple entities - I prefer the first method. You'll see that one of these has a <kbd>data</kbd> block, and one doesn't. Generally speaking, you need a <kbd>data</kbd> block where you're providing more than just an <kbd>entity_id</kbd>, but it's best to simply follow what's in the documentation.</div><div><br /></div><div>This particular action block will turn on two switches, and then only if the state of <kbd>sun.sun</kbd> is <kbd>'below_horizon'</kbd> will it turn on the two lights.</div>
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#yaml">yaml</a>
+          
+            <a href="/tags#home assistant core">home assistant core</a>
+          
+            <a href="/tags#automation">automation</a>
+          
+            <a href="/tags#home assistant">home assistant</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a href="https://twitter.com/intent/tweet?text=YAML+in+automations+and+scripts&url=http%3A%2F%2F0.0.0.0%3A4000%2F2020-05-13-yaml-in-automations-and-scripts%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F0.0.0.0%3A4000%2F2020-05-13-yaml-in-automations-and-scripts%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2F0.0.0.0%3A4000%2F2020-05-13-yaml-in-automations-and-scripts%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2020-05-10-cameras-motion-detection-and/" data-toggle="tooltip" data-placement="top" title="Cameras, motion detection, and (interesting) object detection (part two)">&larr; Previous Post</a>
+        </li>
+        
+        
+        <li class="page-item next">
+          <a class="page-link" href="/2020-05-29-home-assistant-docker-and-using-ssh/" data-toggle="tooltip" data-placement="top" title="Home Assistant, Docker, and using SSH">Next Post &rarr;</a>
+        </li>
+        
+      </ul>
+      
+  
+  
+  
+
+  
+
+
+  
+
+  
+
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a href="https://github.com/DubhAd" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        Tinkerer
+        &nbsp;&bull;&nbsp;
+      
+      2022
+
+      
+
+      
+
+      
+
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>

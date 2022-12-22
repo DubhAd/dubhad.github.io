@@ -1,0 +1,13 @@
+---
+layout: post
+title: Home Assistant, Docker, and using SSH
+date: '2020-05-29T21:20:00.003+01:00'
+author: Tinkerer
+tags:
+- ssh
+- docker
+- home assistant
+modified_time: '2021-01-21T10:13:59.016Z'
+---
+
+A common problem that comes up with people using one of the Supervisor based install methods, or Docker, is that when they try to use ssh it fails, yet when testing it works.<br /><div><br /></div><div><b><i>What. The. Heck?</i></b></div><div><br /></div><div>Well, you've hit two problems because of Docker - all your testing was done in a different container.</div><div><ol style="text-align: left;"><li>You need to accept the remote host's key. The default is to prompt the human, and you don't see that.</li><li>You need to provide the location private key, since it's not where SSH is looking for it.</li></ol><div>Solving this is simple enough.</div></div><h2 style="text-align: left;">Copy the private key</h2><div>First thing to do is to copy the private key into your config folder. I'd recommend that you put it in a sub-folder, and exclude that from any git push. For example, create <kbd>/config/ssh</kbd> and copy your private key (typically <kbd>id_ed25519</kbd> or <kbd>id_rsa</kbd>) there.</div><div><br /></div><div>Oh, and that private key, it needs to have no passphrase since you won't be able to enter it.</div><div><br /></div><div>If you created a fresh key, don't forget to add the <i>public key</i>&nbsp;to the server you're connecting to.</div><h2 style="text-align: left;">Tell SSH to accept new host keys</h2><div>This is easy, there's an option to tell the SSH client to accept <i>new</i>&nbsp;keys. This is safer than the old option to just blindly accept all keys. To do this you add <kbd>StrictHostKeyChecking=accept-new</kbd> to your options.</div><h2 style="text-align: left;">All together now</h2><div>What does this mean? It means where you currently have <kbd>ssh</kbd> you'd instead have</div><div><pre>ssh -i /config/ssh/id_ed25519 -o StrictHostKeyChecking=accept-new</pre></div>For example your full command may be<br /><div><pre>ssh -i /config/ssh/id_ed25519 -o StrictHostKeyChecking=accept-new tinkerer@orbital.ceard.tech /usr/sbin/meltdown</pre></div>Now it'll use that key, and accept new keys without prompting. It won't accept keys that change, which is a good security feature.
