@@ -59,7 +59,7 @@ Then type `quit` to exit.
 
 Now you'll have 2 partitions `/dev/sda1` and `/dev/sda2`, but they need a file system:
 
-```
+```sh
 $ sudo mkfs -t ext4 /dev/sda1
 $ sudo mkfs -t ext4 /dev/sda2
 ```
@@ -70,16 +70,16 @@ To use these file systems, edit `/etc/fstab` with your favourite editor (eg `sud
 
 ```
 UUID=deadbeef-cafe-dead-beef-cafef00f1234    /var/log    ext4    defaults,noatime,nofail    0    0
-UUID=deadbeef-cafe-dead-beef-cafef00f5678    /data    ext4    defaults,noatime,nofail    0    0
+UUID=deadbeef-cafe-dead-beef-cafef00f5678    /data       ext4    defaults,noatime,nofail    0    0
 ```
 
-You can separate those with tabs or spaces. Unlike YAML, it doesn't matter here. The noatime option says not to record the access (read) time of the files, which will save a lot of writes. The nofail option says that if the disk isn't found on boot to continue anyway.
+You can separate those with tabs or spaces. Unlike YAML, it doesn't matter here. The `noatime` option says not to record the access (read) time of the files, which will save a lot of writes. The `nofail` option says that if the disk isn't found on boot to continue anyway.
 
 ## Moving the Home Assistant database
 
 Making use of `/data` is easy:
 
-```
+```sh
 $ sudo mkdir /data
 $ sudo mount /data
 $ sudo chown homeassistant:homeassistant /data
@@ -94,7 +94,7 @@ recorder:
 
 Now you can shut Home Assistant down, and move your existing database, then the logfile (and create a link for the logfile):
 
-```
+```sh
 $ sudo mv ~homeassistant/.homeassistant/home-assistant_v2.db /data/
 $ sudo mv ~homeassistant/.homeassistant/home-assistant.log /data/
 $ sudo ln -s /data/home-assistant.log ~homeassistant/.homeassistant/home-assistant.log
@@ -102,7 +102,7 @@ $ sudo ln -s /data/home-assistant.log ~homeassistant/.homeassistant/home-assista
 
 If you're using Z-Wave then you can move that log too:
 
-```
+```sh
 $ sudo mv ~homeassistant/.homeassistant/OZW_Log.txt /data
 $ sudo ln -s /data/OZW_Log.txt ~homeassistant/.homeassistant/OZW_Log.txt
 ```
@@ -113,7 +113,7 @@ When you start Home Assistant up, it'll now use the new location
 
 Now we're going to make use of the way Linux handles files and do some fancy footwork:
 
-```
+```sh
 $ sudo mv /var/log /var/log-old
 $ sudo mkdir /var/log
 $ sudo mount /var/log
@@ -123,13 +123,13 @@ Now you've got some choices. The simplest solution is to simply reboot. This wil
 
 If you don't want to reboot, you can identify the programs with a file open on `/var/log` with
 
-```
+```sh
 $ sudo lsof -n | grep "/var/log" | awk '{ print $1, $2 }'| uniq
 ```
 
 This will give you a list of services you need to restart (and their process ID). Some names may not be obvious, so you might need to look at the output of
 
-```
+```sh
 $ sudo ps axu | grep " 1234 "
 ```
 

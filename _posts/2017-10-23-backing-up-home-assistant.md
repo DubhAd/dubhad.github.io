@@ -30,7 +30,7 @@ Why do I think the second option is better? If something bad happens to your Pi 
 
 ### On the same computer
 
-Connect a USB disk, whether a thumb drive, an SDD, or a traditional hard disk. I'd suggest mounting it on `/backup`, that makes it very clear what the purpose is. Follow the same process as [explained here](/home-assistant-moving-logs-and-database/), except you create a single partition from 2048s to 100%.
+Connect a USB disk, whether a thumb drive, an SDD, or a traditional hard disk. I'd suggest mounting it on `/backup`, that makes it very clear what the purpose is. Follow the same process as [explained here]({% post_url 2017-10-23-home-assistant-moving-logs-and-database %}), except you create a single partition from `2048s` to `100%`.
 
 Now create a sub-folder called snapshots:
 
@@ -56,18 +56,18 @@ If your Home Assistant install is elsewhere, replace `/home/homeassistant` accor
 
 ```
 0 */4    * * *    root    /usr/bin/rsnapshot alpha
-30 3    * * *    root    /usr/bin/rsnapshot beta
-0 3   * * 1    root    /usr/bin/rsnapshot gamma
-30 2    1 * *    root    /usr/bin/rsnapshot delta
+30 3     * * *    root    /usr/bin/rsnapshot beta
+0 3      * * 1    root    /usr/bin/rsnapshot gamma
+30 2     1 * *    root    /usr/bin/rsnapshot delta
 ```
 
 If you're using `sync_first 1` then instead it must look like:
 
 ```
 0 */4    * * *    root    /usr/bin/rsnapshot sync && /usr/bin/rsnapshot alpha
-30 3    * * *    root    /usr/bin/rsnapshot beta
-0 3   * * 1    root    /usr/bin/rsnapshot gamma
-30 2    1 * *    root    /usr/bin/rsnapshot delta
+30 3     * * *    root    /usr/bin/rsnapshot beta
+0 3      * * 1    root    /usr/bin/rsnapshot gamma
+30 2     1 * *    root    /usr/bin/rsnapshot delta
 ```
 
 The names at the end of those lines should match up with the retain lines in your `/etc/rsnapshot.conf` (you may have to uncomment the fourth line). Older versions of the default configuration file may use `hourly`, `daily`, `weekly`, etc.
@@ -145,8 +145,8 @@ home-assistant.log
 
 I run the following from cron every 2 hours:
 
-```
-/usr/local/bin/rclone --transfers 2 --bwlimit 5M --exclude-from /local/b2-excludes sync /home/homeassistant BB2:HA
+```sh
+$ /usr/local/bin/rclone --transfers 2 --bwlimit 5M --exclude-from /local/b2-excludes sync /home/homeassistant BB2:HA
 ```
 
 I limit it to 2 parallel operations, and 5 Mb/s as this is sufficient, and avoids making my upload too busy (if it interferes with online gaming, I get to hear about in _very_ short order). You should test different values to find what works for you.

@@ -25,7 +25,7 @@ $ sudo apt-get install python3-pip python3-dev python3-virtualenv
 $ sudo pip3 install --upgrade virtualenv
 ```
 
-> Note: Every year HA deprecates support for older versions of Python - they support the current and previous major releases. The version numbers below were correct at the time of original writing, but is no longer correct.
+> Note: Every year HA deprecates support for older versions of Python - they support the current and previous major releases. The version numbers below were correct at the time of original writing, but are no longer correct.
 
 Make sure that you're running Python 3.5.3 or later:
 
@@ -33,7 +33,7 @@ Make sure that you're running Python 3.5.3 or later:
 $ python3 --version
 ```
 
-If you have an older version than 3.5.3, upgrade before you go any further - Home Assistant dropped support for Python 3.4 at the end of December 2017, with the minimum version at that point being Python 3.5.3. If your distro doesn't have a newer version, [see here](https://sgrudadh.blogspot.co.uk/2017/12/upgrading-python-virtual-environment.html) for how to manually install Python. Don't install beta versions of Python unless you're a developer and you're deliberately living on the unstable, bleeding edge.
+If you have an older version than 3.5.3, upgrade before you go any further - Home Assistant dropped support for Python 3.4 at the end of December 2017, with the minimum version at that point being Python 3.5.3. If your distro doesn't have a newer version, [see here]({% post_url 2017-12-08-upgrading-python-virtual-environment %}) for how to manually install Python. Don't install beta versions of Python unless you're a developer and you're deliberately living on the unstable, bleeding edge.
 
 ## Create a separate user
 
@@ -66,7 +66,7 @@ $ virtualenv /srv/homeassistant/homeassistant_venv
 
 You can also use, for example `python3.6 -m venv /srv/homeassistant/homeassistant_venv` instead of `virtualenv /srv/homeassistant/homeassistant_venv`, if you need to use a specific version of Python 3 to build the environment.
 
-I've created a sub-directory for the virtual environment, so that I can create other ones easily in the future. This is particularly handy if you're [upgrading Python](/upgrading-python-virtual-environment/), but it also allows you to test out development versions easily.
+I've created a sub-directory for the virtual environment, so that I can create other ones easily in the future. This is particularly handy if you're [upgrading Python]({% post_url 2017-12-08-upgrading-python-virtual-environment %}), but it also allows you to test out development versions easily.
 
 ## Install or upgrade Home Assistant
 
@@ -123,6 +123,6 @@ You can watch Home Assistant start (and run) with:
 $ sudo journalctl -f -u home-assistant
 ```
 
-You can stop watching that by pressing <CTRL><C> - it won't stop any service.
+You can stop watching that by pressing `<CTRL><C>` - it won't stop any service.
 
 The first start may take some time, depending on what options you've enabled and what hardware you're running on. If you've enabled Z-Wave, that first start could take 45 minutes on a Pi2 for example.

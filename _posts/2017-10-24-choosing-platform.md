@@ -3,6 +3,8 @@ title: Choosing a platform
 date: '2017-10-24T19:00:00.000+01:00'
 tags:
 - platform
+- home automation
+- home assistant
 modified_time: '2018-01-10T10:04:03.252Z'
 ---
 

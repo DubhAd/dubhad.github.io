@@ -2,6 +2,8 @@
 title: Putting the cart before the horse
 date: '2017-10-22T12:00:00.000+01:00'
 tags:
+- home automation
+- platform
 modified_time: '2017-10-22T12:00:19.182+01:00'
 ---
 

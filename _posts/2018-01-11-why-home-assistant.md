@@ -8,7 +8,7 @@ tags:
 modified_time: '2018-01-14T22:03:12.347Z'
 ---
 
-I said [a while back](/choosing-platform/) that I use [Home Assistant](https://home-assistant.io/), but I didn't really say why.  
+I said [a while back]({% post_url 2017-10-24-choosing-platform %}) that I use [Home Assistant](https://home-assistant.io/), but I didn't really say why.  
 
 ## Exploring the market
 
