@@ -1,0 +1,738 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Installing Home Assistant in a virtual environment (in Linux) - Tinkering with Technology</title>
+<meta name="description" content="Note: This is based off the original Home Assistant virtual environment instructions - before they were reduced to a handful of steps.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Installing Home Assistant in a virtual environment (in Linux)">
+<meta property="og:url" content="http://0.0.0.0:4000/installing-home-assistant-in-virtual/">
+
+
+  <meta property="og:description" content="Note: This is based off the original Home Assistant virtual environment instructions - before they were reduced to a handful of steps.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-12-25T19:17:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/installing-home-assistant-in-virtual/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://0.0.0.0:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Installing Home Assistant in a virtual environment (in Linux)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Installing Home Assistant in a virtual environment (in Linux)">
+    <meta itemprop="description" content="  Note: This is based off the original Home Assistant virtual environment instructions - before they were reduced to a handful of steps.">
+    <meta itemprop="datePublished" content="2017-12-25T19:17:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Installing Home Assistant in a virtual environment (in Linux)
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2017-12-25T19:17:00+00:00">December 25, 2017</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <blockquote>
+  <p>Note: This is based off the original Home Assistant virtual environment instructions - before they were reduced to a handful of steps.</p>
+</blockquote>
+
+<p>There are several reasons why it makes sense to run Home Assistant in a virtual environment. A <a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> encapsulates all aspect of a Python environment within a single directory tree. That means that you can install package versions without worrying whether another Python program requires a different version. It means an upgrade for something else won’t break Home Assistant (or vice versa), and it means you don’t need to install Python packages as root.</p>
+
+<p>Virtual environments are easy to setup - I’ll be using Raspbian in this example (I’ve got a Raspberry Pi), and the steps will be the same for any Debian/Ubuntu based distribution (and likely most Linux distributions), but all of the Python related steps should be the same on just about any platform.</p>
+
+<h2 id="install-dependencies">Install dependencies</h2>
+
+<p>The first thing to do is update all your packages, and install the required Python packages, and update the virtualenv command.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get update
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get upgrade
+<span class="nv">$ </span><span class="nb">sudo </span>apt-get <span class="nb">install </span>python3-pip python3-dev python3-virtualenv
+<span class="nv">$ </span><span class="nb">sudo </span>pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> virtualenv
+</code></pre></div></div>
+
+<blockquote>
+  <p>Note: Every year HA deprecates support for older versions of Python - they support the current and previous major releases. The version numbers below were correct at the time of original writing, but is no longer correct.</p>
+</blockquote>
+
+<p>Make sure that you’re running Python 3.5.3 or later:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python3 <span class="nt">--version</span>
+</code></pre></div></div>
+
+<p>If you have an older version than 3.5.3, upgrade before you go any further - Home Assistant dropped support for Python 3.4 at the end of December 2017, with the minimum version at that point being Python 3.5.3. If your distro doesn’t have a newer version, <a href="https://sgrudadh.blogspot.co.uk/2017/12/upgrading-python-virtual-environment.html">see here</a> for how to manually install Python. Don’t install beta versions of Python unless you’re a developer and you’re deliberately living on the unstable, bleeding edge.</p>
+
+<h2 id="create-a-separate-user">Create a separate user</h2>
+
+<p>It’s a really good idea to give services like Home Assistant their own user. This gives you more granular control over permissions, and reduces the exposure to the rest of your system in the event there is a security related bug in Home Assistant. If you’re not running a Debian based distribution, these commands may be different.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>adduser <span class="nt">--system</span> homeassistant
+<span class="nv">$ </span><span class="nb">sudo </span>addgroup homeassistant
+</code></pre></div></div>
+
+<p>Home Assistant stores its configuration in <code class="language-plaintext highlighter-rouge">$HOME/.homeassistant</code> by default, so in this case, it would be in <code class="language-plaintext highlighter-rouge">/home/homeassistant/.homeassistant</code></p>
+
+<p>If you plan to use a Z-Wave controller, you will need to add this user to the <code class="language-plaintext highlighter-rouge">dialout</code> group:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>usermod <span class="nt">-G</span> dialout <span class="nt">-a</span> homeassistant
+</code></pre></div></div>
+
+<h2 id="custom-installation-directory-for-home-assistant">Custom installation directory for Home Assistant</h2>
+
+<p>This can be anywhere you want. I use <code class="language-plaintext highlighter-rouge">/srv</code> as does the original All in One installer, and Hassbian. You also need to change the ownership of the directory to the user you created above.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /srv/homeassistant/homeassistant_venv
+<span class="nv">$ </span><span class="nb">sudo chown</span> <span class="nt">-R</span> homeassistant:homeassistant /srv/homeassistant
+
+<span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> homeassistant <span class="nt">-H</span> <span class="nt">-s</span>
+<span class="nv">$ </span>virtualenv /srv/homeassistant/homeassistant_venv
+</code></pre></div></div>
+
+<p>You can also use, for example <code class="language-plaintext highlighter-rouge">python3.6 -m venv /srv/homeassistant/homeassistant_venv</code> instead of <code class="language-plaintext highlighter-rouge">virtualenv /srv/homeassistant/homeassistant_venv</code>, if you need to use a specific version of Python 3 to build the environment.</p>
+
+<p>I’ve created a sub-directory for the virtual environment, so that I can create other ones easily in the future. This is particularly handy if you’re <a href="/upgrading-python-virtual-environment/">upgrading Python</a>, but it also allows you to test out development versions easily.</p>
+
+<h2 id="install-or-upgrade-home-assistant">Install or upgrade Home Assistant</h2>
+
+<p>The steps for an install are the same as for an upgrade, except for an upgrade you need to remember to stop Home Assistant first:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl stop home-assistant
+</code></pre></div></div>
+
+<p>Be sure to switch to the homeassistant user whenever you install things in your virtualenv, otherwise you’ll end up with permissions problems.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>su <span class="nt">-s</span> /bin/bash homeassistant
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">su</code> command means ‘switch’ user. You need the <code class="language-plaintext highlighter-rouge">-s</code> flag because the homeassistant user is a system user and doesn’t have a default shell (this stops attackers from being able to log in with this account).</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">source</span> /srv/homeassistant/homeassistant_venv/bin/activate
+<span class="o">(</span>homeassistant_venv<span class="o">)</span><span class="nv">$ </span>pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> homeassistant
+</code></pre></div></div>
+
+<h2 id="starting-home-assistant-on-boot">Starting Home Assistant on boot</h2>
+
+<p>Follow the <a href="https://community.home-assistant.io/t/autostart-using-systemd/199497">autostart instructions</a>, just be sure to replace <code class="language-plaintext highlighter-rouge">/usr/bin/hass</code> with <code class="language-plaintext highlighter-rouge">/srv/homeassistant/homeassistant_venv/bin/hass</code> and specify the homeassistant user where appropriate.</p>
+
+<p>For example, if you were using a system with systemd, you’d create <code class="language-plaintext highlighter-rouge">/etc/systemd/system/home-assistant.service</code> with the following content:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Home Assistant
+After=network-online.target
+
+[Service]
+Type=simple
+User=homeassistant
+ExecStart=/srv/homeassistant/homeassistant_venv/bin/hass -c "/home/homeassistant/.homeassistant"
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>Now you enable the service, and start Home Assistant:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>systemctl daemon-reload
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl <span class="nb">enable </span>home-assistant
+<span class="nv">$ </span><span class="nb">sudo </span>systemctl start home-assistant
+</code></pre></div></div>
+
+<p>You can watch Home Assistant start (and run) with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>journalctl <span class="nt">-f</span> <span class="nt">-u</span> home-assistant
+</code></pre></div></div>
+
+<p>You can stop watching that by pressing <CTRL><C> - it won't stop any service.</C></CTRL></p>
+
+<p>The first start may take some time, depending on what options you’ve enabled and what hardware you’re running on. If you’ve enabled Z-Wave, that first start could take 45 minutes on a Pi2 for example.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">python</a><span class="sep">, </span>
+    
+      <a href="/tags/#venv" class="page__taxonomy-item" rel="tag">venv</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-25T19:17:00+00:00">December 25, 2017</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/home-assistant-cloud/" class="pagination--pager" title="Home Assistant Cloud
+">Previous</a>
+    
+    
+      <a href="/nginx-and-home-assistant/" class="pagination--pager" title="NGINX and Home Assistant
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

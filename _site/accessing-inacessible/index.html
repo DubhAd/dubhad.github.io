@@ -1,0 +1,751 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Accessing the inaccessible - Tinkering with Technology</title>
+<meta name="description" content="Updated January 2022 to include details on Cloudflare’s tunnel service, and Oracle’s free VM offering.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Accessing the inaccessible">
+<meta property="og:url" content="http://0.0.0.0:4000/accessing-inacessible/">
+
+
+  <meta property="og:description" content="Updated January 2022 to include details on Cloudflare’s tunnel service, and Oracle’s free VM offering.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-09-29T22:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/accessing-inacessible/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://0.0.0.0:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Accessing the inaccessible</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Accessing the inaccessible">
+    <meta itemprop="description" content="Updated January 2022 to include details on Cloudflare’s tunnel service, and Oracle’s free VM offering.">
+    <meta itemprop="datePublished" content="2018-09-29T22:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Accessing the inaccessible
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2018-09-29T22:00:00+01:00">September 29, 2018</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Updated January 2022 to include details on Cloudflare’s tunnel service, and Oracle’s free VM offering.</em></p>
+
+<p>Whether you’re on a mobile broadband connection, sat behind CGNAT, or suffering from DS-Lite, a number of people want to be able to remotely access their <a href="https://www.home-assistant.io/">Home Assistant</a> system, despite not having any way of getting inbound connections.</p>
+
+<p>The Home Assistant <a href="https://www.nabucasa.com/">cloud service</a> addresses this, for a monthy fee, but there’s ways of doing it yourself.</p>
+
+<p>One of the simplest solutions is <a href="https://developers.cloudflare.com/cloudflare-one/tutorials/share-new-site">Cloudflare’s tunnel service</a>. It’s a pretty simple process, as long as you can run their relay software you can be up and running in about 15 minutes. There’s even an <a href="https://github.com/brenner-tobias/addon-cloudflared">add-on</a> for those of you on Home Assistant OS.</p>
+
+<p>Building your own relay service takes a bit of work, and you’ll need a virtual machine somewhere on the cloud. That doesn’t have to be expensive, it’s (just) possible to run what you need on the free tier of Google Cloud Computing or AWS. If you can afford around $5 USD a month you can get a more powerful system on any of the cloud hosting providers (including Digital Ocean, or Azure). In 2021 Oracle introduced a <a href="https://www.oracle.com/uk/cloud/free/">free tier</a> too that’s more than enough here.</p>
+
+<h2 id="set-up-a-vpn-server-cloud">Set up a VPN server (cloud)</h2>
+
+<p>I’ve already talked about <a href="/remote-access-via-pivpn/">setting up PiVPN</a>. You install this on your cloud hosted virtual machine, and the (OpenVPN) client on your Home Assistant server (yes, I’m afraid this largely rules out Home Assistant OS at this time). Use the default TUN (tunnel) connection.</p>
+
+<p>You’ll need to add firewall rules on the cloud environment to allow access to your VPN software. On Google Cloud Platform that’s through the <a href="https://cloud.google.com/vpc/docs/firewalls">Firewall rules</a> section, on AWS it’s with <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html">Security Groups</a>. Azure and Digital Ocean have similar settings, if in doubt search for <em>your hosting provider</em> and <em>firewall rules</em>.</p>
+
+<h2 id="set-up-the-vpn-client-home">Set up the VPN client (home)</h2>
+
+<p>My instructions here assume you’re using the official OpenVPN client on a Debian (eg Ubuntu, Raspbian, Hassbian, etc) based system. First you install OpenVPN:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install openvpn
+</code></pre></div></div>
+
+<p>Copy the configuration file from the VPN server to <code class="language-plaintext highlighter-rouge">/etc/openvpn/</code>, but before you go any further you’ll need to make some changes. The default configuration will route <em>all</em> the traffic for your Home Assistant system through that system, which isn’t likely to be what you want. You can solve that by editing the configuration file, and adding the following line before the <code class="language-plaintext highlighter-rouge">&lt;ca&gt;</code> line:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>route-nopull
+</code></pre></div></div>
+
+<p>Now when the VPN starts the <em>only</em> thing that will be reachable over it is that cloud system.</p>
+
+<p>Next, add the following line to <code class="language-plaintext highlighter-rouge">/etc/default/openvpn</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>AUTOSTART="all"
+</code></pre></div></div>
+
+<p>Finally, enable the client, reload the configuration and start the OpenVPN client:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo systemctl enable openvpn
+sudo systemctl daemon-reload
+sudo systemctl restart openvpn
+</code></pre></div></div>
+
+<p>At this point you’ll want to check that the VPN is established. Assuming you’re using the default PiVPN configuration type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping -c 2 10.0.8.1
+</code></pre></div></div>
+
+<p>You should see something similar to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PING 10.8.0.1 (10.8.0.1) 56(84) bytes of data.
+64 bytes from 10.8.0.1: icmp_seq=1 ttl=64 time=39.7 ms
+64 bytes from 10.8.0.1: icmp_seq=2 ttl=64 time=148 ms
+
+--- 10.8.0.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 39.724/94.045/148.366/54.321 ms
+</code></pre></div></div>
+
+<p>Your numbers in the time and rtt values will be different, but the key thing is you get two response lines like that. If you don’t then the VPN didn’t start. Check on your cloud server that the VPN software is running, and check on the Home Assistant system for any errors in the logs (<code class="language-plaintext highlighter-rouge">/var/log/openvpn.log</code>)</p>
+
+<h2 id="set-up-a-reverse-proxy-cloud">Set up a reverse proxy (cloud)</h2>
+
+<p>You can test that connectivity is working from this side by running this on the cloud server:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ping -c 2 10.0.8.2
+</code></pre></div></div>
+
+<p>You should see something similar to this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PING 10.8.0.2 (10.8.0.2) 56(84) bytes of data.
+64 bytes from 10.8.0.2: icmp_seq=1 ttl=64 time=49.7 ms
+64 bytes from 10.8.0.2: icmp_seq=2 ttl=64 time=48.1 ms
+</code></pre></div></div>
+
+<p>With that working, install your choice of <a href="https://www.home-assistant.io/docs/ecosystem/nginx/">NGINX</a>, <a href="https://www.home-assistant.io/docs/ecosystem/caddy/">Caddy</a>, HA Proxy, <a href="https://www.home-assistant.io/docs/ecosystem/apache/">Apache</a> or whatever. I’ve got a guide for configuring an <a href="/nginx-and-home-assistant/">older version of NGINX</a>, but it won’t work on a current version without changes.</p>
+
+<p>When you configure your reverse proxy, you configure it to forward the traffic to the VPN IP of your Home Assistant system. That’s easy enough to find:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ip addr show tun0
+</code></pre></div></div>
+
+<p>That will spit out something like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>34: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 100
+    link/none
+    inet 10.8.0.2/24 brd 10.8.0.255 scope global tun0
+        valid_lft forever preferred_lft forever
+    inet6 fe80::dead:beef:1234:cafe/64 scope link flags 800
+        valid_lft forever preferred_lft forever
+</code></pre></div></div>
+
+<p>The key thing you’re looking for is that third line, <strong><code class="language-plaintext highlighter-rouge">10.8.0.2</code></strong>. That’s the IP address you need to use in your proxy configuration. The odds are good that it will be the same IP as I’ve got here though, because that’s from my own system, with a VPN connection to a PiVPN system.</p>
+
+<p>On NGINX your config line will be:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>proxy_pass http://10.8.0.2:8123;
+</code></pre></div></div>
+
+<h2 id="dns-cloud">DNS (cloud)</h2>
+
+<p>Assuming you’ve not paid for a static IP, install your chosen DDNS update client on your VM, and configure it to update your IP as it changes. There are many clients to chose from, but <a href="https://github.com/troglobit/inadyn">inadyn</a> and <a href="https://sourceforge.net/p/ddclient/wiki/Home/">ddclient</a> are worth a look. You could also pay your VM provider for a static IP if you want to.</p>
+
+<h2 id="https-cloud">HTTPS (cloud)</h2>
+
+<p>Now you need to get SSL certificates for your proxy. If you’re using Let’s Encrypt then you’ve got <a href="https://certbot.eff.org/docs/install.html">certbot</a>, and also <a href="https://github.com/lukas2511/dehydrated">dehydrated</a>. Once you’ve sorted that you’ll need to configure your proxy to use them, and restart the proxy when the certificate updates.</p>
+
+<p>On NGINX for example you’ll have something similar to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssl on;
+ssl_certificate /etc/letsencrypt/live/yourhost.example.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/yourhost.example.com/privkey.pem;
+</code></pre></div></div>
+
+<h2 id="all-done-now">All done now</h2>
+
+<p>It’s been a long journey to this point, but it should be done. You can now try connecting to your proxy server, and it’ll connect you through to your Home Assistant server. This works because your Home Assistant server is connecting <em>out</em> to your cloud based server.</p>
+
+<p>Don’t forget to keep your cloud server updated. Most distributions can help you there by automatically applying at least security patches.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cloud" class="page__taxonomy-item" rel="tag">cloud</a><span class="sep">, </span>
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#openvpn" class="page__taxonomy-item" rel="tag">openvpn</a><span class="sep">, </span>
+    
+      <a href="/tags/#pivpn" class="page__taxonomy-item" rel="tag">pivpn</a><span class="sep">, </span>
+    
+      <a href="/tags/#remote-access" class="page__taxonomy-item" rel="tag">remote access</a><span class="sep">, </span>
+    
+      <a href="/tags/#vpn" class="page__taxonomy-item" rel="tag">vpn</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-29T22:00:00+01:00">September 29, 2018</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/home-assistant-cloud-goes-paid/" class="pagination--pager" title="Home Assistant cloud goes paid
+">Previous</a>
+    
+    
+      <a href="/upgrading-from-075-to-080/" class="pagination--pager" title="Upgrading from 0.75 to 0.80
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

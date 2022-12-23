@@ -1,0 +1,786 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Upgrading the Python Virtual Environment - Tinkering with Technology</title>
+<meta name="description" content="Unless you’re running local other software directly from the venv, consider switching to Docker. It’ll save you from ever needing to upgrade Python and rebuild the venv again.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Upgrading the Python Virtual Environment">
+<meta property="og:url" content="http://0.0.0.0:4000/upgrading-python-virtual-environment/">
+
+
+  <meta property="og:description" content="Unless you’re running local other software directly from the venv, consider switching to Docker. It’ll save you from ever needing to upgrade Python and rebuild the venv again.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-12-08T11:45:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/upgrading-python-virtual-environment/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://0.0.0.0:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Upgrading the Python Virtual Environment</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Upgrading the Python Virtual Environment">
+    <meta itemprop="description" content="Unless you’re running local other software directly from the venv, consider switching to Docker. It’ll save you from ever needing to upgrade Python and rebuild the venv again.">
+    <meta itemprop="datePublished" content="2017-12-08T11:45:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Upgrading the Python Virtual Environment
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2017-12-08T11:45:00+00:00">December 8, 2017</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#install-python-3x">Install Python 3.x</a><ul><li><a href="#crashes">Crashes</a></li></ul></li><li><a href="#create-the-new-virtual-environment">Create the new virtual environment</a></li><li><a href="#prepare-the-new-virtual-environment-optional">Prepare the new virtual environment (optional)</a></li><li><a href="#install-home-assistant">Install Home Assistant</a></li><li><a href="#switch-the-virtual-environments">Switch the virtual environments</a></li><li><a href="#why-this-way">Why this way?</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>Unless you’re running local other software directly from the venv, consider <a href="/ha-venv-to-docker/">switching to Docker</a>. It’ll save you from ever needing to upgrade Python and rebuild the venv again.</p>
+
+<p><strong>Updates</strong></p>
+
+<ul>
+  <li><strong>December 2022</strong> Python 3.9 deprecation</li>
+  <li><strong>October 2020</strong> for Python 3.7 deprecation, and to add libraries for Pillow </li>
+  <li><strong>July 2020</strong> based on <a href="https://github.com/home-assistant/docker-base/pull/82">this change</a> to the official HA Docker container</li>
+  <li><strong>December 2019</strong> to account for the deprecation of Python 3.6 support</li>
+</ul>
+
+<p>You may also want to look at <a href="https://github.com/pyenv/pyenv-installer">pyenv-installer</a> as another way of installing and using Python virtual environments, with multiple versions of Python.</p>
+
+<p>With the deprecation of Python <del>3.4 3.5 3.6 3.7 3.8 3.9</del> support, people have been wondering how to upgrade their Python venv. There’s a <a href="https://community.home-assistant.io/t/python-3-6-upgrade-of-a-virtualenv/21722">forum thread</a> and a related <a href="https://raspberrypi.stackexchange.com/questions/54365/how-to-download-and-install-python-3-5-in-raspbian/56632#56632">StackExchange answer</a> on the subject, but here’s my experience. I’m upgrading the All in One installer here, so my virtual environment was in /srv/homeassistant/homeassistant_venv/</p>
+
+<h2 id="install-python-3x">Install Python 3.x</h2>
+
+<p><strong>Do not</strong> install Beta or Alpha versions of Python. These are marked by the letter <code class="language-plaintext highlighter-rouge">a</code> or <code class="language-plaintext highlighter-rouge">b</code> in the version number, for example <code class="language-plaintext highlighter-rouge">3.12.0a4</code>. These are unfinished versions, and using them will cause you problems.</p>
+
+<p>If you want to take a shortcut, I’ve a <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/live/local/bin/build_python">script</a> that you can use to install all the pre-requisites, compile and install Python, and create and prepare the venv.</p>
+
+<p>Download the script, make it executable, and then run it with the version of Python you want to use. For example: <code class="language-plaintext highlighter-rouge">./build_python 3.10.9</code></p>
+
+<p>We’re going to cover Python 3.10.9 now that Python 3.10 is supported by HA Core and I’ve updated this article accordingly since I know it works as expected.</p>
+
+<p>First, prepare the system - this now includes support for jemalloc and cargo (required for the latest version of the cryptography package):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline-dev 
+  libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev 
+  zlib1g-dev libudev-dev unixodbc-dev libpq-dev libwebp-dev libopenjp2-7-dev libjpeg-dev 
+  libtiff5-dev libfreetype6-dev libc-dev libffi-dev libbluetooth-dev libtirpc-dev libjemalloc-dev cargo
+<span class="nb">sudo </span>ldconfig
+</code></pre></div></div>
+
+<p>Now download and install Python 3.10.9 (if a later version is out, you can use that, just change 3.10.9 to your version number). I have a USB thumb drive on /data, that I used for this (to move all the I/O off the SD card). Note that make install will replace your python3 link with one for this version of python (your old version of python will still be accessible). You likely don’t want that, so here we use make altinstall instead.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /data
+wget https://www.python.org/ftp/python/3.10.9/Python-3.10.9.tgz
+<span class="nb">tar</span> <span class="nt">-zxvf</span> Python-3.10.9.tgz
+<span class="nb">cd </span>Python-3.10.9
+./configure <span class="nt">--enable-optimizations</span> <span class="nt">--enable-shared</span> <span class="nt">--with-lto</span> <span class="nt">--with-system-expat</span> 
+  <span class="nt">--with-system-ffi</span> <span class="nt">--without-ensurepip</span>
+make <span class="nt">-j</span><span class="si">$(</span><span class="nb">cat</span> /proc/cpuinfo|egrep <span class="nt">-c</span> <span class="s2">"^processor"</span><span class="si">)</span> 
+  <span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">"-Wl,--strip-all"</span> 
+  <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">"-fno-semantic-interposition -fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -fno-builtin-free -ljemalloc"</span> 
+  <span class="nv">EXTRA_CFLAGS</span><span class="o">=</span><span class="s2">"-DTHREAD_STACK_SIZE=0x100000"</span>
+<span class="nb">sudo </span>make altinstall
+</code></pre></div></div>
+
+<p>The make command will take a little over an hour on a Pi3, and considerably less on more capable systems.</p>
+
+<h3 id="crashes">Crashes</h3>
+
+<p>Somebody has reported that on older Debian installs the make step fails with segmentation faults, and the needed to run the following commands first. I haven’t seen that, but if it happens, try it.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libtcmalloc-minimal4
+<span class="nb">export </span><span class="nv">LD_PRELOAD</span><span class="o">=</span><span class="s2">"/usr/lib/libtcmalloc_minimal.so.4"</span>
+</code></pre></div></div>
+
+<p>I’ve seen the same on Raspbian Buster, where I needed to do:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libtcmalloc-minimal4
+<span class="nb">export </span><span class="nv">LD_PRELOAD</span><span class="o">=</span><span class="s2">"/usr/lib/arm-linux-gnueabihf/libtcmalloc_minimal.so.4.5.3"</span>
+</code></pre></div></div>
+
+<p>In both cases, that means removing <code class="language-plaintext highlighter-rouge">CFLAGS</code> line above from your make.</p>
+
+<h2 id="create-the-new-virtual-environment">Create the new virtual environment</h2>
+
+<p>Make the new environment using the user you run Home Assistant as (this assumes you’re using homeassistant. I put mine in separate folders so I can do upgrades without impacting my live install.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> /srv/homeassistant
+<span class="nb">sudo chown </span>homeassistant:homeassistant /srv/homeassistant
+<span class="nb">sudo</span> <span class="nt">-u</span> homeassistant <span class="nt">-H</span> <span class="nt">-s</span>
+python3.10 <span class="nt">-m</span> venv /srv/homeassistant/venv_3.10.9
+</code></pre></div></div>
+
+<h2 id="prepare-the-new-virtual-environment-optional">Prepare the new virtual environment (optional)</h2>
+
+<p>We can make the first startup slightly faster by getting a list of the installed packages, and then installing them in the new environment.</p>
+
+<p>Using the user you run Home Assistant as, activate the old environment (here I assume it was <code class="language-plaintext highlighter-rouge">/srv/homeassistant/homeassistant_venv/</code>)and extract the list of packages (this’ll speed up the first start):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /srv/homeassistant/homeassistant_venv/bin/activate
+pip3 freeze —local <span class="o">&gt;</span> ~/requirements.txt
+deactivate
+</code></pre></div></div>
+
+<p>Switch to the new environment, and install the requirements:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /srv/homeassistant/venv_3.10.9/bin/activate
+pip3.10 <span class="nb">install</span> <span class="nt">-r</span> ~/requirements.txt
+</code></pre></div></div>
+
+<p>If you run into any issues, remove the line in question from <code class="language-plaintext highlighter-rouge">requirements.txt</code> - this is just about speeding up the initial startup (we’re almost there)</p>
+
+<h2 id="install-home-assistant">Install Home Assistant</h2>
+
+<p>Prepare the environment by installing wheel and installing/upgrading setuptools, then do an install/upgrade of Home Assistant in the new environment, before finally installing some pre requisites:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> /srv/homeassistant/venv_3.10.9/bin/activate
+python3 <span class="nt">-m</span> pip <span class="nb">install </span>wheel
+pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> setuptools
+pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> homeassistant
+wget <span class="nt">--quiet</span> https://raw.githubusercontent.com/home-assistant/docker/master/requirements.txt <span class="nt">-O</span> - | <span class="k">while </span><span class="nb">read </span>LINE
+<span class="k">do
+  </span>pip3 <span class="nb">install</span> <span class="nt">--upgrade</span> <span class="k">${</span><span class="nv">LINE</span><span class="k">}</span>
+<span class="k">done
+</span>hass <span class="nt">--script</span> check_config
+</code></pre></div></div>
+
+<p>If you have issues with pillow, run the following command inside the venv</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install </span>pillow <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"build_ext"</span> <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-zlib"</span> 
+  <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-jpeg"</span> <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-tiff"</span> 
+  <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-freetype"</span> <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-webp"</span> 
+  <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-webpmux"</span> <span class="nt">--global-option</span><span class="o">=</span><span class="s2">"--enable-jpeg2000"</span>
+</code></pre></div></div>
+
+<h2 id="switch-the-virtual-environments">Switch the virtual environments</h2>
+
+<p>Now we’re ready to switch. To do this we need to shut down HA, rename a few things, change the startup script, and start HA back up.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl stop home-assistant
+<span class="c"># Edit the path for the venv to be /srv/homeassistant/venv_3.10.9</span>
+<span class="nb">sudo </span>nano /etc/systemd/system/home-assistant@homeassistant.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl start home-assistant
+<span class="nb">sudo </span>journalctl <span class="nt">-f</span> <span class="nt">-u</span> home-assistant
+</code></pre></div></div>
+
+<p>Here’s my systemd script for this system:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Home Assistant
+After=network-online.target
+
+[Service]
+Type=simple
+User=homeassistant
+ExecStart=/srv/homeassistant/venv_3.10.9/bin/hass -c "/home/homeassistant/.homeassistant"
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>Now you can watch it install various packages as it starts.</p>
+
+<h2 id="why-this-way">Why this way?</h2>
+
+<p>This makes it pretty easy to switch between versions of Python, or even versions of Home Assistant.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">python</a><span class="sep">, </span>
+    
+      <a href="/tags/#venv" class="page__taxonomy-item" rel="tag">venv</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-12-08T11:45:00+00:00">December 8, 2017</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/which-home-assistant-install-is-right/" class="pagination--pager" title="Which Home Assistant install is right for me?
+">Previous</a>
+    
+    
+      <a href="/home-assistant-cloud/" class="pagination--pager" title="Home Assistant Cloud
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

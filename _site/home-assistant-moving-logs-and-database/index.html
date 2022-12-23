@@ -1,0 +1,741 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Home Assistant - moving logs and database off the SD card - Tinkering with Technology</title>
+<meta name="description" content="One problem with running Home Assistant on a Pi is that SD cards aren’t great for high write situations, and the database and logs can be very chatty. The answer is to move those to a USB thumb drive, and extend the life of your SD card.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Home Assistant - moving logs and database off the SD card">
+<meta property="og:url" content="http://0.0.0.0:4000/home-assistant-moving-logs-and-database/">
+
+
+  <meta property="og:description" content="One problem with running Home Assistant on a Pi is that SD cards aren’t great for high write situations, and the database and logs can be very chatty. The answer is to move those to a USB thumb drive, and extend the life of your SD card.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2017-10-23T20:42:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/home-assistant-moving-logs-and-database/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://0.0.0.0:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Home Assistant - moving logs and database off the SD card</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Home Assistant - moving logs and database off the SD card">
+    <meta itemprop="description" content="One problem with running Home Assistant on a Pi is that SD cards aren’t great for high write situations, and the database and logs can be very chatty. The answer is to move those to a USB thumb drive, and extend the life of your SD card.">
+    <meta itemprop="datePublished" content="2017-10-23T20:42:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Home Assistant - moving logs and database off the SD card
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2017-10-23T20:42:00+01:00">October 23, 2017</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>One problem with running <a href="https://home-assistant.io/">Home Assistant</a> on a Pi is that SD cards aren’t great for high write situations, and the database and logs can be very chatty. The answer is to move those to a USB thumb drive, and extend the life of your SD card.</p>
+
+<p>You’ll want a USB thumb drive of at least 16 GB, and I’d suggest a good quality one.</p>
+
+<h2 id="prepare-the-drive">Prepare the drive</h2>
+
+<p>First, connect the thumb drive to your Pi, then SSH to your Pi. There run the following command:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>dmesg|tail <span class="nt">-n</span> 20|grep sd
+</code></pre></div></div>
+
+<p>you should see something like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[    3.773637] sd 0:0:0:0: [sda] 62333952 512-byte logical blocks: (31.9 GB/29.7 GiB)
+[    3.783125] sd 0:0:0:0: [sda] Write Protect is off
+[    3.791694] sd 0:0:0:0: [sda] Mode Sense: 0b 00 00 08
+[    3.792618] sd 0:0:0:0: [sda] No Caching mode page found
+[    3.801020] sd 0:0:0:0: [sda] Assuming drive cache: write through
+[    3.817186]  sda: sda1 sda2
+</code></pre></div></div>
+
+<p>The size should roughly agree with the size of the thumb drive you bought. In this case, my device is <code class="language-plaintext highlighter-rouge">sda</code> (the first USB drive that’s attached).</p>
+
+<p>Now you’ll partition the disk into two. One partition will hold the system logs, the other will hold your Home Assistant database. We’ll do that with the following command (if your disk isn’t <code class="language-plaintext highlighter-rouge">sda</code>, replace <code class="language-plaintext highlighter-rouge">sda</code> with your device):</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>parted /dev/sda
+</code></pre></div></div>
+
+<p>Now you list the existing partitions with the command <code class="language-plaintext highlighter-rouge">p</code>, and then remove them with <code class="language-plaintext highlighter-rouge">rm 1</code>, <code class="language-plaintext highlighter-rouge">rm 2</code> and so on for each partition.</p>
+
+<p>Go back and have a look at the output of p, it’ll give you the size of the disk:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model: SanDisk Cruzer Fit (scsi)
+Disk /dev/sdb: 31.5GB
+</code></pre></div></div>
+
+<p>We’ll allocate half of this for the logs, and half of it for the database with the following commands:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkpart primary 2048s 50%
+mkpart primary 50% 100%
+</code></pre></div></div>
+
+<p>Then type <code class="language-plaintext highlighter-rouge">quit</code> to exit.</p>
+
+<h2 id="add-file-systems">Add file systems</h2>
+
+<p>Now you’ll have 2 partitions <code class="language-plaintext highlighter-rouge">/dev/sda1</code> and <code class="language-plaintext highlighter-rouge">/dev/sda2</code>, but they need a file system:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mkfs -t ext4 /dev/sda1
+$ sudo mkfs -t ext4 /dev/sda2
+</code></pre></div></div>
+
+<p>This will generate a number of lines out output, but the important one at the top is where it says <code class="language-plaintext highlighter-rouge">Filesystem UUID</code>, we’ll be using that next.</p>
+
+<p>To use these file systems, edit <code class="language-plaintext highlighter-rouge">/etc/fstab</code> with your favourite editor (eg <code class="language-plaintext highlighter-rouge">sudo vi /etc/fstab</code>) and add the following lines. Replace the parts starting <code class="language-plaintext highlighter-rouge">deadbeef-cafe</code> (the UUIDs) with the UUID, a different one on each line.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>UUID=deadbeef-cafe-dead-beef-cafef00f1234    /var/log    ext4    defaults,noatime,nofail    0    0
+UUID=deadbeef-cafe-dead-beef-cafef00f5678    /data    ext4    defaults,noatime,nofail    0    0
+</code></pre></div></div>
+
+<p>You can separate those with tabs or spaces. Unlike YAML, it doesn’t matter here. The noatime option says not to record the access (read) time of the files, which will save a lot of writes. The nofail option says that if the disk isn’t found on boot to continue anyway.</p>
+
+<h2 id="moving-the-home-assistant-database">Moving the Home Assistant database</h2>
+
+<p>Making use of <code class="language-plaintext highlighter-rouge">/data</code> is easy:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mkdir /data
+$ sudo mount /data
+$ sudo chown homeassistant:homeassistant /data
+</code></pre></div></div>
+
+<p>Then update <code class="language-plaintext highlighter-rouge">configuration.yaml</code> with:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">recorder</span><span class="pi">:</span>
+  <span class="na">db_url</span><span class="pi">:</span> <span class="s">sqlite:///data/home-assistant_v2.db</span>
+</code></pre></div></div>
+
+<p>Now you can shut Home Assistant down, and move your existing database, then the logfile (and create a link for the logfile):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mv ~homeassistant/.homeassistant/home-assistant_v2.db /data/
+$ sudo mv ~homeassistant/.homeassistant/home-assistant.log /data/
+$ sudo ln -s /data/home-assistant.log ~homeassistant/.homeassistant/home-assistant.log
+</code></pre></div></div>
+
+<p>If you’re using Z-Wave then you can move that log too:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mv ~homeassistant/.homeassistant/OZW_Log.txt /data
+$ sudo ln -s /data/OZW_Log.txt ~homeassistant/.homeassistant/OZW_Log.txt
+</code></pre></div></div>
+
+<p>When you start Home Assistant up, it’ll now use the new location</p>
+
+<h2 id="moving-the-log-files">Moving the log files</h2>
+
+<p>Now we’re going to make use of the way Linux handles files and do some fancy footwork:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo mv /var/log /var/log-old
+$ sudo mkdir /var/log
+$ sudo mount /var/log
+</code></pre></div></div>
+
+<p>Now you’ve got some choices. The simplest solution is to simply reboot. This will cause everything currently using <code class="language-plaintext highlighter-rouge">/var/log</code> to use the partition you just mounted on <code class="language-plaintext highlighter-rouge">/var/log</code>. Your old log files will still exist in <code class="language-plaintext highlighter-rouge">/var/log-old</code>.</p>
+
+<p>If you don’t want to reboot, you can identify the programs with a file open on <code class="language-plaintext highlighter-rouge">/var/log</code> with</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo lsof -n | grep "/var/log" | awk '{ print $1, $2 }'| uniq
+</code></pre></div></div>
+
+<p>This will give you a list of services you need to restart (and their process ID). Some names may not be obvious, so you might need to look at the output of</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo ps axu | grep " 1234 "
+</code></pre></div></div>
+
+<p>replacing <code class="language-plaintext highlighter-rouge">1234</code> with the process ID in question.</p>
+
+<h2 id="also-see">Also see</h2>
+
+<p>Brian Cribbs has <a href="http://www.cribbstechnologies.com/index.php/home-automation/moving-home-assistant-logs/">written this article</a> on achieving the same goal, with a slightly different approach, and Carlo Costanzo’s <a href="http://www.vmwareinfo.com/2017/10/moving-home-assistant-dbs-to-external.html">experiences doing this</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-10-23T20:42:00+01:00">October 23, 2017</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/whats-point/" class="pagination--pager" title="What’s the point?
+">Previous</a>
+    
+    
+      <a href="/backing-up-home-assistant/" class="pagination--pager" title="Backing up Home Assistant
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

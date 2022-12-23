@@ -1,0 +1,764 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Presence detection, the final countdown? - Tinkering with Technology</title>
+<meta name="description" content="The last time I said that I didn’t think there was more I could do. I was wrong. My use of monitor hasn’t changed, and I’ll leave the config for that below.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Presence detection, the final countdown?">
+<meta property="og:url" content="http://0.0.0.0:4000/presence-detection-final-countdown/">
+
+
+  <meta property="og:description" content="The last time I said that I didn’t think there was more I could do. I was wrong. My use of monitor hasn’t changed, and I’ll leave the config for that below.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-10-27T06:30:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/presence-detection-final-countdown/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://0.0.0.0:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Presence detection, the final countdown?</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Presence detection, the final countdown?">
+    <meta itemprop="description" content="The last time I said that I didn’t think there was more I could do. I was wrong. My use of monitor hasn’t changed, and I’ll leave the config for that below.">
+    <meta itemprop="datePublished" content="2019-10-27T06:30:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Presence detection, the final countdown?
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2019-10-27T06:30:00+00:00">October 27, 2019</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#changed-behaviour">Changed behaviour</a></li><li><a href="#automations-and-scripts">Automations and scripts</a><ul><li><a href="#departure-automation">Departure automation</a></li><li><a href="#departure-script">Departure script</a></li><li><a href="#arrival-automation">Arrival automation</a></li><li><a href="#arrival-script">Arrival script</a></li></ul></li><li><a href="#monitor">Monitor</a><ul><li><a href="#behaviour-preferences">Behaviour preferences</a></li><li><a href="#command-line-flags">Command line flags</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>The <a href="https://blog.ceard.tech/2019/03/presence-detection-are-we-nearly-there.html">last time</a> I said that I didn’t think there was more I could do. I was wrong. My use of <a href="https://github.com/andrewjfreyer/monitor">monitor</a> hasn’t changed, and I’ll leave the config for that below.</p>
+
+<h2 id="changed-behaviour">Changed behaviour</h2>
+
+<p>Now I’ve changed the automations so that the majority wins for departure, rather than requiring everything to show <code class="language-plaintext highlighter-rouge">not_home</code>. This makes for faster departures, and avoids problems when something goes wrong with one of the device trackers - one of the monitor nodes sometimes freezes.</p>
+
+<p>These work by the magic of a wonderful template somebody else wrote on the Discord server:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">{{</span> <span class="nv">dict((states|selectattr('entity_id'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">in'</span><span class="pi">,</span> <span class="nv">state_attr('group.person_person1'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">entity_id'</span><span class="nv">))|list)|groupby('state'))</span><span class="pi">[</span><span class="s1">'</span><span class="s">home'</span><span class="pi">]</span><span class="err">|</span><span class="nv">count</span> <span class="pi">}}</span>
+</code></pre></div></div>
+
+<p>This returns the number of entities in that group that are in the state home.</p>
+
+<p>I’m now using the individual devices in the triggers, so that the automation is run for the change of state on each device, rather than only when the group changes state. This has made things more responsive.</p>
+
+<p>The MQTT device tracker is used purely for the <a href="https://www.home-assistant.io/integrations/person">person</a> integration. It serves no other purpose.</p>
+
+<p>As always, these can be found <a href="https://github.com/DubhAd/Home-AssistantConfig">on my GitHub</a>.</p>
+
+<h2 id="automations-and-scripts">Automations and scripts</h2>
+
+<h3 id="departure-automation">Departure automation</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">alias</span><span class="pi">:</span> <span class="s1">'</span><span class="s">person1</span><span class="nv"> </span><span class="s">away'</span>  
+<span class="na">initial_state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">on'</span>  
+<span class="na">trigger</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">state</span>  
+    <span class="na">entity_id</span><span class="pi">:</span>   
+      <span class="pi">-</span> <span class="s">device_tracker.person1_phone_wifi</span>  
+      <span class="pi">-</span> <span class="s">device_tracker.person1_bt_mobile</span>  
+      <span class="pi">-</span> <span class="s">device_tracker.person1_bt_front_mobile</span>  
+    <span class="na">to</span><span class="pi">:</span> <span class="s1">'</span><span class="s">not_home'</span>  
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">homeassistant</span>  
+    <span class="na">event</span><span class="pi">:</span> <span class="s">start</span>  
+<span class="na">condition</span><span class="pi">:</span>  
+  <span class="c1"># As long as at least two trackers mark as away, they're away  </span>
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">numeric_state</span>  
+    <span class="na">entity_id</span><span class="pi">:</span> <span class="s">group.person_person1</span>  
+    <span class="na">below</span><span class="pi">:</span> <span class="s">2</span>  
+    <span class="na">value_template</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">dict((states|selectattr('entity_id',</span><span class="nv"> </span><span class="s">'in',</span><span class="nv"> </span><span class="s">state_attr('group.person_person1',</span><span class="nv"> </span><span class="s">'entity_id'))|list)|groupby('state'))['home']|count</span><span class="nv"> </span><span class="s">}}"</span>  
+  <span class="c1"># An exit door recently opened or closed - I can likely drop this to 300 (5 minutes)  </span>
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">template</span>  
+    <span class="na">value_template</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">(as_timestamp(now())</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">as_timestamp(states.binary_sensor.pi3_front_door_sensor.last_updated))</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">int</span><span class="nv"> </span><span class="s">&lt;</span><span class="nv"> </span><span class="s">600</span><span class="nv"> </span><span class="s">}}"</span>  
+<span class="na">action</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">script.person1_away</span>
+</code></pre></div></div>
+
+<h3 id="departure-script">Departure script</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">alias</span><span class="pi">:</span> <span class="s">person1 away</span>  
+<span class="na">sequence</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">input_boolean.turn_off</span>  
+    <span class="na">entity_id</span><span class="pi">:</span> <span class="s">input_boolean.person1_home</span>  
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">mqtt.publish</span>  
+    <span class="na">data</span><span class="pi">:</span>  
+      <span class="na">topic</span><span class="pi">:</span> <span class="s">location/person1</span>  
+      <span class="na">payload</span><span class="pi">:</span> <span class="s1">'</span><span class="s">not_home'</span>  
+</code></pre></div></div>
+
+<h3 id="arrival-automation">Arrival automation</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">initial_state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">on'</span>  
+<span class="na">alias</span><span class="pi">:</span> <span class="s1">'</span><span class="s">person1</span><span class="nv"> </span><span class="s">home'</span>  
+<span class="na">trigger</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">state</span>  
+    <span class="na">entity_id</span><span class="pi">:</span>   
+      <span class="pi">-</span> <span class="s">device_tracker.person1_phone_wifi</span>  
+      <span class="pi">-</span> <span class="s">device_tracker.person1_bt_mobile</span>  
+      <span class="pi">-</span> <span class="s">device_tracker.person1_bt_front_mobile</span>  
+    <span class="na">to</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>  
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">homeassistant</span>  
+    <span class="na">event</span><span class="pi">:</span> <span class="s">start</span>  
+<span class="na">condition</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">numeric_state</span>  
+    <span class="na">entity_id</span><span class="pi">:</span> <span class="s">group.person_person1</span>  
+    <span class="na">above</span><span class="pi">:</span> <span class="s">0</span>  
+    <span class="na">value_template</span><span class="pi">:</span> <span class="s2">"</span><span class="s">{{</span><span class="nv"> </span><span class="s">dict((states|selectattr('entity_id',</span><span class="nv"> </span><span class="s">'in',</span><span class="nv"> </span><span class="s">state_attr('group.person_person1',</span><span class="nv"> </span><span class="s">'entity_id'))|list)|groupby('state'))['home']|count</span><span class="nv"> </span><span class="s">}}"</span>  
+<span class="na">action</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">script.person1_home</span>
+</code></pre></div></div>
+
+<h3 id="arrival-script">Arrival script</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">alias</span><span class="pi">:</span> <span class="s">person1 home</span>  
+<span class="na">sequence</span><span class="pi">:</span>  
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">input_boolean.turn_on</span>  
+    <span class="na">entity_id</span><span class="pi">:</span> <span class="s">input_boolean.person1_home</span>  
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">mqtt.publish</span>  
+    <span class="na">data</span><span class="pi">:</span>  
+      <span class="na">topic</span><span class="pi">:</span> <span class="s">location/person1</span>  
+      <span class="na">payload</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>
+</code></pre></div></div>
+
+<h2 id="monitor">Monitor</h2>
+
+<h3 id="behaviour-preferences">Behaviour preferences</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#MAX RETRY ATTEMPTS FOR ARRIVAL  
+PREF_ARRIVAL_SCAN_ATTEMPTS=2  
+  
+#MAX RETRY ATTEMPTS FOR DEPART  
+PREF_DEPART_SCAN_ATTEMPTS=2  
+  
+#SECONDS UNTIL A BEACON IS CONSIDERED EXPIRED  
+PREF_BEACON_EXPIRATION=240  
+  
+#MINIMUM TIME BEWTEEN THE SAME TYPE OF SCAN (ARRIVE SCAN, DEPART SCAN)  
+PREF_MINIMUM_TIME_BETWEEN_SCANS=15  
+  
+#ARRIVE TRIGGER FILTER(S)  
+PREF_PASS_FILTER_ADV_FLAGS_ARRIVE=".*"  
+PREF_PASS_FILTER_MANUFACTURER_ARRIVE="Google|HTC Corporation|LG Electronics|Chipolo"  
+  
+PREF_FAIL_FILTER_ADV_FLAGS_ARRIVE="NONE"  
+PREF_FAIL_FILTER_MANUFACTURER_ARRIVE="NONE"  
+  
+PREF_RSSI_IGNORE_BELOW=-95  
+PREF_DEVICE_TRACKER_REPORT=true  
+</code></pre></div></div>
+
+<h3 id="command-line-flags">Command line flags</h3>
+
+<p>I’m using <code class="language-plaintext highlighter-rouge">-x -b -tdr</code> as the flags, and these mean:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-x</code> - retain mqtt status messages</li>
+  <li><code class="language-plaintext highlighter-rouge">-b</code> - report bluetooth beacons</li>
+  <li><code class="language-plaintext highlighter-rouge">-tdr</code> - only performs a <em>departure</em> scan when a message is published to the MQTT topic, and notifies other instances when it does a scan</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#monitor" class="page__taxonomy-item" rel="tag">monitor</a><span class="sep">, </span>
+    
+      <a href="/tags/#presence-detection" class="page__taxonomy-item" rel="tag">presence detection</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-27T06:30:00+00:00">October 27, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/messing-with-meshing/" class="pagination--pager" title="Messing with meshing
+">Previous</a>
+    
+    
+      <a href="/zigbee-and-home-assistant/" class="pagination--pager" title="Zigbee (and Home Assistant)
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

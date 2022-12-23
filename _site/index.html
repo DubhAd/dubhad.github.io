@@ -1,3694 +1,491 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
 
-  
+<!-- begin _includes/seo.html --><title>Tinkering with Technology</title>
+<meta name="description" content="Tinkering with technology.">
 
-  
 
-  <title>Tinkering with Technology</title>
-
-  
   <meta name="author" content="Tinkerer">
   
 
-  <meta name="description" content="">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Tinkering with Technology">
+<meta property="og:url" content="http://0.0.0.0:4000/">
+
+
+  <meta property="og:description" content="Tinkering with technology.">
+
+
+
+
+
+
+
+
+
+
 
   
 
   
 
-  
-  <link rel="alternate" type="application/rss+xml" title="Tinkering with Technology" href="http://0.0.0.0:4000/feed.xml">
-  
 
-  
-
-  
-
-  
-
-  
+<link rel="canonical" href="http://0.0.0.0:4000/">
 
 
-  
+
+  <link rel="next" href="http://0.0.0.0:4000/page2/">
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     
-      
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
 
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--home">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
 
     
-      
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 
-
-    
-      
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
-
-
-    
-      
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
-
-
-    
-  
-
-  
-    
-      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
-    
-      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
-    
-  
-
-  
-
-  
-  
-  
-
-  
-
-  
-  <meta property="og:site_name" content="Tinkering with Technology">
-  <meta property="og:title" content="Tinkering with Technology">
-  <meta property="og:description" content="">
-
-  
-  <meta property="og:image" content="http://0.0.0.0:4000/assets/img/avatar.png">
-  
-
-  
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="http://0.0.0.0:4000/">
-  <link rel="canonical" href="http://0.0.0.0:4000/">
-  
-
-  
-  <meta name="twitter:card" content="summary">
-  
-  <meta name="twitter:site" content="@">
-  <meta name="twitter:creator" content="@">
-
-  <meta property="twitter:title" content="Tinkering with Technology">
-  <meta property="twitter:description" content="">
-
-  
-  <meta name="twitter:image" content="http://0.0.0.0:4000/assets/img/avatar.png">
-  
-
-  
-
-
-  
-
-  
-
-</head>
-
-
-<body>
-
-  
-
-
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="http://0.0.0.0:4000/">Tinkering with Technology</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="main-navbar">
-    <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/aboutme">About Me</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources</a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="https://github.com/DubhAd/Home-AssistantConfig/">My HA config</a>
-                  <a class="dropdown-item" href="https://www.home-assistant.io/docs/configuration/">Home Assistant documentation</a>
-            </div>
-          </li>
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
         
-          <li class="nav-item">
-            <a class="nav-link" href="https://ceard.tech">Author's home</a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" id="nav-search-link" href="#" title="Search">
-            <span id="nav-search-icon" class="fa fa-search"></span>
-            <span id="nav-search-text">Search</span>
-          </a>
-        </li></ul>
-  </div>
-
-  
-
-  
-    <div class="avatar-container">
-      <div class="avatar-img-border">
-        <a href="http://0.0.0.0:4000/">
-          <img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar.png" />
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
         </a>
-      </div>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
     </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
   
 
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title"></h1>
+    
+    
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+
+
+
+<div class="entries-list">
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/running-automation-every-time-sensor/" rel="permalink">Running an automation every time a sensor updates
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-08-05T21:33:00+01:00">August 5, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">What follows is no longer needed since HA now has a new feature of the state trigger:
+
+</p>
+  </article>
+</div>
+
+  
+</div>
+
+
+<nav class="pagination">
+  
+  <ul>
+    
+    
+    <li><a href="#" class="disabled"><span aria-hidden="true">Previous</span></a></li>
+    
+
+    
+    
+      <li><a href="#" class="disabled current">1</a></li>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+        
+        
+        
+        <li><a href="/page2/">2</a></li>
+      
+    
+      
+        
+        
+        
+        <li><a href="/page3/">3</a></li>
+      
+    
+
+    
+    
+      <li><a href="#" class="disabled">&hellip;</a></li>
+    
+
+    
+      <li><a href="/page12/">12</a></li>
+    
+
+    
+    
+      <li><a href="/page2/">Next</a></li>
+    
+  </ul>
 </nav>
 
 
 
-<div id="beautifuljekyll-search-overlay">
-
-  <div id="nav-search-exit" title="Exit search">✕</div>
-  <input type="text" id="nav-search-input" placeholder="Search">
-  <ul id="search-results-container"></ul>
-  
-  <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
-  <script>
-    var searchjson = '[ \
-       \
-        { \
-          "title"    : "Traefik and a remote Home Assistant", \
-          "category" : "remote accesshome assistant", \
-          "url"      : "/2022-10-25-traefik-and-remote-home-assistant/", \
-          "date"     : "October 25, 2022" \
-        }, \
-       \
-        { \
-          "title"    : "Frigate &gt; MotionEye+Doods", \
-          "category" : "doodsfrigatehome assistantmotion detection", \
-          "url"      : "/2022-09-20-frigate-motioneyedoods/", \
-          "date"     : "September 20, 2022" \
-        }, \
-       \
-        { \
-          "title"    : "How should I install Home Assistant?", \
-          "category" : "", \
-          "url"      : "/2021-12-23-how-should-i-install-home-assistant/", \
-          "date"     : "December 23, 2021" \
-        }, \
-       \
-        { \
-          "title"    : "Running an automation every time a sensor updates", \
-          "category" : "automationhome assistant", \
-          "url"      : "/2021-08-05-running-automation-every-time-sensor/", \
-          "date"     : "August  5, 2021" \
-        }, \
-       \
-        { \
-          "title"    : "Why didn&#39;t my automation run?", \
-          "category" : "", \
-          "url"      : "/2021-07-18-why-didnt-my-automation-run/", \
-          "date"     : "July 18, 2021" \
-        }, \
-       \
-        { \
-          "title"    : "Zigbee2MQTT - Native to Docker migration", \
-          "category" : "dockerzigbee2mqtt", \
-          "url"      : "/2021-05-02-zigbee2mqtt-native-to-docker-migration/", \
-          "date"     : "May  2, 2021" \
-        }, \
-       \
-        { \
-          "title"    : "Presence Detection Resurrection", \
-          "category" : "bluetoothhome assistantpresence detection", \
-          "url"      : "/2021-01-03-presence-detection-resurrection/", \
-          "date"     : "January  3, 2021" \
-        }, \
-       \
-        { \
-          "title"    : "HA venv to Docker", \
-          "category" : "dockervenvlinuxpythonhome assistant", \
-          "url"      : "/2020-10-10-ha-venv-to-docker/", \
-          "date"     : "October 10, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant, Docker, and using SSH", \
-          "category" : "sshdockerhome assistant", \
-          "url"      : "/2020-05-29-home-assistant-docker-and-using-ssh/", \
-          "date"     : "May 29, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "YAML in automations and scripts", \
-          "category" : "yamlhome assistant coreautomationhome assistant", \
-          "url"      : "/2020-05-13-yaml-in-automations-and-scripts/", \
-          "date"     : "May 13, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "Cameras, motion detection, and (interesting) object detection (part two)", \
-          "category" : "", \
-          "url"      : "/2020-05-10-cameras-motion-detection-and/", \
-          "date"     : "May 10, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "Moving from Wink to Home Assistant?", \
-          "category" : "home assistant corehome assistantwink", \
-          "url"      : "/2020-05-09-moving-from-wink-to-home-assistant/", \
-          "date"     : "May  9, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "Cameras, motion detection, and (interesting) object detection (part one)", \
-          "category" : "doodsmotionhome assistant coremotion detectionobject detection", \
-          "url"      : "/2020-04-28-cameras-motion-detection-and/", \
-          "date"     : "April 28, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "Presence detection, one last time?", \
-          "category" : "monitorbluetoothgpsloggerproximityhome assistant corenmaphome assistantwifipresence detection", \
-          "url"      : "/2020-04-14-presence-detection-one-last-time/", \
-          "date"     : "April 14, 2020" \
-        }, \
-       \
-        { \
-          "title"    : "Zigbee (and Home Assistant)", \
-          "category" : "zigbeez-wavehome assistant", \
-          "url"      : "/2019-11-17-zigbee-and-home-assistant/", \
-          "date"     : "November 17, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "Presence detection, the final countdown?", \
-          "category" : "monitorhome assistantpresence detection", \
-          "url"      : "/2019-10-27-presence-detection-final-countdown/", \
-          "date"     : "October 27, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "Messing with meshing", \
-          "category" : "zigbeez-wavehome assistant", \
-          "url"      : "/2019-09-06-messing-with-meshing/", \
-          "date"     : "September  6, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "The great migration - part two", \
-          "category" : "", \
-          "url"      : "/2019-08-28-the-great-migration-part-two/", \
-          "date"     : "August 28, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "My great migration - part one", \
-          "category" : "zigbeez-wavehome assistant", \
-          "url"      : "/2019-08-15-my-great-migration-part-one/", \
-          "date"     : "August 15, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "Breaking up automations/Room activity detection", \
-          "category" : "automationhome assistantpresence detection", \
-          "url"      : "/2019-04-28-breaking-up-automationsroom-activity/", \
-          "date"     : "April 28, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "Presence detection - are we nearly there yet?", \
-          "category" : "home assistantpresence detection", \
-          "url"      : "/2019-03-16-presence-detection-are-we-nearly-there/", \
-          "date"     : "March 16, 2019" \
-        }, \
-       \
-        { \
-          "title"    : "Product comparison - smart displays", \
-          "category" : "smart displaygoogle homegoogle assistanthome assistant", \
-          "url"      : "/2018-12-30-product-comparison-smart-displays/", \
-          "date"     : "December 30, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Presence detection - update 3", \
-          "category" : "", \
-          "url"      : "/2018-10-15-presence-detection-update-3/", \
-          "date"     : "October 15, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Upgrading from 0.75 to 0.80", \
-          "category" : "home assistant", \
-          "url"      : "/2018-10-13-upgrading-from-075-to-080/", \
-          "date"     : "October 13, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Accessing the inaccessible", \
-          "category" : "remote accessopenvpncloudpivpnhome assistantvpn", \
-          "url"      : "/2018-09-29-accessing-inacessible/", \
-          "date"     : "September 29, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant cloud goes paid", \
-          "category" : "cloudhome assistant", \
-          "url"      : "/2018-09-18-home-assistant-cloud-goes-paid/", \
-          "date"     : "September 18, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Presence detection updated", \
-          "category" : "", \
-          "url"      : "/2018-09-06-a-while-back-i-covered-how-i-was-doing/", \
-          "date"     : "September  6, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Turbulence ahead - fasten your seatbelt", \
-          "category" : "securityproxyhome assistant", \
-          "url"      : "/2018-08-24-turbulence-ahead-fasten-your-seatbelt/", \
-          "date"     : "August 24, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Sensative strips (guard) review", \
-          "category" : "z-wave", \
-          "url"      : "/2018-08-21-sensative-strips-guard-review/", \
-          "date"     : "August 21, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Lovelace - the next generation of stock UI", \
-          "category" : "", \
-          "url"      : "/2018-08-19-lovelace-next-generation-of-stock-ui/", \
-          "date"     : "August 19, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Triggers and conditions and actions! Oh My!", \
-          "category" : "automationhome assistant", \
-          "url"      : "/2018-08-18-triggers-and-conditions-and-actions-oh/", \
-          "date"     : "August 18, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "The XY Problem", \
-          "category" : "", \
-          "url"      : "/2018-08-16-the-xy-problem/", \
-          "date"     : "August 16, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "It&#39;s not about the brand", \
-          "category" : "learningautomationhome assistant", \
-          "url"      : "/2018-04-15-its-not-about-brand/", \
-          "date"     : "April 15, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant - the Hass.io menu is missing", \
-          "category" : "hass.iohome assistant", \
-          "url"      : "/2018-02-15-home-assistant-shopping-bag-is-missing/", \
-          "date"     : "February 15, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant, avoiding insecurity", \
-          "category" : "securityremote accesshome assistant", \
-          "url"      : "/2018-01-29-home-assistant-avoiding-insecurity/", \
-          "date"     : "January 29, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant and (basic) Presence Detection", \
-          "category" : "home assistantpresence detection", \
-          "url"      : "/2018-01-25-home-assistant-and-basic-presence/", \
-          "date"     : "January 25, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "The secret is (not) to bang the rocks together", \
-          "category" : "helpvampirelearninghome assistant", \
-          "url"      : "/2018-01-18-the-secret-is-not-to-bang-rocks-together/", \
-          "date"     : "January 18, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "How not to break manual control of devices with automations", \
-          "category" : "input booleanautomationhome assistant", \
-          "url"      : "/2018-01-17-how-not-to-break-manual-control-of/", \
-          "date"     : "January 17, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Remote access via PiVPN", \
-          "category" : "remote accessopenvpnpivpnhome assistantvpn", \
-          "url"      : "/2018-01-17-remote-access-via-pivpn/", \
-          "date"     : "January 17, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Why Home Assistant?", \
-          "category" : "platformhome assistant", \
-          "url"      : "/2018-01-11-why-home-assistant/", \
-          "date"     : "January 11, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Remote access for Home Assistant (and other things)", \
-          "category" : "remote accesshome assistant", \
-          "url"      : "/2018-01-10-remote-access-for-home-assistant-and/", \
-          "date"     : "January 10, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "RFC1918", \
-          "category" : "remote access", \
-          "url"      : "/2018-01-09-rfc1918/", \
-          "date"     : "January  9, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "NGINX and Home Assistant", \
-          "category" : "remote accesshome assistant", \
-          "url"      : "/2018-01-09-nginx-and-home-assistant/", \
-          "date"     : "January  9, 2018" \
-        }, \
-       \
-        { \
-          "title"    : "Installing Home Assistant in a virtual environment (in Linux)", \
-          "category" : "venvpythonhome assistant", \
-          "url"      : "/2017-12-25-installing-home-assistant-in-virtual/", \
-          "date"     : "December 25, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant Cloud", \
-          "category" : "cloudhome assistant", \
-          "url"      : "/2017-12-17-home-assistant-cloud/", \
-          "date"     : "December 17, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Upgrading the Python Virtual Environment", \
-          "category" : "venvpythonhome assistant", \
-          "url"      : "/2017-12-08-upgrading-python-virtual-environment/", \
-          "date"     : "December  8, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Which Home Assistant install is right for me?", \
-          "category" : "hass.ioplatformhome assistant", \
-          "url"      : "/2017-11-09-which-home-assistant-install-is-right/", \
-          "date"     : "November  9, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "LetsEncrypt with Home Assistant", \
-          "category" : "sslhome assistant", \
-          "url"      : "/2017-11-05-letsencrypt-with-home-assistant/", \
-          "date"     : "November  5, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Backing up Hass.io", \
-          "category" : "backuphass.io", \
-          "url"      : "/2017-11-03-backing-up-hassio/", \
-          "date"     : "November  3, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Choosing a platform", \
-          "category" : "platform", \
-          "url"      : "/2017-10-24-choosing-platform/", \
-          "date"     : "October 24, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Backing up Home Assistant", \
-          "category" : "backuphome assistant", \
-          "url"      : "/2017-10-23-backing-up-home-assistant/", \
-          "date"     : "October 23, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Home Assistant - moving logs and database off the SD card", \
-          "category" : "home assistant", \
-          "url"      : "/2017-10-23-home-assistant-moving-logs-and-database/", \
-          "date"     : "October 23, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "What&#39;s the point?", \
-          "category" : "", \
-          "url"      : "/2017-10-23-whats-point/", \
-          "date"     : "October 23, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Putting the cart before the horse", \
-          "category" : "", \
-          "url"      : "/2017-10-22-putting-cart-before-horse/", \
-          "date"     : "October 22, 2017" \
-        }, \
-       \
-        { \
-          "title"    : "Back it up", \
-          "category" : "backup", \
-          "url"      : "/2017-10-21-back-it-up/", \
-          "date"     : "October 21, 2017" \
-        }, \
-       \
-       \
-        { \
-          "title"    : "About", \
-          "category" : "page", \
-          "url"      : "/about/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "About me", \
-          "category" : "page", \
-          "url"      : "/aboutme/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "", \
-          "category" : "page", \
-          "url"      : "/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "Tag Index", \
-          "category" : "page", \
-          "url"      : "/tags/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page2/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page3/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page4/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page5/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page6/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page7/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page8/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page9/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page10/", \
-          "date"     : "January 1, 1970" \
-        }, \
-       \
-        { \
-          "title"    : "My website", \
-          "category" : "page", \
-          "url"      : "/page11/", \
-          "date"     : "January 1, 1970" \
-        } \
-       \
-    ]';
-    searchjson = JSON.parse(searchjson);
-
-    var sjs = SimpleJekyllSearch({
-      searchInput: document.getElementById('nav-search-input'),
-      resultsContainer: document.getElementById('search-results-container'),
-      json: searchjson
-    });
-  </script>
-</div>
-
-
-
-
-
-  <!-- TODO this file has become a mess, refactor it -->
-
-
-
-
-<div class="intro-header"></div>
-
-
-
-<div class=" container-md " role="main">
-  <div class="row">
-    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
-      
-
-      
-
-
-
-
-<!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-<ul class="posts-list list-unstyled" role="list">
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2022-10-25-traefik-and-remote-home-assistant/">
-        <h2 class="post-title">Traefik and a remote Home Assistant</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2022 October 25
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I've been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Home Assistant, despite that being on a remote host.The answer is (otherwise I wouldn't have written this) yes - and...
-        
-        
-          <a href="http://0.0.0.0:4000/2022-10-25-traefik-and-remote-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2022-09-20-frigate-motioneyedoods/">
-        <h2 class="post-title">Frigate > MotionEye+Doods</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2022 September 20
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        As you may remember, I use MotionEye and Doods, along with some crazy scripting, to do motion and object detection at the front of the house.Well, used&nbsp;would be more accurate.Recently I tried out Frigate, initially without a Coral stick/board. The following day I turned off MotionEye and Doods. With very...
-        
-        
-          <a href="http://0.0.0.0:4000/2022-09-20-frigate-motioneyedoods/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#doods">doods</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#frigate">frigate</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#motion detection">motion detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2021-12-23-how-should-i-install-home-assistant/">
-        <h2 class="post-title">How should I install Home Assistant?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2021 December 23
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        &nbsp;I see a lot of people confused by the four install options for Home Assistant.The first, and most important, thing to realise is that Home Assistant is the same no matter how you install it. The only thing that changes is how you install other software, and how you do...
-        
-        
-          <a href="http://0.0.0.0:4000/2021-12-23-how-should-i-install-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2021-08-05-running-automation-every-time-sensor/">
-        <h2 class="post-title">Running an automation every time a sensor updates</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2021 August 5
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        &nbsp;A common question on the HA Discord is how to have an automation run any time a sensor updates. The answer is both simple (it's covered in the official documentation), and not (because there's traps).Here I'll quickly cover how to have that work the way you expect it.TriggerA simple state...
-        
-        
-          <a href="http://0.0.0.0:4000/2021-08-05-running-automation-every-time-sensor/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#automation">automation</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2021-07-18-why-didnt-my-automation-run/">
-        <h2 class="post-title">Why didn't my automation run?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2021 July 18
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        It's a common post on the HA Discord where people are confused as to why their automation isn't running, they've got a trigger, and a few conditions, and ... nothing happens.trigger: - platform: numeric_state above: '22' entity_id: sensor.temperaturecondition: - condition: time after: '22:00:00' before: '08:00:00' - condition: state entity_id: climate.environment...
-        
-        
-          <a href="http://0.0.0.0:4000/2021-07-18-why-didnt-my-automation-run/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2021-05-02-zigbee2mqtt-native-to-docker-migration/">
-        <h2 class="post-title">Zigbee2MQTT - Native to Docker migration</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2021 May 2
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        &nbsp;A long time ago I started using Zigbee2MQTT - somewhere around 1.2 or 1.3. Back then I thought that it was easiest to run Zigbee2MQTT with a manual install, which was (and still is) the default instructions you'll find.Since then I've seen the light. Docker makes upgrades, and downgrades, so...
-        
-        
-          <a href="http://0.0.0.0:4000/2021-05-02-zigbee2mqtt-native-to-docker-migration/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#docker">docker</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#zigbee2mqtt">zigbee2mqtt</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2021-01-03-presence-detection-resurrection/">
-        <h2 class="post-title">Presence Detection Resurrection</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2021 January 3
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Yes, another update. Until I start using Blueprints I think this'll be the last one for a while. Probably.Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted to cover everything&nbsp;relevant in one article.GoalThe goal here is to have&nbsp;quick and...
-        
-        
-          <a href="http://0.0.0.0:4000/2021-01-03-presence-detection-resurrection/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#bluetooth">bluetooth</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#presence detection">presence detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-10-10-ha-venv-to-docker/">
-        <h2 class="post-title">HA venv to Docker</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 October 10
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Another year, another Python deprecation, another flood of posts asking how to upgrade a Python venv.&nbsp; While you can certainly do that, another option would be to move to Docker (at least assuming you're running on Linux). Then you don't have to do this next year. Moving to Docker is...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-10-10-ha-venv-to-docker/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#docker">docker</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#venv">venv</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#linux">linux</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#python">python</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-05-29-home-assistant-docker-and-using-ssh/">
-        <h2 class="post-title">Home Assistant, Docker, and using SSH</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 May 29
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        A common problem that comes up with people using one of the Supervisor based install methods, or Docker, is that when they try to use ssh it fails, yet when testing it works.What. The. Heck?Well, you've hit two problems because of Docker - all your testing was done in a...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-05-29-home-assistant-docker-and-using-ssh/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#ssh">ssh</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#docker">docker</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-05-13-yaml-in-automations-and-scripts/">
-        <h2 class="post-title">YAML in automations and scripts</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 May 13
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you're going to read them in order. So, I thought I'd pull together a little primer. If you're a YAML purist you probably want to look away...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-05-13-yaml-in-automations-and-scripts/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#yaml">yaml</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant core">home assistant core</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#automation">automation</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-05-10-cameras-motion-detection-and/">
-        <h2 class="post-title">Cameras, motion detection, and (interesting) object detection (part two)</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 May 10
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Well, it didn't take long for me to tweak my setup, so before we get to the template, and other things, I'll explain what I've changed.Same, but differentI've been using one webhook to trigger everything, and blindly assume that the interesting activity ends a minute later. This is done with...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-05-10-cameras-motion-detection-and/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-05-09-moving-from-wink-to-home-assistant/">
-        <h2 class="post-title">Moving from Wink to Home Assistant?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 May 9
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I suspect a number of people are looking at leaving Wink right now, in light of the recent announcement. Some of you will be looking at Home Assistant and wondering what will work (most of it), and what you can do.In reality, this isn't going to be a drop in...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-05-09-moving-from-wink-to-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant core">home assistant core</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#wink">wink</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-04-28-cameras-motion-detection-and/">
-        <h2 class="post-title">Cameras, motion detection, and (interesting) object detection (part one)</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 April 28
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        For some time now I've had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-04-28-cameras-motion-detection-and/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#doods">doods</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#motion">motion</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant core">home assistant core</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#motion detection">motion detection</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#object detection">object detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2020-04-14-presence-detection-one-last-time/">
-        <h2 class="post-title">Presence detection, one last time?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2020 April 14
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Well, it's been a while, but I think that, finally, I've stopped changing things. It's been a while since I needed to account for another edge case, so here we go...Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted...
-        
-        
-          <a href="http://0.0.0.0:4000/2020-04-14-presence-detection-one-last-time/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#monitor">monitor</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#bluetooth">bluetooth</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#gpslogger">gpslogger</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#proximity">proximity</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant core">home assistant core</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#nmap">nmap</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#wifi">wifi</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#presence detection">presence detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-11-17-zigbee-and-home-assistant/">
-        <h2 class="post-title">Zigbee (and Home Assistant)</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 November 17
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        So, you're using Home Assistant and want to use Zigbee, but Home Assistant's own documentation doesn't really explain Zigbee, so you're a bit confused. What do you need to know?What is ZigbeeZigbee is a wireless communication protocol designed for personal area networks and well suited to home automation. It uses...
-        
-        
-          <a href="http://0.0.0.0:4000/2019-11-17-zigbee-and-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#zigbee">zigbee</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#z-wave">z-wave</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-10-27-presence-detection-final-countdown/">
-        <h2 class="post-title">Presence detection, the final countdown?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 October 27
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        The last time I said that I didn't think there was more I could do. I was wrong. My use of monitor hasn't changed, and I'll leave the config for that below. Changed behaviourNow I've changed the automations so that the majority wins for departure, rather than requiring everything to...
-        
-        
-          <a href="http://0.0.0.0:4000/2019-10-27-presence-detection-final-countdown/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#monitor">monitor</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#presence detection">presence detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-09-06-messing-with-meshing/">
-        <h2 class="post-title">Messing with meshing</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 September 6
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time.The universe has moved on, and Zigbee is becoming more of...
-        
-        
-          <a href="http://0.0.0.0:4000/2019-09-06-messing-with-meshing/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#zigbee">zigbee</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#z-wave">z-wave</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-08-28-the-great-migration-part-two/">
-        <h2 class="post-title">The great migration - part two</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 August 28
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Well, that was less exciting than I'd feared.The first stage is done. Z-Wave is running on the Pi, and everything else runs on the VM, communicating over MQTT and the REST API.This is built from:Binary sensors - ones to track the states of the sensors, and ones to track the...
-        
-        
-          <a href="http://0.0.0.0:4000/2019-08-28-the-great-migration-part-two/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-08-15-my-great-migration-part-one/">
-        <h2 class="post-title">My great migration - part one</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 August 15
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I've been running Home Assistant on my Pi3 since I started with HA, back in January 2017. I'd chosen a Z-Wave GPIO hat over a USB stick (amongst other things, because it avoided the risk of it getting disconnected in error), which has tied my Z-Wave mesh to the Pi....
-        
-        
-          <a href="http://0.0.0.0:4000/2019-08-15-my-great-migration-part-one/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#zigbee">zigbee</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#z-wave">z-wave</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-04-28-breaking-up-automationsroom-activity/">
-        <h2 class="post-title">Breaking up automations/Room activity detection</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 April 28
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I'm sure we've all been there, where we've written automations that have grown longer and more complicated as we've tried to make things more flexible. Then you end up with a group of automations each hundreds of lines long, and still things don't work well.That's because you've created a family...
-        
-        
-          <a href="http://0.0.0.0:4000/2019-04-28-breaking-up-automationsroom-activity/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#automation">automation</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#presence detection">presence detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2019-03-16-presence-detection-are-we-nearly-there/">
-        <h2 class="post-title">Presence detection - are we nearly there yet?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2019 March 16
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Yes, yet another update. This is what comes from trying to refine things.Bluetooth, bluetooth, everywhereMy Home Assistant system sits in the far corner of the house from the front door. As a result the Bluetooth tracker is a bit hit and miss for entry. There's also a challenge that I've...
-        
-        
-          <a href="http://0.0.0.0:4000/2019-03-16-presence-detection-are-we-nearly-there/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#presence detection">presence detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-12-30-product-comparison-smart-displays/">
-        <h2 class="post-title">Product comparison - smart displays</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 December 30
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I bought a Google Home Hub recently, and then followed that up with a 10"&nbsp;Lenovo Smart Display for the living room. Having lived with both, and bought a third device based upon my experiences, I thought I'd write up a little about them.This isn't a full review, there's no shortage...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-12-30-product-comparison-smart-displays/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#smart display">smart display</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#google home">google home</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#google assistant">google assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-10-15-presence-detection-update-3/">
-        <h2 class="post-title">Presence detection - update 3</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 October 15
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Last time I said that I was probably going to go with the Bayesian sensor for presence detection, but I've changed my mind.Why, because of an occasional edge case in which people get marked away when they're not really away. The Pi is in a corner of the house, as...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-10-15-presence-detection-update-3/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-10-13-upgrading-from-075-to-080/">
-        <h2 class="post-title">Upgrading from 0.75 to 0.80</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 October 13
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Today I finally upgraded from 0.75.3 to one of the versions with the new auth, 0.80.0 in this case. I'd delayed the upgrade because I expected some challenges with the new authentication interacting with my NGINX setup. Before I began, I checked the backups, cloned the venv and took a...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-10-13-upgrading-from-075-to-080/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-09-29-accessing-inacessible/">
-        <h2 class="post-title">Accessing the inaccessible</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 September 29
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Updated January 2022 to include details on Cloudflare's tunnel service, and Oracle's free VM offering.Whether you're on a mobile broadband connection, sat behind CGNAT, or suffering from DS-Lite, a number of people want to be able to remotely access their Home Assistant system, despite not having any way of getting...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-09-29-accessing-inacessible/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#openvpn">openvpn</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#cloud">cloud</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#pivpn">pivpn</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#vpn">vpn</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-09-18-home-assistant-cloud-goes-paid/">
-        <h2 class="post-title">Home Assistant cloud goes paid</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 September 18
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        The Home Assistant developers have just announced that the cloud services will shortly require payment.If you're currently using the cloud services during the free service but can't afford the $5 a month, or live in a part of the world which makes it effectively impossible to pay, then you've got...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-09-18-home-assistant-cloud-goes-paid/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#cloud">cloud</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-09-06-a-while-back-i-covered-how-i-was-doing/">
-        <h2 class="post-title">Presence detection updated</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 September 6
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        A while back I covered how I was doing presence detection, and thought that since I've changed a few things I should update.Little Big ChangesI've ditched groups for tracking. There's a simple reason for this - the group is a blunt instrument. I still use them indirectly, and I'll explain...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-09-06-a-while-back-i-covered-how-i-was-doing/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-08-24-turbulence-ahead-fasten-your-seatbelt/">
-        <h2 class="post-title">Turbulence ahead - fasten your seatbelt</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 August 24
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        With 0.77 it looks like the new Home Assistant authentication platform will be mandatory. For almost everybody it'll be a meh&nbsp;moment - ensure the legacy auth is enabled, and you're done.For those of us who moved to doing authentication in a proxy server, because a single password for everything&nbsp;scared us,...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-08-24-turbulence-ahead-fasten-your-seatbelt/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#security">security</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#proxy">proxy</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-08-21-sensative-strips-guard-review/">
-        <h2 class="post-title">Sensative strips (guard) review</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 August 21
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I've had one Sensative strips guard installed since January 2017, and two more since October 2017, and thought it's long past time I wrote a little about what I thought of them (if you want to skip to the end - I like them).Form factorWell, it's hard to beat the...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-08-21-sensative-strips-guard-review/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#z-wave">z-wave</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-08-19-lovelace-next-generation-of-stock-ui/">
-        <h2 class="post-title">Lovelace - the next generation of stock UI</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 August 19
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        It's been 4 releases of Lovelace now, and it's settling in nicely. As of 0.74 you can do anything you can do in the old UI, and more with every release. You can even easily duplicate your current configuration courtesy of a community member.Lovelace is going to replace the current...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-08-19-lovelace-next-generation-of-stock-ui/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-08-18-triggers-and-conditions-and-actions-oh/">
-        <h2 class="post-title">Triggers and conditions and actions! Oh My!</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 August 18
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Automations in Home Assistant can seem a little daunting at first. You look at the documents, and it can seem overwhelming.It's not that bad, honest. It can be summarised like this:Trigger - the things that cause an automation to be startedCondition - an optional list of things that must be...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-08-18-triggers-and-conditions-and-actions-oh/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#automation">automation</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-08-16-the-xy-problem/">
-        <h2 class="post-title">The XY Problem</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 August 16
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I talked about the people who try (and usually fail) to make things work by banging the rocks together, but there's another, more common, group. These are the people who've identified what they think of as the solution, and are totally focused on making that solution work. They'll&nbsp;ignore all attempts&nbsp;to...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-08-16-the-xy-problem/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-04-15-its-not-about-brand/">
-        <h2 class="post-title">It's not about the brand</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 April 15
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        A question that comes up regularly with people new to HA seems to be what brand of kit should I buy to use with Home Assistant.&nbsp;That's the wrong question to ask at the start. The question you should be asking is what problems am I trying to solve.Now yes, you'll...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-04-15-its-not-about-brand/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#learning">learning</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#automation">automation</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-02-15-home-assistant-shopping-bag-is-missing/">
-        <h2 class="post-title">Home Assistant - the Hass.io menu is missing</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 February 15
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Well, they've updated the supervisor in Hass.io and the shopping bag is gone, the functionality has been moved inside the Hass.io menu. This post has been updated accordingly. So, you've installed Home Assistant and are working through the getting started guide, when you run into a problem. The Hass.io menu...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-02-15-home-assistant-shopping-bag-is-missing/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#hass.io">hass.io</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-29-home-assistant-avoiding-insecurity/">
-        <h2 class="post-title">Home Assistant, avoiding insecurity</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 29
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        So, you're running Home Assistant, you've opened it up to the Internet, and you're worried about security?&nbsp; You're not alone, so read on and see what you can do, and shouldn't do.Keeping SecretsHome Assistant has a configuration option for&nbsp;secrets. This is very useful for re-using values, but most importantly it...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-29-home-assistant-avoiding-insecurity/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#security">security</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-25-home-assistant-and-basic-presence/">
-        <h2 class="post-title">Home Assistant and (basic) Presence Detection</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 25
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Reliable presence detection is a challenge for many people. In part this is because modern smartphones put WiFi (and apps) to sleep when they're idle.There are many ways of approaching this (just look at the threads on the Home Assistant forum to see), but here's how I've tackled it with...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-25-home-assistant-and-basic-presence/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#presence detection">presence detection</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-18-the-secret-is-not-to-bang-rocks-together/">
-        <h2 class="post-title">The secret is (not) to bang the rocks together</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 18
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        So many people seem to purchase a stack of kit, and want it to magically work together, or see the low cost of entry by using an open source project, and assume they don't have to learn.If there's one thing I've learned when, well, tackling anything new, it's that learning&nbsp;is...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-18-the-secret-is-not-to-bang-rocks-together/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#help">help</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#vampire">vampire</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#learning">learning</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-17-how-not-to-break-manual-control-of/">
-        <h2 class="post-title">How not to break manual control of devices with automations</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 17
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        A common problem that comes up all the time is when people want a light or switch (or anything else Home Assistant can control) to turn off automatically, but only if it was turned on with an automation.The answer to this is to use an input boolean that you turn...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-17-how-not-to-break-manual-control-of/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#input boolean">input boolean</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#automation">automation</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-17-remote-access-via-pivpn/">
-        <h2 class="post-title">Remote access via PiVPN</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 17
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I've already talked about setting up remote access, and configuring SSL certificates&nbsp;for Home Assistant. What though if you're not using cloud services, and just want to be able to interact with Home Assistant (or anything else on your network) while you're away. Or maybe just avoid having the owner of...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-17-remote-access-via-pivpn/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#openvpn">openvpn</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#pivpn">pivpn</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#vpn">vpn</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-11-why-home-assistant/">
-        <h2 class="post-title">Why Home Assistant?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 11
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I said a while back that I use Home Assistant, but I didn't really say why.Exploring the marketI spent a few months looking at a number of open source platforms, and I only found one other actively developed comparable platform (OpenHAB). The others were either abandoned, atrophying, or all the...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-11-why-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#platform">platform</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-10-remote-access-for-home-assistant-and/">
-        <h2 class="post-title">Remote access for Home Assistant (and other things)</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 10
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        A (quick) primer on how to access a your Home Assistant server, or other device, from outside your network, with a dynamic DNS service. You'll use a dynamic DNS service for a few reasons: You can't get an SSL certificate for an IP address, and you'll need an SSL certificate...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-10-remote-access-for-home-assistant-and/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-09-rfc1918/">
-        <h2 class="post-title">RFC1918</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 9
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        RFC 1918 defines a set of 3 IP ranges that are not routed across the Internet and can only be used on local networks. You will sometimes see these used on ISP networks, where the devices can only be accessed from within the ISP's network, not from the rest of...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-09-rfc1918/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2018-01-09-nginx-and-home-assistant/">
-        <h2 class="post-title">NGINX and Home Assistant</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2018 January 9
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I'm going to assume that you've already got Let's Encrypt or your chosen SSL provider configured, and that you've forwarded the port your using. But now you've decided you want finer grained control of access than Home Assistant can provide, or maybe you want to make some use of NGINX's...
-        
-        
-          <a href="http://0.0.0.0:4000/2018-01-09-nginx-and-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#remote access">remote access</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-12-25-installing-home-assistant-in-virtual/">
-        <h2 class="post-title">Installing Home Assistant in a virtual environment (in Linux)</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 December 25
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Note: This is based off the original Home Assistant virtual environment instructions - before they were reduced to a handful of steps.There are several reasons why it makes sense to run Home Assistant in a virtual environment. A virtualenv encapsulates all aspect of a Python environment within a single directory...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-12-25-installing-home-assistant-in-virtual/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#venv">venv</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#python">python</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-12-17-home-assistant-cloud/">
-        <h2 class="post-title">Home Assistant Cloud</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 December 17
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Today something rather interesting was announced - the new cloud component for Home Assistant.There's a few things that I think make this interesting:It's going to make it easier for people to set up integrations like Alexa (which they're launching with), Google Assistant, and othersIt will provide the Home Assistant developers...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-12-17-home-assistant-cloud/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#cloud">cloud</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-12-08-upgrading-python-virtual-environment/">
-        <h2 class="post-title">Upgrading the Python Virtual Environment</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 December 8
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Unless you're running local other software directly from the venv, consider switching to Docker. It'll save you from ever needing to upgrade Python and rebuild the venv again. Updates October 2020 for Python 3.7 deprecation, and to add libraries for Pillow&nbsp;July 2020 based on this change to the official HA...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-12-08-upgrading-python-virtual-environment/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#venv">venv</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#python">python</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-11-09-which-home-assistant-install-is-right/">
-        <h2 class="post-title">Which Home Assistant install is right for me?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 November 9
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Updated 2020-05-13There are many, many ways of installing Home Assistant, and the choice can be confusing. Here's my very short take on what you'd want to use, and why:Make it workDo you just want it to work without caring how? Are you happy to dedicate your Pi or NUC (or...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-11-09-which-home-assistant-install-is-right/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#hass.io">hass.io</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#platform">platform</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-11-05-letsencrypt-with-home-assistant/">
-        <h2 class="post-title">LetsEncrypt with Home Assistant</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 November 5
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        Many people want to have remote access to their Home Assistant system, whether for an API (eg Google Assistant), or simply to be able to check on their home while away.At the simplest you need a hostname that resolves to your external (WAN) IP address, and for those with a...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-11-05-letsencrypt-with-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#ssl">ssl</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-11-03-backing-up-hassio/">
-        <h2 class="post-title">Backing up Hass.io</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 November 3
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I've already talked in general about backing up Home Assistant, but for Hass.io the process is slightly different.The problem is that there's no easy access to local USB drives, and the stock SSH add-on doesn't have rsync. The solution comes in the form of an upgraded SSH add-on from frenck.If...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-11-03-backing-up-hassio/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#backup">backup</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#hass.io">hass.io</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-10-24-choosing-platform/">
-        <h2 class="post-title">Choosing a platform</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 October 24
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I'll open with noting that I use Home Assistant, but that doesn't mean you should. Here are some of the things you&nbsp;should be considering when choosing the heart of your new home automation platform.InvestmentI don't just mean money but also time. Generally speaking (and it is a sweeping generalisation) you'll...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-10-24-choosing-platform/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#platform">platform</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-10-23-backing-up-home-assistant/">
-        <h2 class="post-title">Backing up Home Assistant</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 October 23
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        It was suggested on the Home Assistant Discord channel that I write a simple step by step for backing up your Home Assistant configuration.Now, before I begin, I will say RAID IS NOT BACKUP. RAID protects you from hardware failure, at most. You'll need file systems like ZFS or BTRFS...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-10-23-backing-up-home-assistant/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#backup">backup</a>
-          </li>
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-10-23-home-assistant-moving-logs-and-database/">
-        <h2 class="post-title">Home Assistant - moving logs and database off the SD card</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 October 23
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        One problem with running Home Assistant on a Pi is that SD cards aren't great for high write situations, and the database and logs can be very chatty. The answer is to move those to a USB thumb drive, and extend the life of your SD card.You'll want a USB...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-10-23-home-assistant-moving-logs-and-database/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#home assistant">home assistant</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-10-23-whats-point/">
-        <h2 class="post-title">What's the point?</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 October 23
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        So many people I come across who're exploring home automation seem to be wanting to build big complex dashboards that they can use to control things from. Clearly they're overlooking the second word - automation.The point of any home automation system should be to simplify, not complicate. Why replace a...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-10-23-whats-point/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-10-22-putting-cart-before-horse/">
-        <h2 class="post-title">Putting the cart before the horse</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 October 22
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        You're thinking of getting into home automation, so you've gone and bought a bunch of smart devices. Now you're looking for help in doing something with it all.Sound familiar? How many posts in forums, reddit, chat rooms, etc does this sound like?Home automation is a hot topic, there's adverts on...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-10-22-putting-cart-before-horse/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-
-    </article>
-  </li>
-  
-  <li class="post-preview">
-    <article>
-      
-
-      
-
-      <a href="http://0.0.0.0:4000/2017-10-21-back-it-up/">
-        <h2 class="post-title">Back it up</h2>
-
-        
-      </a>
-
-      <p class="post-meta">
-        
-        Posted on 2017 October 21
-      </p>
-
-      
-
-      
-      
-
-      <div class="post-entry">
-        
-        I was going to write something else for the introductory article here, but in light of a few posts on forums lately, I thought I'd start with something more important.BackupsLots of people run their home automation platform without giving any thought to backups until it's too late.Taking backups isn't hard,...
-        
-        
-          <a href="http://0.0.0.0:4000/2017-10-21-back-it-up/" class="post-read-more">[Read&nbsp;More]</a>
-        
-      </div>
-      
-
-      
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          
-          <li class="list-inline-item">
-            <a href="http://0.0.0.0:4000/tags#backup">backup</a>
-          </li>
-          
-        </ul>
-      </div>
-      
-
-    </article>
-  </li>
-  
-</ul>
-
-
-
-
-      
-
-      
-
-    </div>
   </div>
 </div>
-
-
-  <footer>
-  <div class="container-md beautiful-jekyll-footer">
-    <div class="row">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
-    <a href="/feed.xml" title="RSS">
-      <span class="fa-stack fa-lg" aria-hidden="true">
-        <i class="fas fa-circle fa-stack-2x"></i>
-        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-      </span>
-      <span class="sr-only">RSS</span>
-    </a>
-  </li><li class="list-inline-item">
-    <a href="https://github.com/DubhAd" title="GitHub">
-      <span class="fa-stack fa-lg" aria-hidden="true">
-        <i class="fas fa-circle fa-stack-2x"></i>
-        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-      </span>
-      <span class="sr-only">GitHub</span>
-   </a>
-  </li></ul>
-
-      
-      <p class="copyright text-muted">
-      
-        Tinkerer
-        &nbsp;&bull;&nbsp;
-      
-      2022
-
-      
-
-      
-
-      
-
-      </p>
-      <p class="theme-by text-muted">
-        Powered by
-        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
-      </p>
-      </div>
     </div>
-  </div>
-</footer>
 
-
-  
-  
     
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
 
-  
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
     
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
-
-  
     
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-
-  
-
-
-
-  
-    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
     
-      <script src="/assets/js/beautifuljekyll.js"></script>
+
     
-  
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
 
 
 
@@ -3698,5 +495,6 @@
 
 
 
-</body>
+
+  </body>
 </html>
