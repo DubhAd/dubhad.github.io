@@ -5,10 +5,11 @@ tags:
 - remote access
 - home assistant
 - nginx
+- ssl
 modified_time: '2018-04-29T21:38:28.266+01:00'
 ---
 
-I'm going to assume that you've already got [Let's Encrypt](https://www.blogger.com/2017/11/letsencrypt-with-home-assistant.html) or your chosen SSL provider configured, and that you've forwarded the port your using.
+I'm going to assume that you've already got [Let's Encrypt]({% post_url 2017-11-05-letsencrypt-with-home-assistant %}) or your chosen SSL provider configured, and that you've forwarded the port your using.
 
 But now you've decided you want finer grained control of access than Home Assistant can provide, or maybe you want to make some use of NGINX's other features. You've read the [official guide](https://home-assistant.io/docs/ecosystem/nginx/) and [the forum](https://community.home-assistant.io/t/homeassistant-nginx-ssl-proxy-setup/53) and they've left you scratching your head in confusion. What follows is a condensed version of those, based upon my own more complicated [configuration](https://github.com/DubhAd/Home-AssistantConfig/tree/master/etc/nginx/conf.d), but you can start simpler.
 

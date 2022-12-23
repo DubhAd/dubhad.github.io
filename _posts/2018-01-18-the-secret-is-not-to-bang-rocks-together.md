@@ -10,7 +10,7 @@ modified_time: '2018-01-18T19:15:08.693Z'
 ---
 [^1]
 
-_So many people seem to [purchase a stack of kit](/putting-cart-before-horse/), and want it to magically work together, or see the low cost of entry by using an open source project, [and assume](/choosing-platform/) they don't have to learn._
+_So many people seem to [purchase a stack of kit]({% post_url 2017-10-22-putting-cart-before-horse %}), and want it to magically work together, or see the low cost of entry by using an open source project, [and assume]({% post_url 2017-10-24-choosing-platform %}) they don't have to learn._
 _If there's one thing I've learned when, well, tackling anything new, it's that **learning** is key. You can't just bang random rocks together and expect fire it to work._
 
 ## The problem(s)

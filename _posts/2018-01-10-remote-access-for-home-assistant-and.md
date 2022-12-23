@@ -23,14 +23,13 @@ You'll use a dynamic DNS service for a few reasons:
 
 ## Before You Begin
 
-**Check the WAN IP address of your router** - if it looks like `10.x.x.x`, `192.168.x.x` or `172.16.x.x` to `172.31.x.x` then you have what is known as an [RFC1918 IP address](/rfc1918/) (often referred to as private addresses). You will need to contact your ISP to find out how to get a public IP address, or have traffic routed to you. **Until that is done you won't be able to get anything else working**.  
+**Check the WAN IP address of your router** - if it looks like `10.x.x.x`, `192.168.x.x` or `172.16.x.x` to `172.31.x.x` then you have what is known as an [RFC1918 IP address]({% post_url 2018-01-09-rfc1918 %}) (often referred to as private addresses). You will need to contact your ISP to find out how to get a public IP address, or have traffic routed to you. **Until that is done you won't be able to get anything else working**.  
 
 The only way to be certain of the WAN address is to look at your router, or if you have one your ADSL modem. You can use one of the many web pages that will tell you what your WAN IP address appears to be. Be warned however that if you are behind a proxy server, or you have one of the RFC1918 IP addresses referred to above, they will report the wrong IP address and you will waste time trying to get this working.  
   
 ### ADSL or multiple routers
 
 If you have a separate ADSL modem (that's really a router) and router, or you have multiple routers, what follows isn't enough. You'll also need to forward the same ports from the external network device (ADSL modem or router) to the internal router before forwarding those ports from the internal router to the device you're trying to access. It is advisable if you're in this situation to put your modem into bridge mode if possible - your ISP will be able to advise on this.  
-  
 
 * * *
 

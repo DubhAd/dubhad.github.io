@@ -2,6 +2,7 @@
 title: What's the point?
 date: '2017-10-23T12:30:00.000+01:00'
 tags:
+- home automation
 modified_time: '2017-10-23T12:30:14.906+01:00'
 ---
 

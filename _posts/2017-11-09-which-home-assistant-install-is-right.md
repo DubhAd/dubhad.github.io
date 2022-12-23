@@ -3,6 +3,10 @@ title: Which Home Assistant install is right for me?
 date: '2017-11-09T19:10:00.005Z'
 tags:
 - hass.io
+- home assistant os
+- home assistant container
+- home assistant core
+- docker
 - platform
 - home assistant
 modified_time: '2020-10-10T14:32:07.327+01:00'
@@ -22,9 +26,9 @@ If you're already at home on Docker, and running on Linux, then using the Contai
 
 ## Use my (Linux or BSD) computer
 
-Do you know Linux (or BSD), but you also want to fiddle with the system? Are you planning to use your computer with Home Assistant (Core), but you might want to run a few other things along side it? Do you know how to troubleshoot and solve problems with installing Python packages and other software?
+Do you know Linux (or BSD), but you also want to fiddle with the system? Are you planning to use your computer with Home Assistant (Core), but you might want to run a few other things along side it? Do you know how to troubleshoot and solve problems with installing Python packages and other software from source?
 
-Then a manual venv install is an option for you.
+Then a manual venv install (aka Home Assistant Core) is an option for you.
 
 ## But what about...
 

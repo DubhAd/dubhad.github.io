@@ -10,7 +10,7 @@ tags:
 modified_time: '2018-01-17T08:00:24.776Z'
 ---
 
-I've already talked about [setting up remote access](/remote-access-for-home-assistant-and/), and [configuring SSL certificates](/letsencrypt-with-home-assistant/) for Home Assistant. What though if you're not using cloud services, and just want to be able to interact with Home Assistant (or anything else on your network) while you're away. Or maybe just avoid having the owner of the coffee shop being able to see your traffic?
+I've already talked about [setting up remote access]({% post_url 2018-01-10-remote-access-for-home-assistant-and %}), and [configuring SSL certificates]({% post_url 2017-11-05-letsencrypt-with-home-assistant %}) for Home Assistant. What though if you're not using cloud services, and just want to be able to interact with Home Assistant (or anything else on your network) while you're away. Or maybe just avoid having the owner of the coffee shop being able to see your traffic?
 
 The answer is a VPN, but traditionally they've been a bit of pain to set up. Thankfully [PiVPN](http://www.pivpn.io/) has provided a simple, free, option (and you don't even need to have a Pi to use it).
 
@@ -18,7 +18,7 @@ The answer is a VPN, but traditionally they've been a bit of pain to set up. Tha
 
 You need four things
 
-1.  A dynamic DNS hostname that you update automatically (see [this guide](/remote-access-for-home-assistant-and/) if you've not got one)
+1.  A dynamic DNS hostname that you update automatically (see [this guide]({% post_url 2018-01-10-remote-access-for-home-assistant-and %}) if you've not got one)
 2.  A (UDP) port forwarded to your new VPN server
 3.  A computer running some type of Linux to run PiVPN on
 4.  Devices that can run the OpenVPN client
@@ -48,7 +48,7 @@ Install your choice of OpenVPN client on your device. I like the official client
 Every device you're using should have it's own certificate and configuration file. Setting these up requires that you run
 
 ```bash
-pivpn add
+$ pivpn add
 ```
 
 Then answer some two questions:
