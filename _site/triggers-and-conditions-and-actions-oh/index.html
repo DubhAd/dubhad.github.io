@@ -1,0 +1,733 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Triggers and conditions and actions! Oh My! - Tinkering with Technology</title>
+<meta name="description" content="Automations in Home Assistant can seem a little daunting at first. You look at the documents, and it can seem overwhelming.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Triggers and conditions and actions! Oh My!">
+<meta property="og:url" content="http://0.0.0.0:4000/triggers-and-conditions-and-actions-oh/">
+
+
+  <meta property="og:description" content="Automations in Home Assistant can seem a little daunting at first. You look at the documents, and it can seem overwhelming.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-08-18T15:19:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://0.0.0.0:4000/triggers-and-conditions-and-actions-oh/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "http://0.0.0.0:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://0.0.0.0:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Triggers and conditions and actions! Oh My!</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Triggers and conditions and actions! Oh My!">
+    <meta itemprop="description" content="Automations in Home Assistant can seem a little daunting at first. You look at the documents, and it can seem overwhelming.">
+    <meta itemprop="datePublished" content="2018-08-18T15:19:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Triggers and conditions and actions! Oh My!
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2018-08-18T15:19:00+01:00">August 18, 2018</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#trigger">Trigger</a></li><li><a href="#condition">Condition</a></li><li><a href="#action">Action</a><ul><li><a href="#delay">Delay</a></li><li><a href="#wait">Wait</a></li><li><a href="#check-a-condition">Check a condition</a></li><li><a href="#do-something">Do something</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p><a href="https://www.home-assistant.io/docs/automation/">Automations in Home Assistant</a> can seem a little daunting at first. You look at the documents, and it can seem overwhelming.</p>
+
+<p>It’s not that bad, honest. It can be summarised like this:</p>
+
+<ul>
+  <li>Trigger - the things that cause an automation to be started</li>
+  <li>Condition - an optional list of things that must be true for the actions to run</li>
+  <li>Action - what to do</li>
+</ul>
+
+<h2 id="trigger"><a href="https://home-assistant.io/docs/automation/trigger/">Trigger</a></h2>
+
+<p>You need at least one trigger, and you can have many if you need them. Once <em>any</em> of them becomes true, then the automation will run. These always use an or logic - this or that or that or…</p>
+
+<p>For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">trigger</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">state</span>
+  <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.dice_d20_green</span>
+  <span class="na">state</span><span class="pi">:</span> <span class="m">1</span>
+<span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">state</span>
+  <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.dice_d20_blue</span>
+  <span class="na">state</span><span class="pi">:</span> <span class="m">1</span>
+</code></pre></div></div>
+
+<p>Here the automation will run if either our green or blue D20 dice rolls a one.</p>
+
+<h2 id="condition"><a href="https://www.home-assistant.io/docs/automation/condition/">Condition</a></h2>
+
+<p>Here’s where we can optionally perform a number of checks before we run those actions. Maybe you only care if that green dice rolls a one during the day, and the blue one at night, or it’s Sunday. Conditions are all and by default - they all have to be true, but as we’ll show here, you can use both and and or logic as you need.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">condition</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">or</span>
+  <span class="na">conditions</span><span class="pi">:</span>
+  <span class="c1"># Sunday</span>
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">time</span>
+    <span class="na">weekday</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">sun</span>
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">and</span>
+    <span class="na">conditions</span><span class="pi">:</span>
+    <span class="c1"># Green D20 rolled one at night</span>
+    <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">state</span>
+      <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.dice_d20_green</span>
+      <span class="na">state</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">numeric_state</span>
+      <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sun.sun</span>
+      <span class="na">attribute</span><span class="pi">:</span> <span class="s">elevation</span>
+      <span class="na">below</span><span class="pi">:</span> <span class="m">0</span>
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">and</span>
+    <span class="na">conditions</span><span class="pi">:</span>
+    <span class="c1"># Blue D20 rolled one during the day</span>
+    <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">state</span>
+      <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.dice_d20_blue</span>
+      <span class="na">state</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">numeric_state</span>
+      <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sun.sun</span>
+      <span class="na">attribute</span><span class="pi">:</span> <span class="s">elevation</span>
+      <span class="na">above</span><span class="pi">:</span> <span class="s">-0.1</span>
+</code></pre></div></div>
+
+<h2 id="action"><a href="https://www.home-assistant.io/docs/automation/action/">Action</a></h2>
+
+<p>Finally, we’re at the “go do” part. These are <a href="https://www.home-assistant.io/docs/scripts/">scripts</a>, just embedded in your automation. There are four different things you can do here, and the actions are processed in the order you write them.</p>
+
+<h3 id="delay"><a href="https://www.home-assistant.io/docs/scripts/#wait-for-time-to-pass-delay">Delay</a></h3>
+
+<p>You can pause before the actions run, or between actions, using a delay. This can be fixed for every run of the automation, or you can use templates to give you some flexibility.</p>
+
+<h3 id="wait"><a href="https://www.home-assistant.io/docs/scripts/#wait">Wait</a></h3>
+
+<p>Sometimes you want a pause, while you wait for something to happen. This is useful if you want an automation to run when a particular series of events happen, like maybe the front door to open, then the hall door to open within the next few minutes.</p>
+
+<h3 id="check-a-condition"><a href="https://www.home-assistant.io/docs/scripts/#test-a-condition">Check a condition</a></h3>
+
+<p>Sometimes you always want to do some of the actions, but only do the rest some of the time. If the condition is true, then the automation will continue. If it isn’t, then the automation stops here.</p>
+
+<h3 id="do-something">Do something</h3>
+
+<p>Mostly you’ll be <a href="https://www.home-assistant.io/docs/scripts/#call-a-service">calling a service</a>, to do something like turn on a light, or a switch, or send a notification, and so on. You can also <a href="https://www.home-assistant.io/docs/scripts/#fire-an-event">fire events</a> and do other things.</p>
+
+<p>We’ll continue our dice rolling example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">action</span><span class="pi">:</span>
+  <span class="c1"># Turn the lights red</span>
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">light.turn_on</span>
+    <span class="na">data</span><span class="pi">:</span>
+      <span class="na">entity_id</span><span class="pi">:</span> <span class="s">light.game_room</span>
+      <span class="na">color_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">red"</span>
+  <span class="c1"># Take a deep breath</span>
+  <span class="pi">-</span> <span class="na">delay</span><span class="pi">:</span> <span class="s1">'</span><span class="s">00:00:05'</span>
+  <span class="c1"># Did the character not die?</span>
+  <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">state</span>
+    <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.character_health</span>
+    <span class="na">state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">alive'</span>
+  <span class="c1"># We're alive! Turn it white again</span>
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">light.turn_on</span>
+    <span class="na">data</span><span class="pi">:</span>
+      <span class="na">entity_id</span><span class="pi">:</span> <span class="s">light.game_room</span>
+      <span class="na">color_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">white"</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#automation" class="page__taxonomy-item" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-18T15:19:00+01:00">August 18, 2018</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/the-xy-problem/" class="pagination--pager" title="The XY Problem
+">Previous</a>
+    
+    
+      <a href="/lovelace-next-generation-of-stock-ui/" class="pagination--pager" title="Lovelace - the next generation of stock UI
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/blog-migration/" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/traefik-and-remote-home-assistant/" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/frigate-motioneyedoods/" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-should-i-install-home-assistant/" rel="permalink">How should I install Home Assistant?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2021-12-23T16:24:00+00:00">December 23, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description"> I see a lot of people confused by the four install options for Home Assistant.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

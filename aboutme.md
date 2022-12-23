@@ -1,5 +1,4 @@
 ---
-layout: page
 title: About me
 subtitle: Who is that masked man?
 ---
