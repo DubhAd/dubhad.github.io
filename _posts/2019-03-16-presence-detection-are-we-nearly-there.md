@@ -135,7 +135,7 @@ sequence:
   - service: script.person1_traveltime  
 ```
 
-That MQTT publish is for the new [person component](https://www.home-assistant.io/components/person). Right now the logic of that component is purely that the most recent update wins, which is a step backwards. So I cheat.  
+That MQTT publish is for the new [person component](https://www.home-assistant.io/integrations/person). Right now the logic of that component is purely that the most recent update wins, which is a step backwards. So I cheat.  
   
 The last script updates the Google and Waze travel time sensors. Those are both configured to update only a few times a day, and I update on demand from automations. The result is that on a typical day I'm using less than 10% of the daily quota, rather than hitting the quota limit before the day is over.  
 

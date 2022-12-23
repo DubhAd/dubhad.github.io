@@ -33,4 +33,4 @@ When you're next stuck with a problem, take a little time to explain the _whole_
 ### _Footnotes_
 
 *   _Most of us have been guilty of this at one point or another_
-*   _Yes, if the sun elevation was checked a month before or after the longest or shortest day, it will be the same elevation - no points for pointing that one out &#x1F609;
+*   _Yes, if the sun elevation was checked a month before or after the longest or shortest day, it will be the same elevation - no points for pointing that one out_ &#x1F609;
