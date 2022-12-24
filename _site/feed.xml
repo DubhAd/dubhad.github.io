@@ -10,14 +10,25 @@
     
     
       <item>
+        <title>Welcome to Home Assistant</title>
+        <description>
+          
+          You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed. Where do you begin? What do you need to know? In the beginning Home Assistant is an event system - things happen, and those generate events. If a...
+        </description>
+        <pubDate>Sat, 24 Dec 2022 15:00:00 +0000</pubDate>
+        <link>/2022/12/24/welcome-to-homeassistant.html</link>
+        <guid isPermaLink="true">/2022/12/24/welcome-to-homeassistant.html</guid>
+      </item>
+    
+      <item>
         <title>Blog migration (2022)</title>
         <description>
           
           If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudflare pages. As part of the migration I’m going through and fixing broken links in old posts and adding notes where information...
         </description>
         <pubDate>Thu, 22 Dec 2022 09:00:00 +0000</pubDate>
-        <link>/blog-migration/</link>
-        <guid isPermaLink="true">/blog-migration/</guid>
+        <link>/2022/12/22/blog-migration.html</link>
+        <guid isPermaLink="true">/2022/12/22/blog-migration.html</guid>
       </item>
     
       <item>
@@ -27,8 +38,8 @@
           I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Home Assistant, despite that being on a remote host. The answer is (otherwise I wouldn’t havewritten this) yes - and...
         </description>
         <pubDate>Tue, 25 Oct 2022 21:17:00 +0100</pubDate>
-        <link>/traefik-and-remote-home-assistant/</link>
-        <guid isPermaLink="true">/traefik-and-remote-home-assistant/</guid>
+        <link>/2022/10/25/traefik-and-remote-home-assistant.html</link>
+        <guid isPermaLink="true">/2022/10/25/traefik-and-remote-home-assistant.html</guid>
       </item>
     
       <item>
@@ -38,8 +49,8 @@
           As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house. Well, used would be more accurate. Recently I tried out Frigate, initially without a Coral stick/board. The following day I turned off MotionEye and Doods. With...
         </description>
         <pubDate>Tue, 20 Sep 2022 21:02:00 +0100</pubDate>
-        <link>/frigate-motioneyedoods/</link>
-        <guid isPermaLink="true">/frigate-motioneyedoods/</guid>
+        <link>/2022/09/20/frigate-motioneyedoods.html</link>
+        <guid isPermaLink="true">/2022/09/20/frigate-motioneyedoods.html</guid>
       </item>
     
       <item>
@@ -49,8 +60,8 @@
            I see a lot of people confused by the four install options for Home Assistant. The first, and most important, thing to realise is that Home Assistant is the same no matter how you install it. The only thing that changes is how you install other software, and how you...
         </description>
         <pubDate>Thu, 23 Dec 2021 16:24:00 +0000</pubDate>
-        <link>/how-should-i-install-home-assistant/</link>
-        <guid isPermaLink="true">/how-should-i-install-home-assistant/</guid>
+        <link>/2021/12/23/how-should-i-install-home-assistant.html</link>
+        <guid isPermaLink="true">/2021/12/23/how-should-i-install-home-assistant.html</guid>
       </item>
     
       <item>
@@ -60,8 +71,8 @@
           What follows is no longer needed since HA now has a new feature of the state trigger: trigger: - platform: state entity_id: sensor.your_sensor to: ~ I will leave this for posterity though. A common question on the HA Discord is how to have an automation run any time a sensor...
         </description>
         <pubDate>Thu, 05 Aug 2021 21:33:00 +0100</pubDate>
-        <link>/running-automation-every-time-sensor/</link>
-        <guid isPermaLink="true">/running-automation-every-time-sensor/</guid>
+        <link>/2021/08/05/running-automation-every-time-sensor.html</link>
+        <guid isPermaLink="true">/2021/08/05/running-automation-every-time-sensor.html</guid>
       </item>
     
       <item>
@@ -71,8 +82,8 @@
           It’s a common post on the HA Discord where people are confused as to why their automation isn’t running, they’ve got a trigger, and a few conditions, and … nothing happens. trigger: - platform: numeric_state above: &apos;22&apos; entity_id: sensor.temperature condition: - condition: time after: &apos;22:00:00&apos; before: &apos;08:00:00&apos; - condition: state...
         </description>
         <pubDate>Sun, 18 Jul 2021 22:07:00 +0100</pubDate>
-        <link>/why-didnt-my-automation-run/</link>
-        <guid isPermaLink="true">/why-didnt-my-automation-run/</guid>
+        <link>/2021/07/18/why-didnt-my-automation-run.html</link>
+        <guid isPermaLink="true">/2021/07/18/why-didnt-my-automation-run.html</guid>
       </item>
     
       <item>
@@ -82,8 +93,8 @@
            A long time ago I started using Zigbee2MQTT - somewhere around 1.2 or 1.3. Back then I thought that it was easiest to run Zigbee2MQTT with a manual install, which was (and still is) the default instructions you’ll find. Since then I’ve seen the light. Docker makes upgrades, and downgrades,...
         </description>
         <pubDate>Sun, 02 May 2021 03:30:00 +0100</pubDate>
-        <link>/zigbee2mqtt-native-to-docker-migration/</link>
-        <guid isPermaLink="true">/zigbee2mqtt-native-to-docker-migration/</guid>
+        <link>/2021/05/02/zigbee2mqtt-native-to-docker-migration.html</link>
+        <guid isPermaLink="true">/2021/05/02/zigbee2mqtt-native-to-docker-migration.html</guid>
       </item>
     
       <item>
@@ -93,8 +104,8 @@
           Yes, another update. Until I start using Blueprints I think this’ll be the last one for a while. Probably. Oh, you may want to grab a cuppa before you dive in, this is a long one as I wanted to cover everything relevant in one article. Goal The goal here is...
         </description>
         <pubDate>Sun, 03 Jan 2021 01:00:00 +0000</pubDate>
-        <link>/presence-detection-resurrection/</link>
-        <guid isPermaLink="true">/presence-detection-resurrection/</guid>
+        <link>/2021/01/03/presence-detection-resurrection.html</link>
+        <guid isPermaLink="true">/2021/01/03/presence-detection-resurrection.html</guid>
       </item>
     
       <item>
@@ -104,8 +115,8 @@
           Another year, another Python deprecation, another flood of posts asking how to upgrade a Python venv.  While you can certainly do that, another option would be to move to Docker (at least assuming you’re running on Linux). Then you don’t have to do this next year. Moving to Docker is...
         </description>
         <pubDate>Sat, 10 Oct 2020 09:05:00 +0100</pubDate>
-        <link>/ha-venv-to-docker/</link>
-        <guid isPermaLink="true">/ha-venv-to-docker/</guid>
+        <link>/2020/10/10/ha-venv-to-docker.html</link>
+        <guid isPermaLink="true">/2020/10/10/ha-venv-to-docker.html</guid>
       </item>
     
       <item>
@@ -115,8 +126,8 @@
           A common problem that comes up with people using one of the Supervisor based install methods, or Docker, is that when they try to use ssh it fails, yet when testing it works. What. The. Heck? Well, you’ve hit two problems because of Docker - all your testing was done...
         </description>
         <pubDate>Fri, 29 May 2020 21:20:00 +0100</pubDate>
-        <link>/home-assistant-docker-and-using-ssh/</link>
-        <guid isPermaLink="true">/home-assistant-docker-and-using-ssh/</guid>
+        <link>/2020/05/29/home-assistant-docker-and-using-ssh.html</link>
+        <guid isPermaLink="true">/2020/05/29/home-assistant-docker-and-using-ssh.html</guid>
       </item>
     
       <item>
@@ -126,8 +137,8 @@
           I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you’re going to read them in order. So, I thought I’d pull together a little primer. If you’re a YAML purist you probably want to look away...
         </description>
         <pubDate>Wed, 13 May 2020 16:46:00 +0100</pubDate>
-        <link>/yaml-in-automations-and-scripts/</link>
-        <guid isPermaLink="true">/yaml-in-automations-and-scripts/</guid>
+        <link>/2020/05/13/yaml-in-automations-and-scripts.html</link>
+        <guid isPermaLink="true">/2020/05/13/yaml-in-automations-and-scripts.html</guid>
       </item>
     
       <item>
@@ -137,8 +148,8 @@
           Well, it didn’t take long for me to tweak my setup, so before we get to the template, and other things, I’ll explain what I’ve changed. Same, but different I’ve been using one webhook to trigger everything, and blindly assume that the interesting activity ends a minute later. This is...
         </description>
         <pubDate>Sun, 10 May 2020 11:20:00 +0100</pubDate>
-        <link>/cameras-motion-detection-and/</link>
-        <guid isPermaLink="true">/cameras-motion-detection-and/</guid>
+        <link>/2020/05/10/cameras-motion-detection-and.html</link>
+        <guid isPermaLink="true">/2020/05/10/cameras-motion-detection-and.html</guid>
       </item>
     
       <item>
@@ -148,8 +159,8 @@
           I suspect a number of people are looking at leaving Wink right now, in light of the recent announcement. Some of you will be looking at Home Assistant and wondering what will work (most of it), and what you can do. In reality, this isn’t going to be a drop...
         </description>
         <pubDate>Sat, 09 May 2020 09:42:00 +0100</pubDate>
-        <link>/moving-from-wink-to-home-assistant/</link>
-        <guid isPermaLink="true">/moving-from-wink-to-home-assistant/</guid>
+        <link>/2020/05/09/moving-from-wink-to-home-assistant.html</link>
+        <guid isPermaLink="true">/2020/05/09/moving-from-wink-to-home-assistant.html</guid>
       </item>
     
       <item>
@@ -159,8 +170,8 @@
           For some time now I’ve had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety...
         </description>
         <pubDate>Tue, 28 Apr 2020 21:09:00 +0100</pubDate>
-        <link>/cameras-motion-detection-and/</link>
-        <guid isPermaLink="true">/cameras-motion-detection-and/</guid>
+        <link>/2020/04/28/cameras-motion-detection-and.html</link>
+        <guid isPermaLink="true">/2020/04/28/cameras-motion-detection-and.html</guid>
       </item>
     
       <item>
@@ -170,8 +181,8 @@
           Well, it’s been a while, but I think that, finally, I’ve stopped changing things. It’s been a while since I needed to account for another edge case, so here we go… Oh, you may want to grab a cuppa before you dive in, this is a long one as I...
         </description>
         <pubDate>Tue, 14 Apr 2020 11:28:00 +0100</pubDate>
-        <link>/presence-detection-one-last-time/</link>
-        <guid isPermaLink="true">/presence-detection-one-last-time/</guid>
+        <link>/2020/04/14/presence-detection-one-last-time.html</link>
+        <guid isPermaLink="true">/2020/04/14/presence-detection-one-last-time.html</guid>
       </item>
     
       <item>
@@ -181,8 +192,8 @@
           So, you’re using Home Assistant and want to use Zigbee, but Home Assistant’s own documentation doesn’t really explain Zigbee, so you’re a bit confused. What do you need to know? What is Zigbee Zigbee is a wireless communication protocol designed for personal area networks and well suited to home automation....
         </description>
         <pubDate>Sun, 17 Nov 2019 19:20:00 +0000</pubDate>
-        <link>/zigbee-and-home-assistant/</link>
-        <guid isPermaLink="true">/zigbee-and-home-assistant/</guid>
+        <link>/2019/11/17/zigbee-and-home-assistant.html</link>
+        <guid isPermaLink="true">/2019/11/17/zigbee-and-home-assistant.html</guid>
       </item>
     
       <item>
@@ -192,8 +203,8 @@
           The last time I said that I didn’t think there was more I could do. I was wrong. My use of monitor hasn’t changed, and I’ll leave the config for that below. Changed behaviour Now I’ve changed the automations so that the majority wins for departure, rather than requiring everything...
         </description>
         <pubDate>Sun, 27 Oct 2019 06:30:00 +0000</pubDate>
-        <link>/presence-detection-final-countdown/</link>
-        <guid isPermaLink="true">/presence-detection-final-countdown/</guid>
+        <link>/2019/10/27/presence-detection-final-countdown.html</link>
+        <guid isPermaLink="true">/2019/10/27/presence-detection-final-countdown.html</guid>
       </item>
     
       <item>
@@ -203,8 +214,8 @@
           Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time. The universe has moved on, and Zigbee is becoming more...
         </description>
         <pubDate>Fri, 06 Sep 2019 11:42:00 +0100</pubDate>
-        <link>/messing-with-meshing/</link>
-        <guid isPermaLink="true">/messing-with-meshing/</guid>
+        <link>/2019/09/06/messing-with-meshing.html</link>
+        <guid isPermaLink="true">/2019/09/06/messing-with-meshing.html</guid>
       </item>
     
       <item>
@@ -214,19 +225,8 @@
           Well, that was less exciting than I’d feared. The first stage is done. Z-Wave is running on the Pi, and everything else runs on the VM, communicating over MQTT and the REST API. This is built from: Binary sensors - ones to track the states of the sensors, and ones...
         </description>
         <pubDate>Wed, 28 Aug 2019 07:30:00 +0100</pubDate>
-        <link>/the-great-migration-part-two/</link>
-        <guid isPermaLink="true">/the-great-migration-part-two/</guid>
-      </item>
-    
-      <item>
-        <title>My great migration - part one</title>
-        <description>
-          
-          I’ve been running Home Assistant on my Pi3 since I started with HA, back in January 2017. I’d chosen a Z-Wave GPIO hat over a USB stick (amongst other things, because it avoided the risk of it getting disconnected in error), which has tied my Z-Wave mesh to the Pi....
-        </description>
-        <pubDate>Thu, 15 Aug 2019 10:45:00 +0100</pubDate>
-        <link>/my-great-migration-part-one/</link>
-        <guid isPermaLink="true">/my-great-migration-part-one/</guid>
+        <link>/2019/08/28/the-great-migration-part-two.html</link>
+        <guid isPermaLink="true">/2019/08/28/the-great-migration-part-two.html</guid>
       </item>
     
   </channel>
