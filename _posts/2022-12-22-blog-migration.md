@@ -4,6 +4,8 @@ date: '2022-12-22T09:00:00.000Z'
 tags:
 - blog
 modified_time: '2022-12-23T10:02:00.000Z'
+categories:
+- blog
 ---
 
 If you're reading this you're looking at the new home of my blog. I'm moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudflare pages.
