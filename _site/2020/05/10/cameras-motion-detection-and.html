@@ -1,0 +1,787 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Cameras, motion detection, and (interesting) object detection (part two) - Tinkering with Technology</title>
+<meta name="description" content="Well, it didn’t take long for me to tweak my setup, so before we get to the template, and other things, I’ll explain what I’ve changed.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Cameras, motion detection, and (interesting) object detection (part two)">
+<meta property="og:url" content="/2020/05/10/cameras-motion-detection-and.html">
+
+
+  <meta property="og:description" content="Well, it didn’t take long for me to tweak my setup, so before we get to the template, and other things, I’ll explain what I’ve changed.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-10T11:20:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2020/05/10/cameras-motion-detection-and.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2020" itemprop="item"><span itemprop="name">2020</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#05" itemprop="item"><span itemprop="name">05</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#10" itemprop="item"><span itemprop="name">10</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Cameras, motion detection, and (interesting) object detection (part two)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Cameras, motion detection, and (interesting) object detection (part two)">
+    <meta itemprop="description" content="Well, it didn’t take long for me to tweak my setup, so before we get to the template, and other things, I’ll explain what I’ve changed.">
+    <meta itemprop="datePublished" content="2020-05-10T11:20:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Cameras, motion detection, and (interesting) object detection (part two)
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2020-05-10T11:20:00+01:00">May 10, 2020</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Well, it didn’t take long for me to tweak my setup, so before we get to the template, and other things, I’ll explain what I’ve changed.</p>
+
+<h2 id="same-but-different">Same, but different</h2>
+
+<p>I’ve been using one webhook to trigger everything, and blindly assume that the interesting activity ends a minute later. This is done with the <em>Call a Web Hook</em> option in MotionEye. That simply adds to the <code class="language-plaintext highlighter-rouge">on_event_start</code> option. There’s also an <code class="language-plaintext highlighter-rouge">on_event_end</code> command, that can be used for this, with a little work. I ended up writing a really simple shell script to make the required call, identifying whether this is the start or end of an event, and which camera it’s on. I’m not using the camera information yet, but I’ll add that eventually.</p>
+
+<p>Now I’m using the same webhook for the start and end, I’m <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/motion_hook.yaml">firing an event</a> from that webhook, with the information, that’s consumed by the <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/motion_start.yaml">event start</a> and <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/motion_stopped.yaml">event stop</a> automations. This simply makes it easier to ensure that when I’m streaming the video it doesn’t cut off until all the activity has finished.</p>
+
+<h2 id="streaming-logic">Streaming logic</h2>
+
+<p>When streaming is enabled, I want it to “follow us”. I’ve built <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/start_camera_stream.yaml">some simple logic</a> that uses the fact that I already track which rooms are occupied. This sets an input select to match the target media player.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- if is_state('input_boolean.office_occupied'</span><span class="pi">,</span><span class="s1">'</span><span class="s">on'</span><span class="nv">) -%</span><span class="pi">}</span>  
+          <span class="s">media_player.office_smart_display</span>  
+        <span class="s">{%- elif is_state('input_boolean.living_room_occupied','on') -%}</span>  
+          <span class="s">media_player.living_room_display</span>  
+        <span class="s">{%- elif is_state('input_boolean.master_bedroom_occupied','on') -%}</span>  
+          <span class="s">media_player.master_bedroom_display</span>  
+        <span class="s">{%- else -%}</span>  
+          <span class="s">media_player.family_room_display</span>  
+        <span class="s">{%- endif -%}</span>
+</code></pre></div></div>
+
+<p>The logic is simple, the rooms are listed in the priority order, and if nothing else is occupied it “falls through” to the family room.</p>
+
+<p>I set an input select so that when the <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/stop_camera_stream.yaml">stream is stopped</a>, it stops the right media player. This avoids the situation where a room becomes unoccupied between the camera stream starting and stopping.</p>
+
+<h2 id="doods">Doods</h2>
+
+<p>The configuration for Doods itself is as follows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">default</span>  
+      <span class="na">type</span><span class="pi">:</span> <span class="s">tensorflow</span>  
+      <span class="na">modelFile</span><span class="pi">:</span> <span class="s">/share/doods/models/faster_rcnn_inception_v2_coco_2018_01_28.pb</span>  
+      <span class="na">labelFile</span><span class="pi">:</span> <span class="s">/share/doods/models/coco_labels1.txt</span>  
+      <span class="na">numThreads</span><span class="pi">:</span> <span class="s">4</span>  
+      <span class="na">numConcurrent</span><span class="pi">:</span> <span class="s">2</span>  
+      <span class="na">hwAccel</span><span class="pi">:</span> <span class="no">false</span>  
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">30s</span>
+</code></pre></div></div>
+
+<p>Given that it’s typically taking about 0.8 seconds, that 30 second timeout is quite excessive.</p>
+
+<h3 id="tensorflow">Tensorflow</h3>
+
+<p>As you probably noticed I’m using the <code class="language-plaintext highlighter-rouge">faster_rcnn_inception_v2_coco_2018_01_28</code> models, on the full Tensorflow. I found the lite models horribly inaccurate, where it was detecting rocks as people, yet not detecting the (larger) people in the same image. On my hardware this still takes under a second, but the accuracy is good.</p>
+
+<h2 id="doods-integration">Doods Integration</h2>
+
+<p>The integration’s <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/image_processing/doods.yaml">configuration is here</a>, I’ve had the confidence set down at 60%, but I’ve turned it up to 70%, and I suspect I’ll move that to 75%. As my notifications include details on the detections I’ve got a log I’m using for tuning.</p>
+
+<p>I’ve excluded the top 50% of the image, and the right 40% since all the things I’m interested in will be in that area. This basically matches the detection area for Motion. I’ve said that I’m interested in matches that go outside the area, because sometimes the objects that cause detection, which I’m still interested in, go outside that area.</p>
+
+<p>The objects I’ve said I’m interested in are person, car, truck, motorcycle, bicycle, cat, dog, bird. I’m not really interested in the last three, but they cause enough motion detections I’m curious to see how Doods does at identifying them. So far, it hasn’t identified any</p>
+
+<h2 id="finding-the-relevant-things">Finding the relevant things</h2>
+
+<p>So, there’s that <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/07ba039cbdddde089b7b3adb1d77a6fa5a154ce1/scripts/camera/front_camera_interesting_things.yaml">60 line template-of-doom</a>. What does it do exactly?</p>
+
+<p>First off, we extract the count of things we’re interested in:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- set totalPeople = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).person|default(0) -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set totalCars = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).car|default(0) -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set totalTrucks = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).truck|default(0) -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set totalMotorcycles = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).motorcycle|default(0) -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set totalBicycles = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).bicycle|default(0) -%</span><span class="pi">}</span>  
+</code></pre></div></div>
+
+<p>Then we set some default values (zero):</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- set parkedCars = 0 -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set otherCars = 0 -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set parkedTrucks = 0 -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set otherTrucks = 0 -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set relevantPeople = 0 -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set otherPeople = 0 -%</span><span class="pi">}</span>  
+</code></pre></div></div>
+
+<p>Next we define a macro to see if the vehicle detected is in one of the parking spaces:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- macro isParked(box) -%</span><span class="pi">}</span>  
+        <span class="pi">{{</span><span class="nv">- True if (</span>  
+            <span class="nv">((0.715 &lt; box</span><span class="pi">[</span><span class="nv">0</span><span class="pi">]</span> <span class="nv">&lt; 0.754) and (0.340 &lt; box</span><span class="pi">[</span><span class="nv">1</span><span class="pi">]</span> <span class="nv">&lt; 0.482) and (0.820 &lt; box</span><span class="pi">[</span><span class="nv">2</span><span class="pi">]</span> <span class="nv">&lt; 0.852) and (0.500 &lt; box</span><span class="pi">[</span><span class="nv">3</span><span class="pi">]</span> <span class="nv">&lt; 0.580))</span>  
+             <span class="nv">or</span>  
+            <span class="nv">((0.740 &lt; box</span><span class="pi">[</span><span class="nv">0</span><span class="pi">]</span> <span class="nv">&lt; 0.766) and (0.318 &lt; box</span><span class="pi">[</span><span class="nv">1</span><span class="pi">]</span> <span class="nv">&lt; 0.400) and (0.830 &lt; box</span><span class="pi">[</span><span class="nv">2</span><span class="pi">]</span> <span class="nv">&lt; 0.854) and (0.380 &lt; box</span><span class="pi">[</span><span class="nv">3</span><span class="pi">]</span> <span class="nv">&lt; 0.550))</span>  
+          <span class="nv">) else X -</span><span class="pi">}}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- endmacro -%</span><span class="pi">}</span>
+</code></pre></div></div>
+
+<p>I could probably simplify this to check the two spaces as a whole. All this does is check to see if the corners of the detected object are inside what’s normal for detections in that space.</p>
+
+<p>Next up we check to see if the cars (or trucks, since sometimes the larger car is picked up as a truck) we see are in a parking space (boring) or not (interesting):</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- if totalCars &gt; 0 -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- macro getParkedCars() -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- for state in state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">matches'</span><span class="nv">).car -%</span><span class="pi">}{{</span><span class="nv">- "X" if isParked(state.box) -</span><span class="pi">}}{</span><span class="err">%</span><span class="nv">- endfor -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- endmacro -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- set parkedCars = getParkedCars()|length -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- set otherCars = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).car - parkedCars -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- endif -%</span><span class="pi">}</span>
+</code></pre></div></div>
+
+<p>We do the same for the trucks then total up the vehicles into parked and other:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- set parkedVehicles = parkedCars+parkedTrucks -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- set otherVehicles = otherCars+otherTrucks -%</span><span class="pi">}</span>
+</code></pre></div></div>
+
+<p>Now it’s time to look at the people. Here were mainly interested in people on the path or in the garden, rather than those on the access road. Yes, this means I’ll miss out on notifications of people walking to the parking spaces, but that’s not something I’m concerned about.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="pi">{</span><span class="err">%</span><span class="nv">- if totalPeople &gt; 0 -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- macro personOnPath(box) -%</span><span class="pi">}</span>  
+          <span class="pi">{{</span><span class="nv">- True if (</span>  
+              <span class="nv">( 0.885 &lt; box</span><span class="pi">[</span><span class="nv">2</span><span class="pi">]</span> <span class="nv">)</span>  
+            <span class="nv">) else X -</span><span class="pi">}}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- endmacro -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- macro getPeopleOnPath() -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- for state in state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">matches'</span><span class="nv">).person -%</span><span class="pi">}{{</span><span class="nv">- "X" if personOnPath(state.box) -</span><span class="pi">}}{</span><span class="err">%</span><span class="nv">- endfor -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- endmacro -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- set relevantPeople = getPeopleOnPath()|length -%</span><span class="pi">}</span>  
+          <span class="pi">{</span><span class="err">%</span><span class="nv">- set otherPeople = state_attr('image_processing.doods_front_camera_snapshot'</span><span class="pi">,</span><span class="s1">'</span><span class="s">summary'</span><span class="nv">).person - relevantPeople -%</span><span class="pi">}</span>  
+        <span class="pi">{</span><span class="err">%</span><span class="nv">- endif -%</span><span class="pi">}</span>
+
+<span class="s">Finally we total up the things that are interesting, and report that.</span>  
+
+        <span class="s">{#- total up the things into different categories -#}</span>  
+        <span class="s">{%- set importantThings = otherCars + otherTrucks + totalMotorcycles + totalBicycles + relevantPeople -%}</span>  
+        <span class="s">{{ importantThings }}</span>
+</code></pre></div></div>
+
+<p>In short, I’m interested in vehicles not in the parking spaces, any bikes, and people in the garden/path. We use this information in the notification script to decide which channel it goes to, and whether the camera will be streamed to a smart display.</p>
+
+<h2 id="notification-time">Notification time</h2>
+
+<p>Notification logic is “simple”:</p>
+
+<ol>
+  <li>Doods found <em>nothing</em> then the notification goes to a muted Discord channel</li>
+  <li>Doods found something, but nothing interesting, the notification goes to that same channel</li>
+  <li>Doods found something interesting, the notification goes to a different channel</li>
+</ol>
+
+<p>All notifications include the confidence and bounding box of what was found, so that I can tune the template logic and Doods configuration. The muted channel gives me a history I can review too, in case I filtered out interesting things.</p>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p>I’ve noticed that when I cast to my Home Hub Max the image is rotated 90 degrees. I need to investigate and see if that’s a problem at the HA end (seems pretty unlikely) or at the Google end (seems more likely).</p>
+
+<p>I’m thinking of getting one of the Google Coral sticks. There’s some interesting examples out there using the stick to do near real time object detection, separate from motion detection. That has interesting possibilities for making this even smarter, rather than just checking for interesting objects at two fixed points, continually check for interesting objects during a motion detection.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-10T11:20:00+01:00">May 10, 2020</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2020/05/09/moving-from-wink-to-home-assistant.html" class="pagination--pager" title="Moving from Wink to Home Assistant?
+">Previous</a>
+    
+    
+      <a href="/2020/05/13/yaml-in-automations-and-scripts.html" class="pagination--pager" title="YAML in automations and scripts
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

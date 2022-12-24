@@ -1,0 +1,752 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Cameras, motion detection, and (interesting) object detection (part one) - Tinkering with Technology</title>
+<meta name="description" content="For some time now I’ve had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety of motion detection options. Kerberos.io looked good, but I couldn’t get it working reliably. ZoneMinder was good, but performance was a problem.  I’ve run Motion before, using a couple of webcams, so I decided to try out MotionEye. The UI is rather nice, and it makes it easy to configure advanced options not exposed in the UI.  My goal here is simple. I want motion detection when interesting things happen out the front of the house. The means I don’t really care about passing birds, cats, or dogs. I’m also not really that interested about people on the access road. What I want to know about are vehicles coming and going, or people on the path (or in the garden). That is where I was hoping Doods would help.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Cameras, motion detection, and (interesting) object detection (part one)">
+<meta property="og:url" content="/2020/04/28/cameras-motion-detection-and.html">
+
+
+  <meta property="og:description" content="For some time now I’ve had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety of motion detection options. Kerberos.io looked good, but I couldn’t get it working reliably. ZoneMinder was good, but performance was a problem.  I’ve run Motion before, using a couple of webcams, so I decided to try out MotionEye. The UI is rather nice, and it makes it easy to configure advanced options not exposed in the UI.  My goal here is simple. I want motion detection when interesting things happen out the front of the house. The means I don’t really care about passing birds, cats, or dogs. I’m also not really that interested about people on the access road. What I want to know about are vehicles coming and going, or people on the path (or in the garden). That is where I was hoping Doods would help.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-04-28T21:09:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2020/04/28/cameras-motion-detection-and.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2020" itemprop="item"><span itemprop="name">2020</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#04" itemprop="item"><span itemprop="name">04</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#28" itemprop="item"><span itemprop="name">28</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Cameras, motion detection, and (interesting) object detection (part one)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Cameras, motion detection, and (interesting) object detection (part one)">
+    <meta itemprop="description" content="For some time now I’ve had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety of motion detection options. Kerberos.io looked good, but I couldn’t get it working reliably. ZoneMinder was good, but performance was a problem.I’ve run Motion before, using a couple of webcams, so I decided to try out MotionEye. The UI is rather nice, and it makes it easy to configure advanced options not exposed in the UI.My goal here is simple. I want motion detection when interesting things happen out the front of the house. The means I don’t really care about passing birds, cats, or dogs. I’m also not really that interested about people on the access road. What I want to know about are vehicles coming and going, or people on the path (or in the garden). That is where I was hoping Doods would help.">
+    <meta itemprop="datePublished" content="2020-04-28T21:09:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Cameras, motion detection, and (interesting) object detection (part one)
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2020-04-28T21:09:00+01:00">April 28, 2020</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#motioneye">Motion(Eye)</a><ul><li><a href="#timelapse">Timelapse</a></li><li><a href="#motion-detection">Motion detection</a><ul><li><a href="#text-overlays">Text overlays</a></li><li><a href="#change-thresholds">Change thresholds</a></li><li><a href="#recording-options">Recording options</a></li></ul></li><li><a href="#motion-detection-hook">Motion detection hook</a></li></ul></li><li><a href="#home-assistant">Home Assistant</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>For some time now I’ve had a camera (a 4K HikVision turret camera) at the front of the house, watching our garden, path, and parking area. I started with the motion detection capabilities of the camera, but the recorded stream would have many missing frames. Then I tried a variety of motion detection options. Kerberos.io looked good, but I couldn’t get it working reliably. ZoneMinder was good, but performance was a problem.</p>
+
+<p>I’ve run <a href="https://motion-project.github.io/">Motion</a> before, using a couple of webcams, so I decided to try out <a href="https://github.com/ccrisan/motioneye/wiki">MotionEye</a>. The UI is rather nice, and it makes it easy to configure advanced options not exposed in the UI.</p>
+
+<p>My goal here is simple. I want motion detection when <em>interesting</em> things happen out the front of the house. The means I don’t really care about passing birds, cats, or dogs. I’m also not really that interested about people on the access road. What I want to know about are vehicles coming and going, or people on the path (or in the garden). That is where I was hoping Doods would help.</p>
+
+<h2 id="motioneye">Motion(Eye)</h2>
+
+<p>I’m running MotionEye in a VM, on an old i5 laptop, installed following <a href="https://github.com/ccrisan/motioneye/wiki/Install-On-Debian">their install guide</a>. The first thing I did was the obvious thing - pointed it at my camera, picked an area, and enabled motion detection.</p>
+
+<p>Then I got to watch the recorded video stream consist of a couple of frames with the CPU maxed out. That… wasn’t terribly useful. It turns out trying to do motion detection on 4MP at 20 FPS requires a bit more CPU power, but then my experimentation with ZoneMinder did point that out.</p>
+
+<p>Fortunately I’m familiar with Motion, and I knew there were relevant settings, so a quick dive into the docs found me options for a <a href="https://motion-project.github.io/motion_config.html#netcam_highres">high resolution stream</a>, and <a href="https://motion-project.github.io/motion_config.html#movie_passthrough">passthrough saving</a>. What that means is that I can have Motion do detection using the lower resolution stream (a whole 0.23MP), and when it detects motion it saves the 4MP stream. Performance problem solved!</p>
+
+<p>Well, mostly. When I pointed Home Assistant at the camera there was quite a large delay. This prompted me to look at the camera settings further. There’s a mass of tune-able options, and Skalavala has done a great job in <a href="https://github.com/skalavala/mysmarthome/tree/master/hik-vision%20camera">documenting these</a>. I’ve set the I Frame interval to match the frame rate, which dropped the delay apparent in Home Assistant. I also set the region of interest (ROI) to the area I’m doing detection in. This gets prioritised by the camera when encoding the images, so there’s more detail here. That’s particularly apparent at night.</p>
+
+<p>Now it’s time to set up Motion properly.</p>
+
+<h3 id="timelapse">Timelapse</h3>
+
+<p>The first thing I’ve set up is timelapse. It’s often interesting to watch the day at high speed, particularly on days with rapidly changing weather.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>timelapse_mode daily  
+timelapse_filename timelapse/%Y%m/Front-%d-timelapse  
+timelapse_codec mpeg4  
+timelapse_interval 60
+</code></pre></div></div>
+
+<h3 id="motion-detection">Motion detection</h3>
+
+<p>I’ve left noise detection on auto, and then set everything else manually as I’d rather slightly over detect than under detect. The settings I’m using are based on my environment, so while I’ll cover them here you’ll need to tune them to suit you.</p>
+
+<p>I’ve set a mask to only include the area of interest. In the past I’ve made use of the fact that Motion supports more than just binary detect/ignore, with a greyscale mask. Here however I’ve just stuck with the UI option.</p>
+
+<h4 id="text-overlays">Text overlays</h4>
+
+<p>I’ve enabled <em>Show frame changes</em> to make tuning easier, and just left it on. I’ve also got the timestamp added. The camera does this too, but it’s handy to indicate the delay in processing (or the fact that the devices are time sync’d differently).</p>
+
+<h4 id="change-thresholds">Change thresholds</h4>
+
+<p>I’ve got the frame change threshold, the minimum change, to 0.1%, I’ll probably up that at some point to 0.2%. The maximum is currently set at 17K pixels. I may increase that slightly too, now that I’ve got object detection included. The minimum number of frames with motion is set to two, to reduce false detections. I may reduce that to one later.</p>
+
+<p>Light switch detection is set at 15%, that works <em>fairly</em> well, but if I set it any lower I risk missing motion.</p>
+
+<h4 id="recording-options">Recording options</h4>
+
+<p>I’ve set the pre-capture to 25 frames (a little over one second), and the post-capture to 100 frames, which is roughly 5 seconds. The motion gap is set to 20 seconds. That means once motion detection stops, it records 10 seconds of activity, and then waits another 20 seconds. Motion during that 30 seconds then extends the current event.</p>
+
+<h3 id="motion-detection-hook">Motion detection hook</h3>
+
+<p>I’ve also, unsurprisingly, configured it to make a POST with a JSON payload when detecting motion, so that HA gets notified.</p>
+
+<h2 id="home-assistant">Home Assistant</h2>
+
+<p>In Home Assistant I’ve got a <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/motion_hook.yaml">webhook automation</a> triggered by that POST from motion. That turns on a boolean, and another <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/front_camera_motion_off.yaml">automation that turns it off</a> ten seconds later. The boolean triggers <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/automation/camera/front_camera_motion_detected.yaml">another automation</a> which calls a script, and yes, I could simplify this to have the webhook trigger call that script. I’ll do that at some point, probably.</p>
+
+<p><a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/scripts/camera/snapshot_front_camera.yaml">That script</a> has gone through a <em>lot</em> of changes, initially it did everything, it now only does two things. The first is call another script to run <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/scripts/camera/process_front_camera.yaml">object detection</a> on the camera. Then, if it finds nothing, it runs <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/0bf10f25cc6d191310ff0e8f64f6994c0eb839ea/scripts/camera/front_camera_notify_nothing.yaml">one script</a>, and if it finds something it <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/656cad692fe310fd0143790f1d9f06e1c5a349f6/scripts/camera/front_camera_notify.yaml">runs another</a>.</p>
+
+<p>That script is “somewhat” scary looking, but what it basically does is simple:</p>
+
+<ol>
+  <li>Run <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/656cad692fe310fd0143790f1d9f06e1c5a349f6/scripts/camera/front_camera_interesting_things.yaml">another script</a> to note the number of “interesting” things</li>
+  <li>If we found nothing interesting:
+    <ol>
+      <li>Pause for three seconds</li>
+      <li>Process the camera again</li>
+      <li>Check again for interesting things</li>
+    </ol>
+  </li>
+  <li>If we found anything interesting, turn on the boolean to indicate we found something interesting</li>
+  <li>If we found anything interesting, and we’ve enabled the option to stream motion detection for the front camera, turn on the boolean to indicate that we should stream the camera to a smart display</li>
+  <li>Prepare a notification
+    <ol>
+      <li>Split out the interesting things - people in the garden/in the path, and moving vehicles</li>
+      <li>Send the notification to one Discord channel if there were interesting things, and to another if there weren’t (one channel is muted, the other isn’t)</li>
+      <li>Include both the raw image, and the marked up image from Doods</li>
+    </ol>
+  </li>
+</ol>
+
+<p>Point two there is because it’s quite possible for the motion detection to happen while the object of interest is only just in the frame, and not enough to identify. This gives us a second chance to detect anything interesting. Three seconds is enough time for a person or vehicle to fully enter the frame.</p>
+
+<p>I’ll explain that massive template, and the camera streaming logic, when I explain my Doods setup in the next update.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#doods" class="page__taxonomy-item" rel="tag">doods</a><span class="sep">, </span>
+    
+      <a href="/tags/#home-assistant-core" class="page__taxonomy-item" rel="tag">home assistant core</a><span class="sep">, </span>
+    
+      <a href="/tags/#motion" class="page__taxonomy-item" rel="tag">motion</a><span class="sep">, </span>
+    
+      <a href="/tags/#motion-detection" class="page__taxonomy-item" rel="tag">motion detection</a><span class="sep">, </span>
+    
+      <a href="/tags/#object-detection" class="page__taxonomy-item" rel="tag">object detection</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-04-28T21:09:00+01:00">April 28, 2020</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2020/04/14/presence-detection-one-last-time.html" class="pagination--pager" title="Presence detection, one last time?
+">Previous</a>
+    
+    
+      <a href="/2020/05/09/moving-from-wink-to-home-assistant.html" class="pagination--pager" title="Moving from Wink to Home Assistant?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,702 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Breaking up automations/Room activity detection - Tinkering with Technology</title>
+<meta name="description" content="I’m sure we’ve all been there, where we’ve written automations that have grown longer and more complicated as we’ve tried to make things more flexible. Then you end up with a group of automations each hundreds of lines long, and still things don’t work well.  That’s because you’ve created a family of monsters.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Breaking up automations/Room activity detection">
+<meta property="og:url" content="/2019/04/28/breaking-up-automationsroom-activity.html">
+
+
+  <meta property="og:description" content="I’m sure we’ve all been there, where we’ve written automations that have grown longer and more complicated as we’ve tried to make things more flexible. Then you end up with a group of automations each hundreds of lines long, and still things don’t work well.  That’s because you’ve created a family of monsters.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-04-28T19:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2019/04/28/breaking-up-automationsroom-activity.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2019" itemprop="item"><span itemprop="name">2019</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#04" itemprop="item"><span itemprop="name">04</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#28" itemprop="item"><span itemprop="name">28</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Breaking up automations/Room activity detection</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Breaking up automations/Room activity detection">
+    <meta itemprop="description" content="I’m sure we’ve all been there, where we’ve written automations that have grown longer and more complicated as we’ve tried to make things more flexible. Then you end up with a group of automations each hundreds of lines long, and still things don’t work well.That’s because you’ve created a family of monsters.">
+    <meta itemprop="datePublished" content="2019-04-28T19:00:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Breaking up automations/Room activity detection
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2019-04-28T19:00:00+01:00">April 28, 2019</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I’m sure we’ve all been there, where we’ve written automations that have grown longer and more complicated as we’ve tried to make things more flexible. Then you end up with a group of automations each hundreds of lines long, and still things don’t work well.</p>
+
+<p>That’s because you’ve created a family of monsters.</p>
+
+<h3 id="is-the-room-in-use">Is the room in use</h3>
+
+<p>The starting point for me is to create a pair of automations to determine if the room is in use or not, and manage an <a href="https://www.home-assistant.io/integrations/input_boolean/">input boolean</a>. I do this by looking at the devices in the room and their state. For example, in my living room I can see if the TV is on, or if music is playing. If either of those things is happening then the room is in use. Motion detection isn’t much of an indicator since it’ll trip as the dog walks around the house. Obviously I can also manually toggle whether the room is occupied, but so far I’ve never had to.</p>
+
+<p>Other rooms have similar indicators of one of us being in there, including using calendar events. I use the calendar events for things like when friends are round for a board game. In that situation there’s nothing detectable.</p>
+
+<p>It’s not perfect, if I’m sat quietly in a room reading a book, then there’s (currently) nothing to indicate I’m there. However, if I’d a smart light that I’d turned on, I could track the state of that, or a seat sensor, or … well, you get the idea.</p>
+
+<p>Track the behaviours, not the people.</p>
+
+<h3 id="room-mode">Room mode</h3>
+
+<p>Now I’ve determined if the room is in use or not, the next thing is <em>what state should the room have</em>. Here I’ll look at things like the light level, is there a specific calendar entry currently active, and more. Those will then set an <a href="https://www.home-assistant.io/integrations/input_select/">input select</a> to tell other automations what mode the room is currently in. We currently have 5 <a href="https://github.com/DubhAd/Home-AssistantConfig/blob/master/input_select/rooms/living_room.yaml">modes for the living room</a> - Away, Day off, Day on, Night on, and Dim. This is what those mean:</p>
+
+<ul>
+  <li>Away - the room is unoccupied</li>
+  <li>Dim - the room is unoccupied, dark, and we’ve just woken up, or just arrived home</li>
+  <li>Day off - the room is occupied, and bright</li>
+  <li>Day on - the room is occupied, and dull</li>
+  <li>Night on - the room is occupied, and dark</li>
+</ul>
+
+<p>These automations are individually simple and small, and there’s little chance of things falling between the gaps.</p>
+
+<h3 id="make-it-so">Make it so</h3>
+
+<p>Now you use the state of that input select to set the room accordingly. Here’s how it works for my living room:</p>
+
+<ul>
+  <li>Away - the room is unoccupied, turn all the lights off</li>
+  <li>Dim - turn on a single light, this provides enough light to navigate the room by</li>
+  <li>Day off - turn all the lights off</li>
+  <li>Day on - turn some lights on (in this case, the one behind the TV, and one in the opposite corner), and turn the others off if they’re on</li>
+  <li>Night on - turn on all the background lighting</li>
+</ul>
+
+<h3 id="the-end">The end?</h3>
+
+<p>Yes, I now have more automations than before, I’ve at least doubled them. However, each automation is much simpler, and so easier to understand, and there’s less chance of things falling between the cracks and lights turning on (or off) when they shouldn’t.</p>
+
+<p>Overall the family have been happier with this approach, or more accurately they’ve stopped complaining that the lights are misbehaving, which suggests I’ve got it right this time.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#automation" class="page__taxonomy-item" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#presence-detection" class="page__taxonomy-item" rel="tag">presence detection</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-04-28T19:00:00+01:00">April 28, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/03/16/presence-detection-are-we-nearly-there.html" class="pagination--pager" title="Presence detection - are we nearly there yet?
+">Previous</a>
+    
+    
+      <a href="/2019/08/15/my-great-migration-part-one.html" class="pagination--pager" title="My great migration - part one
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

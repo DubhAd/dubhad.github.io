@@ -1,0 +1,860 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>YAML in automations and scripts - Tinkering with Technology</title>
+<meta name="description" content="I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you’re going to read them in order. So, I thought I’d pull together a little primer. If you’re a YAML purist you probably want to look away now, I’m aiming to make this accessible not 100% technically correct.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="YAML in automations and scripts">
+<meta property="og:url" content="/2020/05/13/yaml-in-automations-and-scripts.html">
+
+
+  <meta property="og:description" content="I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you’re going to read them in order. So, I thought I’d pull together a little primer. If you’re a YAML purist you probably want to look away now, I’m aiming to make this accessible not 100% technically correct.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-05-13T16:46:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2020/05/13/yaml-in-automations-and-scripts.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2020" itemprop="item"><span itemprop="name">2020</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#05" itemprop="item"><span itemprop="name">05</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#13" itemprop="item"><span itemprop="name">13</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">YAML in automations and scripts</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="YAML in automations and scripts">
+    <meta itemprop="description" content="I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you’re going to read them in order. So, I thought I’d pull together a little primer. If you’re a YAML purist you probably want to look away now, I’m aiming to make this accessible not 100% technically correct.">
+    <meta itemprop="datePublished" content="2020-05-13T16:46:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">YAML in automations and scripts
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2020-05-13T16:46:00+01:00">May 13, 2020</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I see many people struggle with the formatting for automations (and scripts) because the official docs are structured in a manner that assumes you’re going to read them in order. So, I thought I’d pull together a little primer. If you’re a YAML purist you probably want to look away now, I’m aiming to make this accessible not 100% technically correct.</p>
+
+<h2 id="yaml-very-basics">YAML (very) basics</h2>
+
+<p>YAML largely consists of two things, dictionaries and lists. Dictionaries are the really important piece here, because they hold everything (ultimately). For example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">homeassistant</span><span class="pi">:</span>
+</code></pre></div></div>
+
+<p>Yup, that’s a dictionary. In this case it’s empty, but it’s a dictionary. Dictionaries can hold other dictionaries, or lists. What’s a list? Here’s a list example from <a href="https://www.home-assistant.io/docs/configuration/basic/">the documentation</a>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">whitelist_external_dirs</span><span class="pi">:</span>  
+<span class="s">  - /usr/var/dumping-ground</span>  
+<span class="s">  - /tmp</span>
+</code></pre></div></div>
+
+<p>That’s a list, with two entries (values). Each entry is marked by the hyphen (<code class="language-plaintext highlighter-rouge">-</code>).</p>
+
+<p>You can also separate list items with commas, like this, but I find that it’s often less readable:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">whitelist_external_dirs</span><span class="pi">:</span> <span class="pi">[</span> <span class="nv">/usr/var/dumping-ground</span><span class="pi">,</span> <span class="nv">/tmp</span> <span class="pi">]</span>
+</code></pre></div></div>
+
+<p>The question that always comes up is when you use a dictionary and when you use a list. The unfortunate answer is that you have to check the documentation. Even more unfortunately, a single entry list doesn’t <em>need</em> that - so you’ll sometimes see a list written like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">whitelist_external_dirs</span><span class="pi">:</span>  
+<span class="s">  /usr/var/dumping-ground</span>
+</code></pre></div></div>
+
+<p>That is perfectly valid, but you can see why it causes confusion.</p>
+
+<p>Here’s a little more from that page:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">homeassistant</span><span class="pi">:</span>  
+<span class="na">  latitude</span><span class="pi">:</span> <span class="s">32.87336</span>  
+<span class="na">  longitude</span><span class="pi">:</span> <span class="s">117.22743</span>  
+<span class="na">  whitelist_external_dirs</span><span class="pi">:</span>  
+<span class="s">    - /usr/var/dumping-ground</span>  
+<span class="s">    - /tmp</span>
+</code></pre></div></div>
+
+<p>That’s a dictionary (<code class="language-plaintext highlighter-rouge">homeassistant</code>) holding:</p>
+
+<ul>
+  <li>Two dictionaries (<code class="language-plaintext highlighter-rouge">latitude</code> and <code class="language-plaintext highlighter-rouge">longitude</code>)</li>
+  <li>One list (<code class="language-plaintext highlighter-rouge">whitelist_external_dirs</code>)</li>
+</ul>
+
+<p>These are the basic building blocks. If you want more on the subject see <a href="http://thomasloven.com/blog/2018/08/YAML-For-Nonprogrammers/">this blog post</a>.</p>
+
+<h2 id="spaces">Spaces</h2>
+
+<p>With YAML, spaces (indenting) are critical. You need to keep your indenting consistent (the advice is generally to use <em>two spaces</em> per level. Oh, and don’t use tabs, unless your editor converts them to spaces. Tabs cause Home Assistant to spit out errors too. Here’s an example with broken indenting that I’ve seen people try to use:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">automation</span><span class="pi">:</span>  
+<span class="na">  - alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">automation"</span>  
+<span class="na">      id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">unique_value_42"</span>  
+<span class="na">      initial_state</span><span class="pi">:</span> <span class="s2">"</span><span class="s">on"</span>
+<span class="na">    trigger</span><span class="pi">:</span>  
+<span class="na">      - platform</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="s">        entity_id: </span>  
+<span class="s">         - switch.furnace</span>
+<span class="s">          - switch.extractor</span>
+</code></pre></div></div>
+
+<p>Here is how it should look:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">automation</span><span class="pi">:</span>  
+<span class="na">  - alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">automation"</span>  
+<span class="na">    id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">unique_value_42"</span>  
+<span class="na">    initial_state</span><span class="pi">:</span> <span class="s2">"</span><span class="s">on"</span>  
+<span class="na">    trigger</span><span class="pi">:</span>  
+<span class="na">      - platform</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="s">        entity_id: </span>  
+<span class="s">          - switch.furnace</span>  
+<span class="s">          - switch.extractor</span>
+</code></pre></div></div>
+
+<p>Running a configuration check will warn you when the YAML is invalid, and it’s something you should do any time you write any YAML. </p>
+
+<h2 id="quoting">Quoting</h2>
+
+<p>You don’t <em>have</em> to quote things in YAML, but for strings (text) you should or the result may be unexpected. What do I mean? Well <code class="language-plaintext highlighter-rouge">"On"</code> is a string, but <code class="language-plaintext highlighter-rouge">On</code> is a boolean value. These things to humans look the same, but to the computer they’re different. Similarly if you have a number, like <code class="language-plaintext highlighter-rouge">42</code>, that’s a number, but if you put it in quotes, like <code class="language-plaintext highlighter-rouge">"42"</code>, then that’s a string. </p>
+
+<p>When you need to use multiple quotes on a line, then you need to use different ones for the outer quotes than the inner quotes, like:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">automation</span><span class="pi">:</span>  
+<span class="na">  - alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Tom's</span><span class="nv"> </span><span class="s">alarm</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">ringing"</span>
+</code></pre></div></div>
+
+<p>This becomes particularly important if you’re using templates.</p>
+
+<h2 id="case-sensitivity">Case sensitivity</h2>
+
+<p>You also need to keep in mind that computers don’t treat capital letters the same as lower case letters. The string <code class="language-plaintext highlighter-rouge">"home"</code> is different to the computer from <code class="language-plaintext highlighter-rouge">"Home"</code>, so you need to be sure which it is you’re looking for.</p>
+
+<h2 id="states">States</h2>
+
+<p>The state you see in Home Assistant’s user interface may not be the actual state. You need to look at the entity in <em>Developer Tools</em> and then <a href="https://my.home-assistant.io/redirect/developer_states/"><em>States</em></a> to see the actual state of the entity. For example, a door/window sensor will show as <em>Open</em> or <em>Closed</em> in the user interface, but is actually <code class="language-plaintext highlighter-rouge">'on'</code> and <code class="language-plaintext highlighter-rouge">'off'</code>.</p>
+
+<h1 id="automation-structure">Automation Structure</h1>
+
+<p>An automation has four parts</p>
+
+<ol>
+  <li>Information about the automation</li>
+  <li>Trigger</li>
+  <li>Condition (optional)</li>
+  <li>Action</li>
+</ol>
+
+<h2 id="about-the-automation">About the automation</h2>
+
+<p>There are up to three things you’ll have here. </p>
+
+<ol>
+  <li>The first is the alias, the human readable name. This will typically be used to form the entity_id of the automation.</li>
+  <li>Optionally there’s an id. This is used by the automation editor and if present is used to form the entity_id (instead of the alias).</li>
+  <li>Finally there’s an optional initial_state. This is used to force the automation to be enabled or disabled at startup.</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">automation</span><span class="pi">:</span>  
+<span class="na">  - alias</span><span class="pi">:</span> <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">test</span><span class="nv"> </span><span class="s">automation"</span>  
+<span class="na">    id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">unique_value_42"</span>  
+<span class="na">    initial_state</span><span class="pi">:</span> <span class="s2">"</span><span class="s">on"</span>
+</code></pre></div></div>
+
+<p>The automation is a list entry, in the automation dictionary.</p>
+
+<h2 id="trigger">Trigger</h2>
+
+<p>This is the bit that kicks it all off, your list of triggers. When <em>any</em> trigger statement <em>becomes true</em> then the processing begins. You have to have at least one trigger, and you can have as many as you need. It’s worth taking the time now to <a href="https://www.home-assistant.io/docs/automation/trigger/">read the triggers page</a>, and see what’s possible (and what causes a trigger to become true). Here’s a simple one:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">    trigger</span><span class="pi">:</span>  
+<span class="na">      - platform</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="s">        entity_id: device_tracker.tinkerer</span>  
+<span class="na">        to</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>
+</code></pre></div></div>
+
+<p>I’ve used the list indicator here, even though I only have one trigger. This is to make it clearer that triggers are a list. This will trigger when <code class="language-plaintext highlighter-rouge">device_tracker.tinkerer</code> becomes <code class="language-plaintext highlighter-rouge">'home'</code>. Here is a more complex one:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">    trigger</span><span class="pi">:</span>  
+<span class="na">      - platform</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="na">        entity_id</span><span class="pi">:</span> <span class="s">device_tracker.tinkerer</span>  
+<span class="na">        to</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>  
+<span class="na">      - platform</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="na">        entity_id</span><span class="pi">:</span> <span class="s">device_tracker.better_half</span>  
+<span class="na">        to</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>
+</code></pre></div></div>
+
+<p>Two triggers - here the automation will start processing if either <code class="language-plaintext highlighter-rouge">device_tracker.tinkerer</code> or <code class="language-plaintext highlighter-rouge">device_tracker.better_half</code> become <code class="language-plaintext highlighter-rouge">'home'</code>. Since both are looking for the same target state, I could have written the more compact version: </p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">    trigger</span><span class="pi">:</span>  
+<span class="na">      - platform</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="s">        entity_id: </span>  
+          <span class="s">- device_tracker.tinkerer</span>  
+          <span class="s">- device_tracker.better_half</span>  
+<span class="na">        to</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>
+</code></pre></div></div>
+
+<p>I prefer this, partly because it’s more compact, but also because it’s much easier to read.</p>
+
+<h2 id="conditions">Conditions</h2>
+
+<p>Conditions are optional - you don’t need any if your automation doesn’t call for one.</p>
+
+<p>All the conditions in the list have to be <em>currently</em> true for the automation to run. There are <a href="https://www.home-assistant.io/docs/scripts/conditions/">many available conditions</a>, including some that allow you to say that <em>this or that</em> must be true. Conditions are particularly useful when you have multiple triggers, and want them all to be true for the automation to run. With conditions however you have to list each separately, you can’t combine them like we did for triggers:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">    condition</span><span class="pi">:</span>  
+<span class="na">      - condition</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="na">        entity_id</span><span class="pi">:</span> <span class="s">device_tracker.tinkerer</span>  
+<span class="na">        state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>  
+<span class="na">      - condition</span><span class="pi">:</span> <span class="s">state</span>  
+<span class="na">        entity_id</span><span class="pi">:</span> <span class="s">device_tracker.better_half</span>  
+<span class="na">        state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">home'</span>
+</code></pre></div></div>
+
+<p>Here we require that both device trackers are <em>currently</em> in the state <code class="language-plaintext highlighter-rouge">'home'</code>. If the automation is triggered by me arriving home, while the wife is still away, then one condition will be false, and the automation won’t run.</p>
+
+<h2 id="actions">Actions</h2>
+
+<p>This is where things happen. Actions are <a href="https://www.home-assistant.io/docs/scripts/">basically scripts</a> - a list of actions to take in sequence. That means you can call services (do things), check conditions, pause for a fixed time (<code class="language-plaintext highlighter-rouge">delay</code>) or until a <a href="https://www.home-assistant.io/docs/configuration/templating/">template</a> becomes true (<code class="language-plaintext highlighter-rouge">wait_template</code>), or send events. You have at least one, and potentially <em>many</em> actions. If any step fails (or returns false) then the automation stops at that point. This is handy for condition checks, and not so handy at other times.</p>
+
+<p>With a service call you can generally give one, or many, entities, for example:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="na">action</span><span class="pi">:</span>  
+      <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">switch.turn_on</span>  
+        <span class="na">entity_id</span><span class="pi">:</span>   
+          <span class="pi">-</span> <span class="s">switch.furnace</span>  
+          <span class="pi">-</span> <span class="s">switch.extractor</span>  
+      <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">state</span>  
+        <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sun.sun</span>  
+        <span class="na">state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">below_horizon'</span>  
+      <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">light.turn_on</span>  
+        <span class="na">data</span><span class="pi">:</span>  
+          <span class="na">entity_id</span><span class="pi">:</span> <span class="s">light.basement, light.stairwell</span>
+</code></pre></div></div>
+
+<p>Here I’ve shown the two different ways of listing multiple entities - I prefer the first method. You’ll see that one of these has a data block, and one doesn’t. Generally speaking, you need a data block where you’re providing more than just an <code class="language-plaintext highlighter-rouge">entity_id</code>, but it’s best to simply follow what’s in the documentation.</p>
+
+<p>This particular action block will turn on two switches, and then only if the state of <code class="language-plaintext highlighter-rouge">sun.sun</code> is <code class="language-plaintext highlighter-rouge">'below_horizon'</code> will it turn on the two lights.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#automation" class="page__taxonomy-item" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#home-assistant-core" class="page__taxonomy-item" rel="tag">home assistant core</a><span class="sep">, </span>
+    
+      <a href="/tags/#yaml" class="page__taxonomy-item" rel="tag">yaml</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-05-13T16:46:00+01:00">May 13, 2020</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2020/05/10/cameras-motion-detection-and.html" class="pagination--pager" title="Cameras, motion detection, and (interesting) object detection (part two)
+">Previous</a>
+    
+    
+      <a href="/2020/05/29/home-assistant-docker-and-using-ssh.html" class="pagination--pager" title="Home Assistant, Docker, and using SSH
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

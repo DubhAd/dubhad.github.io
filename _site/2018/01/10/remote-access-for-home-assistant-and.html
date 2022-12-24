@@ -1,0 +1,778 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Remote access for Home Assistant (and other things) - Tinkering with Technology</title>
+<meta name="description" content="A (quick) primer on how to access a your Home Assistant server, or other device, from outside your network, with a dynamic DNS service. You’ll use a dynamic DNS service for a few reasons:">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Remote access for Home Assistant (and other things)">
+<meta property="og:url" content="/2018/01/10/remote-access-for-home-assistant-and.html">
+
+
+  <meta property="og:description" content="A (quick) primer on how to access a your Home Assistant server, or other device, from outside your network, with a dynamic DNS service. You’ll use a dynamic DNS service for a few reasons:">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-01-10T09:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2018/01/10/remote-access-for-home-assistant-and.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2018" itemprop="item"><span itemprop="name">2018</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#01" itemprop="item"><span itemprop="name">01</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#10" itemprop="item"><span itemprop="name">10</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Remote access for Home Assistant (and other things)</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Remote access for Home Assistant (and other things)">
+    <meta itemprop="description" content="A (quick) primer on how to access a your Home Assistant server, or other device, from outside your network, with a dynamic DNS service.You’ll use a dynamic DNS service for a few reasons:">
+    <meta itemprop="datePublished" content="2018-01-10T09:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Remote access for Home Assistant (and other things)
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2018-01-10T09:00:00+00:00">January 10, 2018</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#terminology">Terminology</a></li><li><a href="#before-you-begin">Before You Begin</a><ul><li><a href="#adsl-or-multiple-routers">ADSL or multiple routers</a></li></ul></li><li><a href="#summary">Summary</a><ul><li><a href="#step-1---create-your-hostname">Step 1 - Create your hostname</a></li><li><a href="#step-2---configure-updating">Step 2 - Configure Updating</a></li><li><a href="#step-3---configuring-the-device">Step 3 - Configuring the Device</a></li><li><a href="#step-4---initial-testing">Step 4 - Initial Testing</a></li><li><a href="#step-5---before-configuring-the-router">Step 5 - Before Configuring the Router</a></li><li><a href="#step-6---configuring-the-router-to-forward-traffic">Step 6 - Configuring the Router to Forward Traffic</a></li><li><a href="#step-7---testing">Step 7 - Testing</a></li></ul></li><li><a href="#it-doesnt-work">It doesn’t work!</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p><em>A (quick) primer on how to access a your Home Assistant server, or other device, from outside your network, with a dynamic DNS service.</em><br />
+You’ll use a dynamic DNS service for a few reasons:</p>
+
+<ol>
+  <li>You can’t get an SSL certificate for an IP address, and you’ll need an SSL certificate if you’re wanting to connect any cloud services to Home Assistant (be warned though, Amazon <a href="https://developer.amazon.com/docs/custom-skills/security-testing-for-an-alexa-skill.html#22-skills-hosted-as-web-services-on-your-own-endpoint">explicitly don’t support Let’s Encrypt</a> for Alexa endpoints).</li>
+  <li>Unless your ISP allocates static IP address, it’ll change at some point (and even if they do, it may still change). By using a hostname then when that happens you don’t have to reconfigure all your connected services.</li>
+  <li>For remote access, a hostname is much easier to remember than an IP address.</li>
+</ol>
+
+<h2 id="terminology">Terminology</h2>
+
+<ul>
+  <li><em>Device</em>: This may be a computer (running Home Assistant for example), a DVR, a web-cam, anything on your network that you can access from your network, but want to be able to access from outside it.</li>
+  <li><em>LAN</em>: Your network</li>
+  <li><em>WAN</em>: Your connection to your ISP’s network (and from there, the Internet)</li>
+</ul>
+
+<h2 id="before-you-begin">Before You Begin</h2>
+
+<p><strong>Check the WAN IP address of your router</strong> - if it looks like <code class="language-plaintext highlighter-rouge">10.x.x.x</code>, <code class="language-plaintext highlighter-rouge">192.168.x.x</code> or <code class="language-plaintext highlighter-rouge">172.16.x.x</code> to <code class="language-plaintext highlighter-rouge">172.31.x.x</code> then you have what is known as an <a href="/2018/01/09/rfc1918.html">RFC1918 IP address</a> (often referred to as private addresses). You will need to contact your ISP to find out how to get a public IP address, or have traffic routed to you. <strong>Until that is done you won’t be able to get anything else working</strong>.</p>
+
+<p>The only way to be certain of the WAN address is to look at your router, or if you have one your ADSL modem. You can use one of the many web pages that will tell you what your WAN IP address appears to be. Be warned however that if you are behind a proxy server, or you have one of the RFC1918 IP addresses referred to above, they will report the wrong IP address and you will waste time trying to get this working.</p>
+
+<h3 id="adsl-or-multiple-routers">ADSL or multiple routers</h3>
+
+<p>If you have a separate ADSL modem (that’s really a router) and router, or you have multiple routers, what follows isn’t enough. You’ll also need to forward the same ports from the external network device (ADSL modem or router) to the internal router before forwarding those ports from the internal router to the device you’re trying to access. It is advisable if you’re in this situation to put your modem into bridge mode if possible - your ISP will be able to advise on this.</p>
+
+<hr />
+
+<h2 id="summary">Summary</h2>
+
+<p>There are 6 general steps:</p>
+
+<ol>
+  <li>Create your dynamic DNS hostname with a provider of your choice.</li>
+  <li>If you have a dynamic IP address (if you don’t know - you have one), configure a device on your network (that is always on) to update your hostname with your IP address. Your choice of software will depend on what provider you use - they’ll have a list. If you’re running Home Assistant then Hass.io has an <a href="https://home-assistant.io/addons/duckdns/">add-on for DuckDNS</a>.</li>
+  <li>Configure the device you want to forward traffic to with either a static IP address, or a static DHCP lease. This ensures that the time spent configuring the router (in a moment) isn’t wasted if/when the IP on your device changes.</li>
+  <li>Test the device from your network.</li>
+  <li>Configure your router to forward traffic to your device. How you do this depends on your router, and what you want to access. Fortunately there is a web site that publishes guides.</li>
+  <li>Test your setup from outside your network.</li>
+</ol>
+
+<h3 id="step-1---create-your-hostname">Step 1 - Create your hostname</h3>
+
+<p>Create your dynamic DNS hostname with your provider of choice (<a href="https://www.duckdns.org/">DuckDNS</a>, <a href="https://www.noip.com/free">No-IP</a>, etc), or if you have your own domain and a DNS provider that supports dynamic updates, create the hostname there. If asked for an IP address when creating the hostname use the auto-detected value or enter <code class="language-plaintext highlighter-rouge">192.0.2.1</code> - the IP address will be replaced by your update client later.</p>
+
+<h3 id="step-2---configure-updating">Step 2 - Configure Updating</h3>
+
+<p>If you have a dynamic IP address from your ISP, you have to make one basic decision - are you going to do your updating from your router, or from a PC? Running it from a PC (Windows, Linux or other) can mean that you get better logging and more control, but may result in more network traffic and greater delays in updating changed IP addresses (10 minutes rather than 1 minute). Using a router should be easier, if your router supports your chosen provider. If you are running your updater on Linux/*BSD or any other non-Windows platform it is generally best to install from a package (whether that be an RPM, a DEB or from ports/pkg). That way you should get the required startup scripts and a sample configuration file.</p>
+
+<p>If you’re running the Hass.io install of Home Assistant then it has an <a href="https://home-assistant.io/addons/duckdns/">add-on for DuckDNS</a></p>
+
+<h3 id="step-3---configuring-the-device">Step 3 - Configuring the Device</h3>
+
+<p>You need to ensure that the device you forward traffic to has a static (aka fixed) IP address. If you don’t do this then at some point the IP could change, and you’ll be wondering why it’s suddenly broken.<br />
+There are 2 ways of doing this.</p>
+
+<ol>
+  <li>On the device itself - how you do this depends on the device or underlying operating system</li>
+  <li>On the DHCP server (usually on the router) - many offer the option of assigning a fixed IP address to any given device (usually by MAC address)</li>
+</ol>
+
+<p>If you go with option (1) make sure that you use an IP address outside of the range your DHCP server is allocating from. If you don’t do this you’ll end up with a duplicate IP on your network, and things won’t work. In the rest of this document I’ll use <code class="language-plaintext highlighter-rouge">192.168.0.1</code> to refer to this IP address.</p>
+
+<h3 id="step-4---initial-testing">Step 4 - Initial Testing</h3>
+
+<p>At this point you should be able to connect to the device, using the chosen IP address, from another computer on the LAN (it is important not to test from the device running the service). Until you get this to work there’s no point in going further.</p>
+
+<h3 id="step-5---before-configuring-the-router">Step 5 - Before Configuring the Router</h3>
+
+<p>Your first step here is identifying what port(s) you need to forward.</p>
+
+<p>If you access the device with a web browser and a URL that looks like <code class="language-plaintext highlighter-rouge">https://192.168.0.1/</code> then you’ll want to forward port 443/TCP. If it looks like <code class="language-plaintext highlighter-rouge">https://192.168.0.1:8123/</code> then you’ll want to forward the number after the colon (:) - in this case port 8123/TCP.</p>
+
+<p>Other ports can usually be found easily by visiting Google, or consulting the appropriate guide (more in a moment).</p>
+
+<p>Now, before you configure your port forwarding there may be a problem. Some routers will not actually forward traffic on the same port as their administrative interface uses, even though they’ll happily let you set that up. If this applies to your router it’ll be easy to spot - instead of getting the device you expected to see you’ll get your router’s admin page (or a login prompt for the router).</p>
+
+<p>At this point you have 3 choices:</p>
+
+<ol>
+  <li>If supported, move the admin page to a different port</li>
+  <li>Forward a different port</li>
+  <li>Try a firmware upgrade, or alternative firmware (DD-WRT, OpenWRT etc) where supported</li>
+</ol>
+
+<h3 id="step-6---configuring-the-router-to-forward-traffic">Step 6 - Configuring the Router to Forward Traffic</h3>
+
+<p>Now it’s time to configure the port forwarding. The manual that came with the router will detail how to do this, but if you’ve lost it (or don’t want to look for it) there’s a <a href="https://portforward.com/">handy website with guides</a>, and they even provide a program called PFConfig to do it for you.</p>
+
+<p>All you have to do is pick your router, pick the program you want to forward traffic to (or the protocol) and follow the instructions - complete with pictures.</p>
+
+<p>Be aware of problems with a small number of routers - on these if you configure the port forwarding using the hostname of the device to forward to then you may have problems. You have to use the IP address at all times.</p>
+
+<h3 id="step-7---testing">Step 7 - Testing</h3>
+
+<p>You now need to test from outside your LAN with the dynamic DNS hostname. The reason for testing from outside your LAN is that not all routers support loopback connections. There are several ways to test this:</p>
+
+<ol>
+  <li>Via a suitable online page. For web servers (or anything which uses a browser interface) there are various (limited functionality) online browsers. For email servers you can use the <a href="https://www.mxtoolbox.com/">MX Toolbox service</a>, which allows you to run some basic checks.</li>
+  <li>From an external PC, mobile phone, online proxy or a VPN to a remote location. This will give you a proper test, allowing you to see what others would see. If you are using a computer ensure that you do your testing from another home user connection. Many public connections and work networks block ports and may make it look like it’s not working, when it really is.</li>
+  <li>The <a href="https://www.yougetsignal.com/tools/open-ports/">Open Port Tool</a> allows you to check if portforwarding on your router is correctly configured, and your application is listening on the related port(s).</li>
+</ol>
+
+<h2 id="it-doesnt-work">It doesn’t work!</h2>
+
+<p>Before you panic, take a few minutes to go through the steps above again, checking that you’ve got it all right. It could be that you’ve made a typing error in the IP or port, selected UDP when you should have selected TCP, or just forgot to hit save on the router’s configuration page.</p>
+
+<p>Now, if you are using a web browser and a port other than port 80, are you remembering to specify the port. For example, if you are using port 8080 then you would enter <code class="language-plaintext highlighter-rouge">http://dynamic.example.org:8080/</code> in the URL bar of your web browser. Many problems are caused by not specifying the port.</p>
+
+<p>Next, check that the IP address your hostname resolves to is the same as the WAN IP address of your router. If it doesn’t, wait 10 minutes and check again. If it still doesn’t then check that your update client is working and has updated your hostname with the current WAN IP. If it has you may need to change your DNS servers (OpenDNS, Google, and others all run free DNS servers) or flush your DNS cache.</p>
+
+<p>If your router has a WAN IP address that looks like <code class="language-plaintext highlighter-rouge">10.x.x.x</code>, <code class="language-plaintext highlighter-rouge">192.168.x.x</code> or <code class="language-plaintext highlighter-rouge">172.16.x.x</code> to <code class="language-plaintext highlighter-rouge">172.31.x.x</code> then you have what is known as an RFC1918 IP address. You will need to contact your ISP to find out how to get a public IP address, or have traffic routed to you.</p>
+
+<p>Another thing to consider is that some ISPs block incoming traffic on common server ports (or just anything below port 1024). If you’re trying to access a web based service (that is, with a web browser), then try forwarding a different port (say 10080) to your device. If that works then your ISP is blocking traffic on that port.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#remote-access" class="page__taxonomy-item" rel="tag">remote access</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-01-10T09:00:00+00:00">January 10, 2018</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2018/01/09/rfc1918.html" class="pagination--pager" title="RFC1918
+">Previous</a>
+    
+    
+      <a href="/2018/01/11/why-home-assistant.html" class="pagination--pager" title="Why Home Assistant?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

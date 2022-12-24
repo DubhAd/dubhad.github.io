@@ -1,0 +1,689 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Messing with meshing - Tinkering with Technology</title>
+<meta name="description" content="Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time.  The universe has moved on, and Zigbee is becoming more of a standard. Home Assistant now has two core Zigbee integrations with a wide range of supported devices (zha and deconz), and then there’s zigbee2mqtt.  I’d already stepped into Zigbee when I bought a Hue hub and compatible light strip controller, but hadn’t intended to do much more than use the hub as a gateway for some lights. I had nothing but trouble with the hub though. It would regularly go unavailable for tens of minutes, so I accepted the prompt for a firmware upgrade, at the end of which the hub wouldn’t respond to the Hue app. Nothing I did would bring it back to life, and given the previous trouble I’d had with it I decided it was time to jump fully in.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Messing with meshing">
+<meta property="og:url" content="/2019/09/06/messing-with-meshing.html">
+
+
+  <meta property="og:description" content="Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time.  The universe has moved on, and Zigbee is becoming more of a standard. Home Assistant now has two core Zigbee integrations with a wide range of supported devices (zha and deconz), and then there’s zigbee2mqtt.  I’d already stepped into Zigbee when I bought a Hue hub and compatible light strip controller, but hadn’t intended to do much more than use the hub as a gateway for some lights. I had nothing but trouble with the hub though. It would regularly go unavailable for tens of minutes, so I accepted the prompt for a firmware upgrade, at the end of which the hub wouldn’t respond to the Hue app. Nothing I did would bring it back to life, and given the previous trouble I’d had with it I decided it was time to jump fully in.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2019-09-06T11:42:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2019/09/06/messing-with-meshing.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2019" itemprop="item"><span itemprop="name">2019</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#09" itemprop="item"><span itemprop="name">09</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#06" itemprop="item"><span itemprop="name">06</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Messing with meshing</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Messing with meshing">
+    <meta itemprop="description" content="Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time.The universe has moved on, and Zigbee is becoming more of a standard. Home Assistant now has two core Zigbee integrations with a wide range of supported devices (zha and deconz), and then there’s zigbee2mqtt.I’d already stepped into Zigbee when I bought a Hue hub and compatible light strip controller, but hadn’t intended to do much more than use the hub as a gateway for some lights. I had nothing but trouble with the hub though. It would regularly go unavailable for tens of minutes, so I accepted the prompt for a firmware upgrade, at the end of which the hub wouldn’t respond to the Hue app. Nothing I did would bring it back to life, and given the previous trouble I’d had with it I decided it was time to jump fully in.">
+    <meta itemprop="datePublished" content="2019-09-06T11:42:00+01:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Messing with meshing
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2019-09-06T11:42:00+01:00">September 6, 2019</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Back when I started with home automation, Z-Wave was the obvious choice for sensors, smart sockets. You could mix and match any brand of device, and controller, and things would work. Zigbee was more of a minefield at the time.</p>
+
+<p>The universe has moved on, and Zigbee is becoming more of a standard. Home Assistant now has two core Zigbee integrations with a wide range of supported devices (<a href="https://www.home-assistant.io/integrations/zha">zha</a> and <a href="https://www.home-assistant.io/integrations/deconz/">deconz</a>), and then there’s <a href="https://www.zigbee2mqtt.io/">zigbee2mqtt</a>.</p>
+
+<p>I’d already stepped into Zigbee when I bought a Hue hub and compatible light strip controller, but hadn’t intended to do much more than use the hub as a gateway for some lights. I had nothing but trouble with the hub though. It would regularly go <em>unavailable</em> for tens of minutes, so I accepted the prompt for a firmware upgrade, at the end of which the hub wouldn’t respond to the Hue app. Nothing I did would bring it back to life, and given the previous trouble I’d had with it I decided it was time to jump fully in.</p>
+
+<h3 id="which-path">Which path?</h3>
+
+<p>There’s no right answer here, they each have advantages, disadvantages, and slightly different device support. Of course, with all of them you can add unsupported devices and help create support for them.</p>
+
+<p>I went with Zigbee2MQTT for two main reasons</p>
+
+<ol>
+  <li>I’m now using MQTT anyway for <a href="https://github.com/andrewjfreyer/monitor">monitor</a></li>
+  <li>I want something that I can upgrade and change separately from HA, to cut down on restarts</li>
+</ol>
+
+<p>All I needed to get started was to ditch that Hue hub, and buy all the parts needed to build a stick and a router. That takes too long to ship from the other side of the world, so while I did order the parts for flashing firmware, I ordered a <a href="http://zigbee2mqtt.discourse.group/t/ad-buy-ready2use-zigbee2mqtt-stick-flashed-antenna-mod-and-printed-case/22">pre-assembled controller and router</a>. Those came with antenna soldered on, and a nice case.</p>
+
+<p><strong><em>NB: I wouldn’t recommend this stick any more, the CC253x chips have significant limitations, buy something CC2652 based</em></strong></p>
+
+<h3 id="and-so-it-begins">And so, it begins</h3>
+
+<p>Getting the Gledopto reset was a pain, but after a few dozen attempts, it worked. Because I worked on that over a few evenings, I had the time to order a small stack of Xiaomi devices - a bunch of door/window sensors, a <em>human body sensor</em> (motion and light levels), and a temperature and humidity sensor. Those almost all worked as I hoped. The door/window sensors are fantastic, and the temperature and humidity sensor works well. The motion and light sensor… is a good motion sensor, but it only reports light levels when there’s motion (and it’s not terribly sensitive at lower light levels). I’ve clearly been spoiled by the Z-Wave multi-sensors. Still, they have their uses.</p>
+
+<p>Still, I ordered a batch more of the door/window sensors, a couple more temperature and humidity sensors, and one of the <em>wireless switch</em> units - a little battery powered button.</p>
+
+<p>I’ve also started replacing some of the accent lighting with adjustable colour temperature units, which makes a rather pleasant change.</p>
+
+<h3 id="going-forwards">Going forwards</h3>
+
+<p>I’m likely to stay with both, at least for the next few years. Neither of these are without issues - Z-Wave is relatively expensive, and Zigbee has (for me at least) been slightly less reliable - one device for instance left the mesh when it was power cycled, and refuses to re-join.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#z-wave" class="page__taxonomy-item" rel="tag">z-wave</a><span class="sep">, </span>
+    
+      <a href="/tags/#zigbee" class="page__taxonomy-item" rel="tag">zigbee</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-09-06T11:42:00+01:00">September 6, 2019</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2019/08/28/the-great-migration-part-two.html" class="pagination--pager" title="The great migration - part two
+">Previous</a>
+    
+    
+      <a href="/2019/10/27/presence-detection-final-countdown.html" class="pagination--pager" title="Presence detection, the final countdown?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

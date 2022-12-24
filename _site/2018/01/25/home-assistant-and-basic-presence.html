@@ -1,0 +1,741 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Home Assistant and (basic) Presence Detection - Tinkering with Technology</title>
+<meta name="description" content="Reliable presence detection is a challenge for many people. In part this is because modern smartphones put WiFi (and apps) to sleep when they’re idle.">
+
+
+  <meta name="author" content="Tinkerer">
+  
+  <meta property="article:author" content="Tinkerer">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Tinkering with Technology">
+<meta property="og:title" content="Home Assistant and (basic) Presence Detection">
+<meta property="og:url" content="/2018/01/25/home-assistant-and-basic-presence.html">
+
+
+  <meta property="og:description" content="Reliable presence detection is a challenge for many people. In part this is because modern smartphones put WiFi (and apps) to sleep when they’re idle.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-01-25T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/2018/01/25/home-assistant-and-basic-presence.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Tinkerer",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Tinkering with Technology Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Tinkering with Technology
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/year-archive/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#2018" itemprop="item"><span itemprop="name">2018</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#01" itemprop="item"><span itemprop="name">01</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories/#25" itemprop="item"><span itemprop="name">25</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Home Assistant and (basic) Presence Detection</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/tinkerer.png" alt="Tinkerer" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Tinkerer</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Tinkering with technology for a long long time. I was once a sysadmin, but then I saw the light and escaped.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Milliways</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/DubhAd" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-house-signal" aria-hidden="true"></i><span class="label">My HA config</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Home Assistant and (basic) Presence Detection">
+    <meta itemprop="description" content="Reliable presence detection is a challenge for many people. In part this is because modern smartphones put WiFi (and apps) to sleep when they’re idle.">
+    <meta itemprop="datePublished" content="2018-01-25T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Home Assistant and (basic) Presence Detection
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2018-01-25T00:00:00+00:00">January 25, 2018</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Reliable presence detection is a challenge for many people. In part this is because modern smartphones put WiFi (and apps) to sleep when they’re idle.</p>
+
+<p>There are many ways of approaching this (just look at the threads on the <a href="https://community.home-assistant.io/">Home Assistant forum</a> to see), but here’s how I’ve tackled it with a range of Android device tracker.</p>
+
+<h2 id="at-home-tracking">At home tracking</h2>
+
+<p>For on network detection I use <a href="https://home-assistant.io/integrations/nmap_tracker/">nmap</a>. My router isn’t directly supported, and since I allocate a small range for mobile devices, nmap works well. I also use it for detecting whether some of the media players (and other devices) are on.</p>
+
+<p>The problem (as mentioned above) is that modern smartphones turn off WiFi when they’re idle, at which point the device ends up marked as away. Fortunately they don’t turn off Bluetooth, so I also use the <a href="https://home-assistant.io/integrations/bluetooth_tracker/">Bluetooth tracker</a>. I did make the mistake of putting my Home Assistant system in one corner of the house, so Bluetooth doesn’t <em>quite</em> reach the opposite corner of the house reliably. The dead zone however is barely 0.5M², so it’s not a big deal.</p>
+
+<h2 id="general-location-tracking">General location tracking</h2>
+
+<p>I use <a href="https://code.mendhak.com/gpslogger/">GPSLogger</a> on Android for location tracking. This allows me to detect if people enter or leave <a href="https://home-assistant.io/integrations/zone/">a zone</a>, and see how long it would <a href="https://home-assistant.io/integrations/google_travel_time/">take them to get home</a> - no point in putting the dinner on for 6 PM if nobody will be home before 7 after all.</p>
+
+<p>The settings are default, other than:</p>
+
+<ul>
+  <li>Start on boot and app launch</li>
+  <li>Hide the notification buttons and from the status bar</li>
+  <li>Location providers of GPS and Passive. One one device I’ve disabled <em>Network</em> as a test of the impact. So far, it appears to be insignificant.</li>
+  <li>Logging interval of 900 seconds (15 minutes) on my tablet, and 600 seconds (10 minutes) on everything else</li>
+  <li>Accuracy filter of 200</li>
+  <li>Logging to URL</li>
+</ul>
+
+<p>The battery impact is irrelevant - 1% usage at the end of a typical day.</p>
+
+<p>Geo-location like this I find useful for various automations, like letting whichever of us is at home know the other is on their way (handy for asking them to detour by the shops to grab something). It’s also used in an automation when I’m in the office, to let me know the state of the trains for the commute home.</p>
+
+<h2 id="bringing-it-together">Bringing it together</h2>
+
+<p>Now I can group these trackers (nmap, Bluetooth, and GPSLogger). When any one of them shows as home, I am then at home. This is largely where I have things now, and it’s proven very reliable.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">group</span><span class="pi">:</span>
+  <span class="na">person_tinkerer</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Tinkerer</span>
+    <span class="na">view</span><span class="pi">:</span> <span class="no">false</span>
+    <span class="na">entities</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">device_tracker.tinkerer_mobile_nmap</span>
+    <span class="pi">-</span> <span class="s">device_tracker.tinkerer_mobile_bt</span>
+    <span class="pi">-</span> <span class="s">device_tracker.tinkerer_mobile</span>
+
+<span class="na">customize</span><span class="pi">:</span>
+  <span class="na">group.person_tinkerer</span><span class="pi">:</span>
+    <span class="na">entity_picture</span><span class="pi">:</span> <span class="s">/local/tinkerer.jpg</span>
+</code></pre></div></div>
+
+<h2 id="wait-theres-more">Wait! There’s more</h2>
+
+<p>Having home/away is slightly useful, but I like to display where people are, and if not in a zone how long it would take them to get home (really useful for planning dinner). For that I have a template sensor for each person which displays the zone (home or other) if we’re in one, otherwise how long it’ll take to get home:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">sensor</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">template</span>
+    <span class="na">sensors</span><span class="pi">:</span>
+      <span class="na">tinkerer_travel</span><span class="pi">:</span>
+        <span class="na">friendly_name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Tinkerer's</span><span class="nv"> </span><span class="s">location"</span>
+        <span class="na">value_template</span><span class="pi">:</span> <span class="pi">&gt;-</span>
+          <span class="s">{%- if is_state("group.person_tinkerer", "home") -%}</span>
+            <span class="s">At home</span>
+          <span class="s">{%- elif is_state("device_tracker.tinkerer_mobile", "not_home") -%}</span>
+            <span class="s">{{ states.sensor.tinkerers_time_to_home.attributes.duration }} to home</span>
+          <span class="s">{%- else -%}</span>
+            <span class="s">At {{ states("device_tracker.tinkerer_mobile") }}</span>
+          <span class="s">{%- endif %}</span>
+</code></pre></div></div>
+
+<p>And then, for display, I’ll add my picture:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">customize</span><span class="pi">:</span>
+  <span class="na">sensor.tinkerer_travel</span><span class="pi">:</span>
+    <span class="na">entity_picture</span><span class="pi">:</span> <span class="s">/local/tinkerer.jpg</span>
+</code></pre></div></div>
+
+<h2 id="moving-further">Moving further</h2>
+
+<p>However, there’s more to it than just where people’s mobile devices are. If somebody’s at home, the chances are there’s a TV, or a media player, or a PC on. Some of us have other devices (like smart watches) that can also be used. Then there’s whether or not external doors have been opened, after all if no door has opened, we can’t have left home.</p>
+
+<p>I also could go a step further and use a <a href="https://home-assistant.io/integrations/bayesian/">bayesian sensor</a>, or a <a href="https://home-assistant.io/integrations/template/">template sensor</a>, such that I need at least two out of the three showing at home before I’m considered at home, but any one is enough to keep me at home.</p>
+
+<p>I haven’t done any of this yet, as what I’m doing currently works really well, but I’m likely to explore this over time. I’m also exploring Phil Hawthorne’s work on <a href="https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/">making detection less binary</a>.</p>
+
+<p><strong><em>Footnotes</em></strong></p>
+
+<ol>
+  <li><em>I was using OwnTracks, but there’s a <a href="https://github.com/owntracks/android/issues/508">known issue</a> where it’ll randomly turn off reporting. It doesn’t help that the Android app was abandoned due to the lack of a maintainer, though it looks like a replacement is now in hand.</em></li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#home-assistant" class="page__taxonomy-item" rel="tag">home assistant</a><span class="sep">, </span>
+    
+      <a href="/tags/#presence-detection" class="page__taxonomy-item" rel="tag">presence detection</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-01-25T00:00:00+00:00">January 25, 2018</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/2018/01/18/the-secret-is-not-to-bang-rocks-together.html" class="pagination--pager" title="The secret is (not) to bang the rocks together
+">Previous</a>
+    
+    
+      <a href="/2018/01/29/home-assistant-avoiding-insecurity.html" class="pagination--pager" title="Home Assistant, avoiding insecurity
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/24/welcome-to-homeassistant.html" rel="permalink">Welcome to Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-24T15:00:00+00:00">December 24, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You’ve installed Home Assistant, looked at the wall of documents, viewed a few (horribly out of date) YouTube videos, and are overwhelmed.
+
+Where do you begi...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/12/22/blog-migration.html" rel="permalink">Blog migration (2022)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-12-22T09:00:00+00:00">December 22, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">If you’re reading this you’re looking at the new home of my blog. I’m moving off of Blogger and over to Jekyll, possibly on GitHub pages possibly on Cloudfla...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/10/25/traefik-and-remote-home-assistant.html" rel="permalink">Traefik and a remote Home Assistant
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-10-25T21:17:00+01:00">October 25, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">I’ve been playing with Traefik lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Ho...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/2022/09/20/frigate-motioneyedoods.html" rel="permalink">Frigate &gt; MotionEye+Doods
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-20T21:02:00+01:00">September 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">As you may remember, I use MotionEye and Doods, along withsome crazy scripting, to do motion and object detection at the front of the house.
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/DubhAd/Home-AssistantConfig/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> My HA config</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Tinkerer. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
