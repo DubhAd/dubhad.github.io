@@ -12,7 +12,7 @@ modified_time: '2020-10-10T14:30:00.056+01:00'
 
 Another year, another Python deprecation, another flood of posts asking how to upgrade a Python venv. 
 
-While you can certainly [do that](/upgrading-python-virtual-environment/), another option would be to move to Docker (at least assuming you're running on Linux). Then you don't have to do this next year. Moving to Docker is pretty simple, it's largely a case of [following the docs](https://www.home-assistant.io/installation/linux#install-home-assistant-container), and writing a compose file that points to your existing config.
+While you can certainly [do that]({% post_url 2017-12-08-upgrading-python-virtual-environment %}), another option would be to move to Docker (at least assuming you're running on Linux). Then you don't have to do this next year. Moving to Docker is pretty simple, it's largely a case of [following the docs](https://www.home-assistant.io/installation/linux#install-home-assistant-container), and writing a compose file that points to your existing config.
 
 ## Summary
 

@@ -45,11 +45,11 @@ Home Assistant does have password support, and if you're not doing authenticatio
 
 There is a long running [feature request on the forum](https://community.home-assistant.io/t/multiple-users-accounts/396) for support for multiple accounts. It's long running because replacing the authentication is non-trivial, so we'll all just have to wait for some developer to pick this up.
 
-This limitation is [why I use NGINX](/nginx-and-home-assistant/) and perform authentication through it. I also use it for SSL support, and on that point...
+This limitation is [why I use NGINX]({% post_url 2018-01-09-nginx-and-home-assistant %}) and perform authentication through it. I also use it for SSL support, and on that point...
 
 ## Use SSL
 
-Seriously, use it. If you're running Hass.io they even provide a combined [Duck DNS and Let's Encrypt add-on](https://community.home-assistant.io/t/multiple-users-accounts/396), and a separate [Let's Encrypt add-on](https://home-assistant.io/addons/lets_encrypt/) for those who're using another DNS provider. For everybody else, it's not terribly hard, and I [covered it here](/letsencrypt-with-home-assistant/).
+Seriously, use it. If you're running Hass.io they even provide a combined [Duck DNS and Let's Encrypt add-on](https://community.home-assistant.io/t/multiple-users-accounts/396), and a separate [Let's Encrypt add-on](https://home-assistant.io/addons/lets_encrypt/) for those who're using another DNS provider. For everybody else, it's not terribly hard, and I [covered it here]({% post_url 2017-11-05-letsencrypt-with-home-assistant %}).
 
 SSL ensures that your password isn't sent unencrypted, which given that you've only got a single password for Home Assistant, is a really good thing.
 
@@ -73,7 +73,7 @@ Obscurity isn't security, but if you're running services on a default or common 
 
 ## Backups
 
-Backups aren't security. They are however what you'll need if your security has failed you. Backups kept on the system itself, or easily accessible from it, can be wiped by a malicious attacker. A VPS provider I once used had this happen when their security failed them. This is why I [pull my backups](/backing-up-home-assistant/) from a remote computer, as well as pushing them to an online repository.
+Backups aren't security. They are however what you'll need if your security has failed you. Backups kept on the system itself, or easily accessible from it, can be wiped by a malicious attacker. A VPS provider I once used had this happen when their security failed them. This is why I [pull my backups]({% post_url 2017-10-23-backing-up-home-assistant %}) from a remote computer, as well as pushing them to an online repository.
 
 _Footnotes_
 

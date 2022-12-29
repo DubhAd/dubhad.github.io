@@ -31,7 +31,7 @@ You're missing two things:
 * Snapshots
 * Add-ons
 
-Snapshots are just local backups. I've [previously covered backups](/backing-up-home-assistant/) - and off host backups are _far_ better than on-host backups. Add-ons are intended as an easy way of installing a package, designed to make it less complicated. They do nothing you can't do manually yourself, though you may need to read some fine documentation.
+Snapshots are just local backups. I've [previously covered backups]({% post_url 2017-10-23-backing-up-home-assistant %}) - and off host backups are _far_ better than on-host backups. Add-ons are intended as an easy way of installing a package, designed to make it less complicated. They do nothing you can't do manually yourself, though you may need to read some fine documentation.
 
 ## Remember where we parked you are
 

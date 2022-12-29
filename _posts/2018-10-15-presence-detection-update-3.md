@@ -5,7 +5,7 @@ tags:
 modified_time: '2018-10-15T20:31:10.072+01:00'
 ---
 
-[Last time](/a-while-back-i-covered-how-i-was-doing/) I said that I was probably going to go with the [Bayesian sensor](https://www.home-assistant.io/integrations/binary_sensor.bayesian) for presence detection, but I've changed my mind.  
+[Last time]({% post_url 2018-09-06-a-while-back-i-covered-how-i-was-doing %}) I said that I was probably going to go with the [Bayesian sensor](https://www.home-assistant.io/integrations/binary_sensor.bayesian) for presence detection, but I've changed my mind.  
   
 Why, because of an occasional edge case in which people get marked away when they're not really away. The Pi is in a corner of the house, as is the primary WiFi access point. If somebody is standing in exactly the right spot, they can drop off both Bluetooth and WiFi for just long enough to be marked as away. The quick answer to this is to extend the original home/away automations:  
 

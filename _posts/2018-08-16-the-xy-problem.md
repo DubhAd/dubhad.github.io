@@ -6,7 +6,7 @@ tags:
 modified_time: '2018-08-16T15:15:49.570+01:00'
 ---
 
-I talked about the people who try (and usually fail) to make things work by [banging the rocks together](/the-secret-is-not-to-bang-rocks-together/), but there's another, more common, group. These are the people who've identified what they think of as the solution, and are totally focused on making that solution work. They'll [ignore all attempts](https://meta.stackexchange.com/questions/66377/what-is-the-xy-problem) to solve the problem that don't involve their solution.
+I talked about the people who try (and usually fail) to make things work by [banging the rocks together]({% post_url 2018-01-18-the-secret-is-not-to-bang-rocks-together %}), but there's another, more common, group. These are the people who've identified what they think of as the solution, and are totally focused on making that solution work. They'll [ignore all attempts](https://meta.stackexchange.com/questions/66377/what-is-the-xy-problem) to solve the problem that don't involve their solution.
 
 ## Don't lose your head
 

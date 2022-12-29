@@ -23,7 +23,7 @@ Building your own relay service takes a bit of work, and you'll need a virtual m
 
 ## Set up a VPN server (cloud)
 
-I've already talked about [setting up PiVPN](/remote-access-via-pivpn/). You install this on your cloud hosted virtual machine, and the (OpenVPN) client on your Home Assistant server (yes, I'm afraid this largely rules out Home Assistant OS at this time). Use the default TUN (tunnel) connection.
+I've already talked about [setting up PiVPN]({% post_url 2018-01-17-remote-access-via-pivpn %}). You install this on your cloud hosted virtual machine, and the (OpenVPN) client on your Home Assistant server (yes, I'm afraid this largely rules out Home Assistant OS at this time). Use the default TUN (tunnel) connection.
 
 You'll need to add firewall rules on the cloud environment to allow access to your VPN software. On Google Cloud Platform that's through the [Firewall rules](https://cloud.google.com/vpc/docs/firewalls) section, on AWS it's with [Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). Azure and Digital Ocean have similar settings, if in doubt search for _your hosting provider_ and _firewall rules_.
 
@@ -93,7 +93,7 @@ PING 10.8.0.2 (10.8.0.2) 56(84) bytes of data.
 64 bytes from 10.8.0.2: icmp_seq=2 ttl=64 time=48.1 ms
 ```
 
-With that working, install your choice of [NGINX](https://www.home-assistant.io/docs/ecosystem/nginx/), [Caddy](https://www.home-assistant.io/docs/ecosystem/caddy/), HA Proxy, [Apache](https://www.home-assistant.io/docs/ecosystem/apache/) or whatever. I've got a guide for configuring an [older version of NGINX](/nginx-and-home-assistant/), but it won't work on a current version without changes.
+With that working, install your choice of [NGINX](https://www.home-assistant.io/docs/ecosystem/nginx/), [Caddy](https://www.home-assistant.io/docs/ecosystem/caddy/), HA Proxy, [Apache](https://www.home-assistant.io/docs/ecosystem/apache/) or whatever. I've got a guide for configuring an [older version of NGINX]({% post_url 2018-01-09-nginx-and-home-assistant %}), but it won't work on a current version without changes.
 
 When you configure your reverse proxy, you configure it to forward the traffic to the VPN IP of your Home Assistant system. That's easy enough to find:
 

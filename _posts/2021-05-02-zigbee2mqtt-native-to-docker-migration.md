@@ -13,7 +13,7 @@ Since then I've seen the light. Docker makes upgrades, and downgrades, so much e
 
 But, if you've started with a manual install, how do you migrate without having to re-pair everything? 
 
-The answer is that it's pretty much the same as for when you migrate Home Assistant from a [venv to Docker](/ha-venv-to-docker/):
+The answer is that it's pretty much the same as for when you migrate Home Assistant from a [venv to Docker]({% post_url 2020-10-10-ha-venv-to-docker %}):
 
 1.  Install Docker and Docker Compose
 2.  Configure your container to use the existing config folder
