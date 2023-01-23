@@ -365,7 +365,7 @@ script:
 
 Yes, pretty much all those scripts are doing for presence detection is turning a boolean on and off to indicate home/away. At least for the purposes here, the full scripts do more things for other purposes. I use those booleans for home/away logic, not any group, person, or device tracker entity.
 
-The main script now is one for [doing the scans](/presence-detection-one-last-time/). This uses a bunch of logic to work out whether we can do just a departure scan, or just an arrival scan, or whether we should do both. At 116 lines I won't put it in here, but the basic logic is:
+The main script now is one for [doing the scans]({% post_url 2020-04-14-presence-detection-one-last-time %}). This uses a bunch of logic to work out whether we can do just a departure scan, or just an arrival scan, or whether we should do both. At 116 lines I won't put it in here, but the basic logic is:
 
 *   If nobody is home, do an away scan
 *   If everybody is home, do a departure scan

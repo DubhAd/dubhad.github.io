@@ -43,7 +43,7 @@ You have to [run Home Assistant somewhere](https://www.home-assistant.io/install
 
 ### Zigbee
 
-There are [three Zigbee options](/zigbee-and-home-assistant/) available, so this is the easiest. Pick one (I'd suggest either zha or Zigbee2MQTT), pick a supported stick (the best one you can afford), and away you go.
+There are [three Zigbee options]({% post_url 2019-11-17-zigbee-and-home-assistant %}) available, so this is the easiest. Pick one (I'd suggest either zha or Zigbee2MQTT), pick a supported stick (the best one you can afford), and away you go.
 
 ### Z-Wave
 

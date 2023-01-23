@@ -9,7 +9,7 @@ tags:
 modified_time: '2022-09-20T21:02:09.015+01:00'
 ---
 
-As you may remember, I use MotionEye and Doods, along [withsome crazy scripting](/cameras-motion-detection-and/), to do motion and object detection at the front of the house.
+As you may remember, I use MotionEye and Doods, along [withsome crazy scripting]({% post_url 2020-05-10-cameras-motion-detection-and %}), to do motion and object detection at the front of the house.
 
 Well, _used_ would be more accurate.
 

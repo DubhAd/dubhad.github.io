@@ -7,7 +7,7 @@ tags:
 modified_time: '2018-09-07T10:00:50.120+01:00'
 ---
 
-A while back I covered how I [was doing presence detection](/home-assistant-and-basic-presence/), and thought that since I've changed a few things I should update.  
+A while back I covered how I [was doing presence detection]({% post_url 2018-01-25-home-assistant-and-basic-presence %}), and thought that since I've changed a few things I should update.  
 
 ## Little Big Changes
 

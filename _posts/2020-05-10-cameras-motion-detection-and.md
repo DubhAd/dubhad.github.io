@@ -2,6 +2,10 @@
 title: Cameras, motion detection, and (interesting) object detection (part two)
 date: '2020-05-10T11:20:00.001+01:00'
 tags:
+- doods
+- motion
+- motion detection
+- object detection
 modified_time: '2020-05-10T11:20:30.278+01:00'
 ---
 Well, it didn't take long for me to tweak my setup, so before we get to the template, and other things, I'll explain what I've changed.  
