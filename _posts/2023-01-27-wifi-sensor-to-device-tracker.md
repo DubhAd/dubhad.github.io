@@ -15,7 +15,7 @@ Something that makes for a great home/away tracker is the Android app's connecte
 
 Well, you can turn it into one, and I [mentioned it before]({% post_url 2022-12-29-presence-detection-here-we-go-again %}), but it's lost in the depths of that post so I thought I'd float it out into it's own article.
 
-You'll need a working MQTT setup for this, as well as remote access for Home Assistant (or it can't report that it's not connected to your WiFi).
+You'll need a working MQTT setup for this, as well as remote access for Home Assistant (or the phone can't report that it's not connected to your WiFi).
 
 ## Android App
 
