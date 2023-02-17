@@ -5,7 +5,7 @@ tags:
 - zigbee
 - home assistant
 toc: true
-modified_time: '2022-12-31T14:00:00.000Z'
+modified_time: '2023-04-17T21:40:00.000Z'
 ---
 
 There's a number of things that come up regularly that folks new to Zigbee may not know, so here's a handy set of notes and links.
@@ -24,7 +24,7 @@ There are a number of things you need to take into account to ensure a usable si
 
 ### Interference from the computer
 
-USB 3.0 chipsets are known to [generate interference](https://web.archive.org/web/20210428073944/https://www.intel.com/content/www/us/en/products/docs/io/universal-serial-bus/usb3-frequency-interference-paper.html) with Zigbee. On board WiFi and Bluetooth will also generate interference, indeed the whole computer is a source of RF noise.
+USB 3.0 chipsets are known to [generate interference](https://web.archive.org/web/20210428073944/https://www.intel.com/content/www/us/en/products/docs/io/universal-serial-bus/usb3-frequency-interference-paper.html) with Zigbee. On board WiFi and Bluetooth will also generate interference, indeed the whole computer is a source of RF noise. Home Assistant released a [great video demonstrating this](https://www.youtube.com/watch?v=tHqZhNcFEvA).
 
 The solution here is pretty simple, put the USB stick on an extension cable. It doesn't need to be a long one, but the longer it is the more quality matters. I've used both one meter and 2 meter cables without problems. If you go past 3 meters (with USB 3.0, 5 with USB 2.0) those need to be _active_ cables.
 
