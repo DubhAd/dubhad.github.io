@@ -4,7 +4,7 @@ date: '2022-10-25T21:17:00.000+01:00'
 tags:
 - remote access
 - home assistant
-modified_time: '2022-10-25T21:17:39.273+01:00'
+modified_time: '2023-02-28T09:17:39.273+00:00'
 ---
 
 I've been playing with [Traefik](https://traefik.io/) lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Home Assistant, despite that being on a remote host.
@@ -38,7 +38,7 @@ http:
     homeassistant:  
       entryPoints:  
         - "websecure"  
-      rule: "Host(\`homeassistant.example.org\`) && ( PathPrefix(\`/api/webhook\`) || PathPrefix(\`/api/telegram\_webhooks\`) || PathPrefix(\`/api/frigate/notifications\`) )"  
+      rule: "Host(`homeassistant.example.org`) && ( PathPrefix(`/api/webhook`) || PathPrefix(`/api/websocket`) || PathPrefix(`/api/telegram_webhooks`) || PathPrefix(`/api/frigate`) || PathPrefix(`/api/tts_proxy/`) || PathPrefix(`/auth/token`) )"  
       tls:  
         certResolver: zerossl  
         domains:  
