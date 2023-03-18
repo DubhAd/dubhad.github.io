@@ -9,9 +9,9 @@ modified_time: '2023-02-28T09:17:39.273+00:00'
 
 I've been playing with [Traefik](https://traefik.io/) lately, for remote access for various things in my Docker stack, and I decided to see if it was possible to also use it for Home Assistant, despite that being on a remote host.
 
-The answer is (otherwise I wouldn't havewritten this) yes - and I can continue my practice of limiting access to only parts of the API I want to expose. I used [this guide](https://medium.com/@containeroo/traefik-2-0-route-external-services-through-traefik-7bf2d56b1057) to get myself going.
+The answer is (otherwise I wouldn't have written this) yes - and I can continue my practice of limiting access to only parts of the API I want to expose. I used [this guide](https://medium.com/@containeroo/traefik-2-0-route-external-services-through-traefik-7bf2d56b1057) to get myself going.
 
-There's nothing special about the core of my [Traefik configuration](https://gist.github.com/DubhAd/5fffb74c683dd0d96f71d41928ca502a). I'm using [ZeroSSL](https://zerossl.com/) here, instead of [LetsEncrypt](https://letsencrypt.org/), purely becauseI'm already using LetsEncrypt for my existing proxy and didn't want to hit rate limits while experimenting.
+There's nothing special about the core of my [Traefik configuration](https://gist.github.com/DubhAd/5fffb74c683dd0d96f71d41928ca502a). I'm using [ZeroSSL](https://zerossl.com/) here, instead of [LetsEncrypt](https://letsencrypt.org/), purely because I'm already using LetsEncrypt for my existing proxy and didn't want to hit rate limits while experimenting.
 
 I'm using the [file provider](https://doc.traefik.io/traefik/providers/file/) to define the connection to Home Assistant, and that configuration too is [pretty simple](https://gist.github.com/DubhAd/d6d95418ef3b57e282bd556007461fba). The key is the `loadBalancer` setting, that directs Traefik to the remote host.
 
