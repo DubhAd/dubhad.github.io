@@ -18,25 +18,36 @@ So... I thought _I wonder if I can use Cloudflare tunnels with authentication, a
 
 The answer is obviously _yes_ or you wouldn't be reading this. So... _how_?
 
+## Big picture
+
+There's a few pieces to this
+
+1. Configure authentication (_identity_) in Cloudflare Zero trust
+2. Create a default access group so you don't have duplicate the access logic manually
+3. Create a self hosted application that uses the default access group
+4. Set up your Tunnel
+5. Route hostnames (applications) through the tunnel to Traefik
+6. Have Traefik handle the connection to the application
+
 ## Authentication
 
 The first thing to do is to head over to your Cloudflare dashboard, head to _Zero trust_, and under _Settings_ pick _Authentication_.
 
-Here we can add a new login method. As I use Authentik one option here would be to use SAML and hook into Authentik, but I took the lazy approach and used _Google Workspace_ as my domain uses Google Workspace. There are however plenty of other options, including GitHub and OpenID.
+Here we can add a new login method. As I use Authentik one option here would be to use SAML and hook into Authentik, but I took the lazy approach and used _Google Workspace_ as my domain uses Google Workspace. There are however [plenty of other options](https://developers.cloudflare.com/cloudflare-one/identity/idp-integration/), including GitHub and OpenID.
 
-Pick the option (or options) that suit you best and set them up. If you pick a single option then the user experience is going to be smoother, but it's only one more click.
+Pick the option (or options) that suit you best and set them up. If you pick a single option then the user experience is going to be smoother, but it's only one more click ad screen for the user. 
 
 ## Application configuration
 
-Next under the _Zero trust_ section head to _Access_ and then _Access groups_. Here you can define a group (or groups) for access. I'm creating a default group for everybody in the domain:
+Next under the _Zero trust_ section head to _Access_ and then [_Access groups_](https://developers.cloudflare.com/cloudflare-one/identity/users/groups/). Here you can define a group (or groups) for access. I'm creating a default group for everybody in the domain:
 
 ![group](/assets/images/2023-04-28/cloudflare-groups.png)
 
-Now under _Access_ and _Applications_ we can create a new _self hosted_ application.
+Now under _Access_ and _Applications_ we can create a new [_self hosted_ application](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/self-hosted-apps/).
 
 * I keep the name and the sub-domain the same, just to make it easier to know what's what - you'll use this sub-domain again later for the tunnel configuration
 * Session Duration I leave at the default
-* I don't use the launcher
+* I don't use the launcher, but I've left it enabled in case I change my mind
 * I enable only the relevant identity providers, disabling the One Time Pin option
 * If you only have a single provider it makes sense to enable the skip option
 
@@ -48,9 +59,9 @@ Having created a default access group already the next step is easy. Give the po
 
 ## Setting up the tunnel
 
-Then, still in _Zero trust_, go to _Access_ pick _Tunnels_.
+Then, still in _Zero trust_, go to _Access_ and pick _Tunnels_.
 
-Here you can create a tunnel, giving it a name, and then install the tunnel software. As I run everything in Docker I just added the following lines to my compose file:
+Here you can create a tunnel, giving it a name, and then install the tunnel software. As I run everything in Docker all I had to do to install the tunnel software was add the following lines to my compose file:
 
 ```yaml
   cloudflared:
@@ -82,11 +93,13 @@ docker compose pull cloudflared
 docker compose up -d cloudflared
 ```
 
-Next we route the traffic, using the same subdomain as for the application configuration. This is also where Traefik comes into play. 
+If you check your tunnel on the tunnel page you should see it now says _healthy_. If it doesn't check the container logs (I do like [Dozzle](https://dozzle.dev/) for that).
+
+Next we route the traffic, using the same subdomain as for the application configuration. Under _Additional application settings_ you can also find _Access_ where you can enable [_Protect with Access_](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/self-hosted-apps/#5-validate-the-access-token) for the application. 
 
 ![public hostname](/assets/images/2023-04-28/cloudflare-tunnels-public-hostname.png)
 
-![but why?](/assets/images/2023-04-28/butwhy.jpg){: width="400" .align-right style="clear: right"}
+This is where Traefik comes into play. ![but why?](/assets/images/2023-04-28/butwhy.jpg){: width="400" .align-right style="clear: right"}
 Yes, I've configured the tunnel to point to Traefik, using the name of the container (as it's in the same stack). 
 
 <del>Two</del> Three reasons:
@@ -123,6 +136,6 @@ docker compose up -d homeassistant
 
 ## All done now
 
-Now I can remotely access `https://homeassistant.ceard.tech/`, through Cloudflare without any port forwarding, and have it require external authentication before I can connect.
+Now I can remotely access `https://homeassistant.ceard.tech/` through Cloudflare without any port forwarding, and have it require external authentication before I can connect.
 
 Clearly actually doing that for Home Assistant will break the mobile app, the use of any voice assistant, or any other non-UI remote access. If you're going to need any of those then doing this is a _Bad Idea_&#8482;. On the other hand, for separate remote UI access (in a browser) it works well, and it'll work for many other applications too. I plan on using this for most of the remote access I use, for things like Photoprism, Paperless-NGX, WikiJS, and maybe even Frigate now that it's no longer against the T&Cs to stream video over a tunnel.
