@@ -48,9 +48,9 @@ Having created a default access group already the next step is easy. Give the po
 
 ## Setting up the tunnel
 
-Then still in _Zero trust_, go to _Access_ pick _Tunnels_.
+Then, still in _Zero trust_, go to _Access_ pick _Tunnels_.
 
-Here you can create a tunnel, giving it a name, and then installing the software. As I run everything in Docker I just added the following lines to my compose file:
+Here you can create a tunnel, giving it a name, and then install the tunnel software. As I run everything in Docker I just added the following lines to my compose file:
 
 ```yaml
   cloudflared:
@@ -123,6 +123,6 @@ docker compose up -d homeassistant
 
 ## All done now
 
-Now I can remotely access `homeassistant.ceard.tech`, through Cloudflare without any port forwarding, and have it require external authentication before I can connect.
+Now I can remotely access `https://homeassistant.ceard.tech/`, through Cloudflare without any port forwarding, and have it require external authentication before I can connect.
 
-Clearly actually doing that will break the mobile app, the use of any voice assistant, or any other non-UI remote access. If you're going to need any of those then doing this is a _Bad Idea_&#8482;. On the other hand, for separate remote UI access (in a browser) it works well, and it'll work for many other applications too. I plan on using this for most of the remote access I use, for things like Photoprism, Paperless-NGX, WikiJS, and maybe even Frigate now that it's no longer against the T&Cs to stream video over a tunnel.
+Clearly actually doing that for Home Assistant will break the mobile app, the use of any voice assistant, or any other non-UI remote access. If you're going to need any of those then doing this is a _Bad Idea_&#8482;. On the other hand, for separate remote UI access (in a browser) it works well, and it'll work for many other applications too. I plan on using this for most of the remote access I use, for things like Photoprism, Paperless-NGX, WikiJS, and maybe even Frigate now that it's no longer against the T&Cs to stream video over a tunnel.
