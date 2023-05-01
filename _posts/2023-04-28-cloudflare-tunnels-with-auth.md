@@ -95,7 +95,7 @@ docker compose up -d cloudflared
 
 If you check your tunnel on the tunnel page you should see it now says _healthy_. If it doesn't check the container logs (I do like [Dozzle](https://dozzle.dev/) for that).
 
-Next we route the traffic, using the same subdomain as for the application configuration. The tunnel's _Additional application settings_ is also where you can find _Access_ where you can enable [_Protect with Access_](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/self-hosted-apps/#5-validate-the-access-token) for the application. 
+Next we route the traffic, using the same subdomain as for the application configuration. The tunnel's _Additional application settings_ is also where you can find _Access_ where you can enable [_Protect with Access_](https://developers.cloudflare.com/cloudflare-one/applications/configure-apps/self-hosted-apps/#5-validate-the-access-token) for the application. When you enable _Protect with Access_ remember to pick the application name from above - if you don't then access will be denied.
 
 ![public hostname](/assets/images/2023-04-28/cloudflare-tunnels-public-hostname.png)
 
