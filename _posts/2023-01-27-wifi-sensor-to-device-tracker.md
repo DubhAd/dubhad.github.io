@@ -8,10 +8,11 @@ tags:
 - wifi
 - presence detection
 - android
-modified_time: '2023-01-27T13:42:00.000+00:00'
+- ios
+modified_time: '2024-08-13T12:16:00.000+00:00'
 ---
 
-Something that makes for a great home/away tracker is the Android app's connected WiFi sensor, or at least it would if it was a device tracker.
+Something that makes for a great home/away tracker is the Android and iOS app's connected WiFi sensor, or at least it would if it was a device tracker.
 
 Well, you can turn it into one, and I [mentioned it before]({% post_url 2022-12-29-presence-detection-here-we-go-again %}), but it's lost in the depths of that post so I thought I'd float it out into it's own article.
 
@@ -19,7 +20,7 @@ You'll need a working MQTT setup for this, as well as remote access for Home Ass
 
 ## Android App
 
-I use the [connected WiFi sensor](https://companion.home-assistant.io/docs/core/sensors#connection-type-sensor). This identifies the name of the WiFi network we're connected to. If you need more granularity there's also the `bssid` sensor. These only exist for the Android app, so iOS users can stop reading here.
+I use the [connected WiFi sensor](https://companion.home-assistant.io/docs/core/sensors#connection-type-sensor). This identifies the name of the WiFi network we're connected to. If you need more granularity there's also the `bssid` sensor. ~~These only exist for the Android app, so iOS users can stop reading here.~~ iOS also has a sensor for this, which is `sensor.YOUR_PHONE_ssid`.
 
 ## Automation
 
@@ -35,13 +36,13 @@ automation:
     initial_state: 'on'
     trigger:
       - platform: state
-        entity_id: sensor.YOUR_PHONE_wifi_connection
+        entity_id: sensor.YOUR_PHONE_wifi_connection # or for iOS sensor.YOUR_PHONE_ssid 
         to: ~
     action:
       - choose:
         - conditions:
             - condition: template
-              value_template: "{{ 'Cogs-n-Gears' in states('sensor.YOUR_PHONE_wifi_connection') }}"
+              value_template: "{{ 'Cogs-n-Gears' in trigger.to_state.state }}"
           sequence:
             - service: mqtt.publish
               data:
