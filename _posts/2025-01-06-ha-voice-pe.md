@@ -56,7 +56,7 @@ Timers, and stopping them, works well enough - though I'm amused that HA's [own 
 
 Asking it where people are is very hit and miss. I asked it where I was, and I got told _Tinkerer is at_. That's it, I'm at ... silence. The next time it admitted I was at home. Asking about others who're away simply results in _away_ rather than _where_ they are. Thankfully I already have some `input_text` entities that say where people are (the name of the zone, or where they're near if not in a zone - courtesy of the custom [places](https://github.com/custom-components/places) integration), and it's happy to supply those states when those are exposed rather than the `person` entities. 
 
-It also doesn't (yet?) support things like room temperatures (though it will if there's a `climate` device), and while it can tell me if any specific door is open or closed, asking it which doors are open (or closed) results in _not any_. It's also annoying that HA knows if a `binary_sensor` is a door or a window, but we've got to name things with `door` and `window` for Assist to know.
+It also doesn't (yet?) support things like room temperatures (though it will if there's a `climate` device), and while it can tell me if any specific door is open or closed, asking it which doors are open (or closed) results in _not any_ (update 2025-01-07: it turns out this is [deliberate behaviour](https://github.com/home-assistant/intents/pull/2835) and unlikely to change). It's also annoying that HA knows if a `binary_sensor` is a door or a window, but we've got to name things with `door` and `window` for Assist to know.
 
 ## Closing thoughts
 
